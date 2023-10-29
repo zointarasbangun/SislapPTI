@@ -139,7 +139,7 @@
                                 <button type="submit" class="btn btn-primary btn-block" name="login" href="/beranda"><b>Login</b></button>
                             </div>
                             <p style="text-align: center;">
-                                Kembali ke <a href="halaman-beranda.html">beranda</a>
+                                Kembali ke <a href="/">Landing page</a>
                             </p>
                         </form>
                     </div>

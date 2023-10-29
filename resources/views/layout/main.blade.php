@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Monitoring Client| PGNCOM</title>
+    <title>Safety Drive| PGNCOM</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -145,7 +145,7 @@
                         <a href="profil.html" class="dropdown-item dropdown-footer"><i
                                 class="far fa-user mx-2"></i>Lihat Profil</a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer"><i
+                        <a href="/" class="dropdown-item dropdown-footer"><i
                                 class="fas fa-sign-out-alt mx-2"></i>Logout</a>
                     </div>
                 </li>
@@ -173,14 +173,14 @@
 
                             <li class="nav-item menu-open">
                                 <a href="#" class="nav-link ">
-                                <i class="iconify nav-icon" data-icon="tabler:home"></i>
+                                    <i class="iconify nav-icon" data-icon="tabler:home"></i>
                                     <p>
                                         Beranda
                                     </p>
                                 </a>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                <i class="iconify nav-icon ml-1" data-icon="pajamas:account"></i>
+                                    <i class="iconify nav-icon ml-1" data-icon="pajamas:account"></i>
                                     <p>
                                         Kelola Akun
                                         <i class="fas fa-angle-left right"></i>
@@ -206,15 +206,44 @@
 
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                <i class="iconify nav-icon" data-icon="tdesign:data"></i>
+                                    <i class="iconify nav-icon" data-icon="tdesign:data"></i>
                                     <p>
                                         Perjalanan
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview"
-                                    style="padding-left: 20px;>
+                                <ul class="nav nav-treeview" style="padding-left: 20px;">
                                     <li class="nav-item">
+                                        <a href="/dataperjalanan" class="nav-link">
+                                            <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
+                                            <p>Data Perjalanan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/statusperjalanan" class="nav-link">
+                                            <i class="far fa-calendar-check nav-icon"></i>
+                                            <p>Status Perjalanan</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/pelacakperjalanan" class="nav-link">
+                                    <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
+                                    <p>
+                                        Pelacak Perjalanan
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
+                                    <p>
+                                        Kondisi Kendaraan
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview" style="padding-left: 20px;">
                                     <a href="/dataperjalanan" class="nav-link">
                                     <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
                                         <p>Data Perjalanan</p>
@@ -247,27 +276,27 @@
                             <ul class="nav nav-treeview"
                                 style="padding-left: 20px;>
                                     <li class="nav-item">
-                                <a href="pages/forms/general.html" class="nav-link">
-                                <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
-                                    <p>Data Kondisi Kendaraan</p>
+                                        <a href="datakondisikendaraan" class="nav-link">
+                                            <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
+                                            <p>Data Kondisi Kendaraan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/tipekendaraan" class="nav-link">
+                                            <i class="iconify nav-icon" data-icon="mdi:car"></i>
+                                            <p>Tipe Kendaraan</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/notifikasi" class="nav-link">
+                                    <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
+                                    <p>
+                                        Notifikasi
+                                    </p>
                                 </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/forms/advanced.html" class="nav-link">
-                            <i class="iconify nav-icon" data-icon="mdi:car"></i>
-                                <p>Tipe Kendaraan</p>
-                            </a>
-                        </li>
-                        </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
-                            <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
-                                <p>
-                                    Notifikasi
-                                </p>
-                            </a>
-                        </li>
+                            </li>
 
                         </ul>
                     </nav>

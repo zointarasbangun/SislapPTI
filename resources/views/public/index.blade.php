@@ -7,11 +7,11 @@
     <title>PGNCOM | Beranda</title>
 
     <!-- bootstrap -->
-    <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-
-    <!-- Libraries Stylesheet -->
     <link rel="stylesheet" href="{{ asset('lib/animate/animate.min.css') }}">
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
 
@@ -26,7 +26,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="global.css">
 
 </head>
@@ -67,10 +67,12 @@
                 </div>
                 <div class="navbar-nav nav-item" style="align-items: left;">
                     <a href="/login" class="nav-item nav-link">Login</a>
+                    <!-- Ganti "link-ke-halaman-login-anda.html" dengan URL yang sesuai -->
                 </div>
             </div>
         </nav>
     </div>
+
     <!-- Navbar End -->
 
     <!-- Content1 Carousel Start -->
@@ -369,20 +371,20 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i
             class="bi bi-arrow-up"></i></a>
+     <!-- JavaScript -->
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+     <!-- JS Lib -->
+     <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+     <script src="{{ asset('lib/tempusdominus/js/moment.min.js') }}"></script>
+     <script src="{{ asset('lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+     <script src="{{ asset('lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+     <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
 
-    <!-- JS Lib -->
-    <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script>
-    <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('lib/tempusdominus/js/moment.min.js') }}"></script>
-    <script src="{{ asset('lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
-    <script src="{{ asset('lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-    <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('lib/wow/wow.min.js"><') }}/script>
 
-        <!-- Template JS -->
-        <script src=" js/main.js"></script>
+    <!-- Template JS -->
+    <script src="js/main.js"></script>
 </body>
 
 </html>

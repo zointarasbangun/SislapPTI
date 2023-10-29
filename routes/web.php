@@ -36,3 +36,27 @@ Route::get('/dataakun', function () {
 Route::get('/dataperjalanan', function () {
     return view('dataperjalanan');
 });
+
+Route::get('/statusperjalanan', function () {
+    return view('statusperjalanan');
+});
+
+Route::get('/pelacakperjalanan', function () {
+    return view('pelacakperjalanan');
+});
+
+Route::get('/datakondisikendaraan', function () {
+    return view('datakondisikendaraan');
+});
+
+Route::get('/tipekendaraan', function () {
+    return view('tipekendaraan');
+});
+
+Route::get('/notifikasi', function () {
+    return view('notifikasi');
+});
+
+Route::get('/dataperjalanan', function () {
+    return view('dataperjalanan');
+});
