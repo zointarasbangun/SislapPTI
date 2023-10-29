@@ -126,7 +126,7 @@
                     </div>
                     <h2 class="text-center" style="margin-top: 5px; font-weight: bold;">LOGIN</h2>
                     <div class="card-body">
-                        <form method="POST" action="index.php">
+                        <form href="/beranda" >
                             <div class="form-group">
                                 <label for="username">Username:</label>
                                 <input type="text" class="form-control" id="username" name="username" required>
@@ -136,7 +136,7 @@
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-primary btn-block" name="login"><b>Login</b></button>
+                                <button type="submit" class="btn btn-primary btn-block" name="login" href="/beranda"><b>Login</b></button>
                             </div>
                             <p style="text-align: center;">
                                 Kembali ke <a href="halaman-beranda.html">beranda</a>
