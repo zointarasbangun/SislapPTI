@@ -32,6 +32,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/summernote/summernote-bs4.min.css') }}">
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -104,7 +105,7 @@
             <ul class="navbar-nav ml-auto ">
                 <!-- Notif -->
                 <li class="nav-item dropdown mr-4">
-                    <a class="nav-link rounded-circle bg-secondary" data-toggle="dropdown" href="#">
+                    <a class="nav-link rounded-circle" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
                         <span class="badge badge-warning navbar-badge">15</span>
                     </a>
@@ -171,15 +172,20 @@
                             data-accordion="false">
 
                             <li class="nav-item menu-open">
+<<<<<<< HEAD
                                 <a href="/beranda" class="nav-link ">
                                     <i class="nav-icon  fa-solid fa-house"></i>
+=======
+                                <a href="#" class="nav-link ">
+                                <i class="iconify nav-icon" data-icon="tabler:home"></i>
+>>>>>>> 4e0401b4b576f7715a3703f73ed3cea082c56616
                                     <p>
                                         Beranda
                                     </p>
                                 </a>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="nav-icon fa-solid fa-user"></i>
+                                <i class="iconify nav-icon ml-1" data-icon="pajamas:account"></i>
                                     <p>
                                         Kelola Akun
                                         <i class="fas fa-angle-left right"></i>
@@ -189,14 +195,19 @@
                                     <li class="nav-item">
                                         <a href="/tambahakun" class="nav-link">
                                             <!-- Tambahkan URL yang sesuai di sini -->
+<<<<<<< HEAD
+                                            <i class="iconify nav-icon" data-icon="line-md:account-add"></i>
+                                            <p>Tambahkan Akun</p>
+=======
                                             <i class="nav-icon fa-solid fa-user-plus"></i>
                                             <p>Tambah Akun</p>
+>>>>>>> 433634bbab458b5e5fef267ce1e4f385c877e464
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="data-akun.html" class="nav-link">
                                             <!-- Tambahkan URL yang sesuai di sini -->
-                                            <i class="nav-icon fa-sharp fa-solid fa-list"></i>
+                                            <i class="iconify nav-icon" data-icon="gg:list"></i>
                                             <p>Data Akun</p>
                                         </a>
                                     </li>
@@ -205,7 +216,7 @@
 
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="nav-icon fa-sharp fa-solid fa-server"></i>
+                                <i class="iconify nav-icon" data-icon="tdesign:data"></i>
                                     <p>
                                         Perjalanan
                                         <i class="right fas fa-angle-left"></i>
@@ -215,13 +226,13 @@
                                     style="padding-left: 20px;>
                                     <li class="nav-item">
                                     <a href="pages/charts/chartjs.html" class="nav-link">
-                                        <i class="nav-icon fa-solid fa-calendar-days"></i>
+                                    <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
                                         <p>Data Perjalanan</p>
                                     </a>
                             </li>
                             <li class="nav-item">
                                 <a href="pages/charts/flot.html" class="nav-link">
-                                    <i class="far fa-calendar-check nav-icon"></i>
+                                <i class="far fa-calendar-check nav-icon"></i>
                                     <p>Status Perjalanan</p>
                                 </a>
                             </li>
@@ -229,7 +240,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="pages/widgets.html" class="nav-link">
-                                <i class="nav-icon fa-solid fa-map-location-dot"></i>
+                            <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
                                 <p>
                                     Pelacak Perjalanan
                                 </p>
@@ -237,7 +248,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fa-solid fa-clipboard-list"></i>
+                            <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
                                 <p>
                                     Kondisi Kendaraan
                                     <i class="fas fa-angle-left right"></i>
@@ -247,13 +258,13 @@
                                 style="padding-left: 20px;>
                                     <li class="nav-item">
                                 <a href="pages/forms/general.html" class="nav-link">
-                                    <i class="nav-icon fa-solid fa-car-burst"></i>
+                                <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
                                     <p>Data Kondisi Kendaraan</p>
                                 </a>
                         </li>
                         <li class="nav-item">
                             <a href="pages/forms/advanced.html" class="nav-link">
-                                <i class="nav-icon fa-sharp fa-solid fa-car"></i>
+                            <i class="iconify nav-icon" data-icon="mdi:car"></i>
                                 <p>Tipe Kendaraan</p>
                             </a>
                         </li>
@@ -261,7 +272,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="pages/widgets.html" class="nav-link">
-                                <i class="nav-icon fa-solid fa-bell"></i>
+                            <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
                                 <p>
                                     Notifikasi
                                 </p>
@@ -294,6 +305,7 @@
     </div>
     <!-- ./wrapper -->
 
+    <script src="{{ asset('') }}"></script>
     <!-- jQuery -->
     <script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
