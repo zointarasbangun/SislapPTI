@@ -188,10 +188,15 @@
                                 </a>
                                 <ul class="nav nav-treeview" style="padding-left: 20px;">
                                     <li class="nav-item">
-                                        <a href="tambahkan-akun.html" class="nav-link">
+                                        <a href="/tambahakun" class="nav-link">
                                             <!-- Tambahkan URL yang sesuai di sini -->
+<<<<<<< HEAD
                                             <i class="iconify nav-icon" data-icon="line-md:account-add"></i>
                                             <p>Tambahkan Akun</p>
+=======
+                                            <i class="nav-icon fa-solid fa-user-plus"></i>
+                                            <p>Tambah Akun</p>
+>>>>>>> 433634bbab458b5e5fef267ce1e4f385c877e464
                                         </a>
                                     </li>
                                     <li class="nav-item">

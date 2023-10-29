@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/loginproses', [AuthController::class, 'loginproses'])->name('loginproses');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthController::class, 'home'])->name('public.index');
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -23,4 +23,8 @@ Route::get('/login', function () {
 
 Route::get('/beranda', function () {
     return view('beranda');
+});
+
+Route::get('/tambahakun', function () {
+    return view('tambahakun');
 });
