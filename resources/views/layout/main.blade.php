@@ -293,8 +293,8 @@
     </div>
     <!-- ./wrapper -->
 
-    <script src="{{ asset('resources/js/admintable.js') }}"></script>
-    <!-- jQuery -->
+    <script src="{{ asset('js/admintable.js') }}"></script>
+    <!-- jQuery --> 
     <script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('lte/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
