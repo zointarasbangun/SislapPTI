@@ -66,7 +66,7 @@
                     <a href="#about" class="nav-item nav-link">About</a>
                 </div>
                 <div class="navbar-nav nav-item" style="align-items: left;">
-                    <a href="" class="nav-item nav-link">Login</a>
+                    <a href="/login" class="nav-item nav-link">Login</a>
                 </div>
             </div>
         </nav>

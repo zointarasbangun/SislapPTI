@@ -27,8 +27,9 @@
                                     <option>User</option>
                                 </select>
                             </div>
-                            <div>
-                                <button type="submit" class="btn btn-info">Tambah Akun</button>
+                            <div style="text-align: center; margin-top: 20px;">
+                                <button type="submit" class="btn " style="color: white; background: #1265A8"><i class="nav-icon fa-solid fa-user-plus"></i>
+                                    Tambah Akun</button>
                             </div>
                         </form>
                     </div>
@@ -37,10 +38,10 @@
                 <div>
 
 
-                <!-- /.card -->
-                <!-- START ALERTS AND CALLOUTS -->
-            </div>
-            {{-- <div class="card card-primary">
+                    <!-- /.card -->
+                    <!-- START ALERTS AND CALLOUTS -->
+                </div>
+                {{-- <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">Tambah Akun</h3>
         </div>
@@ -63,6 +64,6 @@
             </div>
         </form>
     </div> --}}
-    </div>
-    <!-- /.card -->
-@endsection
+            </div>
+            <!-- /.card -->
+        @endsection

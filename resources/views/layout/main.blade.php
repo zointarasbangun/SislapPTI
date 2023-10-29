@@ -171,7 +171,7 @@
                             data-accordion="false">
 
                             <li class="nav-item menu-open">
-                                <a href="#" class="nav-link ">
+                                <a href="/beranda" class="nav-link ">
                                     <i class="nav-icon  fa-solid fa-house"></i>
                                     <p>
                                         Beranda
