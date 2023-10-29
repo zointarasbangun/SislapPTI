@@ -141,9 +141,11 @@
                         <div class="dropdown-divider"></div>
                         <p class="dropdown-item dropdown-footer disabled ">Nama Admin</p>
                         <div class="dropdown-divider"></div>
-                        <a href="profil.html" class="dropdown-item dropdown-footer"><i class="far fa-user mx-2"></i>Lihat Profil</a>
+                        <a href="profil.html" class="dropdown-item dropdown-footer"><i
+                                class="far fa-user mx-2"></i>Lihat Profil</a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer"><i class="fas fa-sign-out-alt mx-2"></i>Logout</a>
+                        <a href="#" class="dropdown-item dropdown-footer"><i
+                                class="fas fa-sign-out-alt mx-2"></i>Logout</a>
                     </div>
                 </li>
 
@@ -183,21 +185,24 @@
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview" style="padding-left: 20px;>
+                                <ul class="nav nav-treeview" style="padding-left: 20px;">
                                     <li class="nav-item">
-                                        <a href="pages/layout/top-nav.html" class="nav-link">
+                                        <a href="tambahkan-akun.html" class="nav-link">
+                                            <!-- Tambahkan URL yang sesuai di sini -->
                                             <i class="nav-icon fa-solid fa-user-plus"></i>
                                             <p>Tambahkan Akun</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <a href="data-akun.html" class="nav-link">
+                                            <!-- Tambahkan URL yang sesuai di sini -->
                                             <i class="nav-icon fa-sharp fa-solid fa-list"></i>
                                             <p>Data Akun</p>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
+
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fa-sharp fa-solid fa-server"></i>
@@ -206,60 +211,62 @@
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview" style="padding-left: 20px;>
+                                <ul class="nav nav-treeview"
+                                    style="padding-left: 20px;>
                                     <li class="nav-item">
-                                        <a href="pages/charts/chartjs.html" class="nav-link">
-                                            <i class="nav-icon fa-solid fa-calendar-days"></i>
-                                            <p>Data Perjalanan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/charts/flot.html" class="nav-link">
-                                            <i class="far fa-calendar-check nav-icon"></i>
-                                            <p>Status Perjalanan</p>
-                                        </a>
-                                    </li>
-                                </ul>
+                                    <a href="pages/charts/chartjs.html" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-calendar-days"></i>
+                                        <p>Data Perjalanan</p>
+                                    </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/widgets.html" class="nav-link">
-                                    <i class="nav-icon fa-solid fa-map-location-dot"></i>
-                                    <p>
-                                        Pelacak Perjalanan
-                                    </p>
+                                <a href="pages/charts/flot.html" class="nav-link">
+                                    <i class="far fa-calendar-check nav-icon"></i>
+                                    <p>Status Perjalanan</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fa-solid fa-clipboard-list"></i>
-                                    <p>
-                                        Kondisi Kendaraan
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview" style="padding-left: 20px;>
+                        </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/widgets.html" class="nav-link">
+                                <i class="nav-icon fa-solid fa-map-location-dot"></i>
+                                <p>
+                                    Pelacak Perjalanan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-clipboard-list"></i>
+                                <p>
+                                    Kondisi Kendaraan
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview"
+                                style="padding-left: 20px;>
                                     <li class="nav-item">
-                                        <a href="pages/forms/general.html" class="nav-link">
-                                            <i class="nav-icon fa-solid fa-car-burst"></i>
-                                            <p>Data Kondisi Kendaraan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/forms/advanced.html" class="nav-link">
-                                            <i class="nav-icon fa-sharp fa-solid fa-car"></i>
-                                            <p>Tipe Kendaraan</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/widgets.html" class="nav-link">
-                                    <i class="nav-icon fa-solid fa-bell"></i>
-                                    <p>
-                                        Notifikasi
-                                    </p>
+                                <a href="pages/forms/general.html" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-car-burst"></i>
+                                    <p>Data Kondisi Kendaraan</p>
                                 </a>
-                            </li>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/forms/advanced.html" class="nav-link">
+                                <i class="nav-icon fa-sharp fa-solid fa-car"></i>
+                                <p>Tipe Kendaraan</p>
+                            </a>
+                        </li>
+                        </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/widgets.html" class="nav-link">
+                                <i class="nav-icon fa-solid fa-bell"></i>
+                                <p>
+                                    Notifikasi
+                                </p>
+                            </a>
+                        </li>
 
                         </ul>
                     </nav>
