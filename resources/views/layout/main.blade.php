@@ -195,7 +195,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="data-akun.html" class="nav-link">
+                                        <a href="dataakun.blade.php" class="nav-link">
                                             <!-- Tambahkan URL yang sesuai di sini -->
                                             <i class="iconify nav-icon" data-icon="gg:list"></i>
                                             <p>Data Akun</p>
@@ -295,8 +295,8 @@
     </div>
     <!-- ./wrapper -->
 
-    <script src="{{ asset('resources/js/admintable.js') }}"></script>
-    <!-- jQuery -->
+    <script src="{{ asset('js/admintable.js') }}"></script>
+    <!-- jQuery --> 
     <script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('lte/plugins/jquery-ui/jquery-ui.min.js') }}"></script>

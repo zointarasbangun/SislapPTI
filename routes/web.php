@@ -28,3 +28,7 @@ Route::get('/beranda', function () {
 Route::get('/tambahakun', function () {
     return view('tambahakun');
 });
+
+Route::get('/tambahakun', function () {
+    return view('dataakun');
+});
