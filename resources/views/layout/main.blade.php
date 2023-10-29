@@ -187,7 +187,7 @@
                                 </a>
                                 <ul class="nav nav-treeview" style="padding-left: 20px;">
                                     <li class="nav-item">
-                                        <a href="tambahkan-akun.html" class="nav-link">
+                                        <a href="{{ route('tambahakun') }}" class="nav-link">
                                             <!-- Tambahkan URL yang sesuai di sini -->
                                             <i class="nav-icon fa-solid fa-user-plus"></i>
                                             <p>Tambahkan Akun</p>
