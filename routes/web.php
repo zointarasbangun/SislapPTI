@@ -32,3 +32,7 @@ Route::get('/tambahakun', function () {
 Route::get('/dataakun', function () {
     return view('dataakun');
 });
+
+Route::get('/dataperjalanan', function () {
+    return view('dataperjalanan');
+});

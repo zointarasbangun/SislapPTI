@@ -215,7 +215,7 @@
                                 <ul class="nav nav-treeview"
                                     style="padding-left: 20px;>
                                     <li class="nav-item">
-                                    <a href="pages/charts/chartjs.html" class="nav-link">
+                                    <a href="/dataperjalanan" class="nav-link">
                                     <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
                                         <p>Data Perjalanan</p>
                                     </a>
