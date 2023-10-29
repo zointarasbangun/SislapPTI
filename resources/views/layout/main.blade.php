@@ -195,7 +195,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="dataakun.blade.php" class="nav-link">
+                                        <a href="/dataakun" class="nav-link">
                                             <!-- Tambahkan URL yang sesuai di sini -->
                                             <i class="iconify nav-icon" data-icon="gg:list"></i>
                                             <p>Data Akun</p>

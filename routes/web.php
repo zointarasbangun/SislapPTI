@@ -29,6 +29,6 @@ Route::get('/tambahakun', function () {
     return view('tambahakun');
 });
 
-Route::get('/tambahakun', function () {
+Route::get('/dataakun', function () {
     return view('dataakun');
 });
