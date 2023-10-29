@@ -12,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 connectedSortable" style="height: 220px; background-color: #12ACED; color: #fff;">
-                        <h3 style="margin-top: 100px;font-weight: bold;">Administrator</h3>
+                        <h3 style="margin-top: 100px;font-weight: bold;">Administratoresgfse  </h3>
                         <div class="row">
                             <div class="col-lg-3 col-6">
                                 <!-- small box -->
