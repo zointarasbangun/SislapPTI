@@ -23,7 +23,6 @@
                             <div class="form-group row">
                                 <label for="inputrole3" class="col-sm-2 col-form-label">Role</label>
                                 <select>
-                                    <option>Admin</option>
                                     <option>User</option>
                                 </select>
                             </div>

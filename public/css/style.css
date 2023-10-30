@@ -66,7 +66,7 @@
     z-index: 9999;
 }
 
-.nav-bar.sticky-top {    
+.nav-bar.sticky-top {
     position: sticky;
     padding: 0;
     z-index: 9999;
@@ -121,7 +121,7 @@
         position: relative;
         min-height: 500px;
     }
-    
+
     .header-carousel .owl-carousel-item img {
         position: absolute;
         width: 100%;
@@ -147,12 +147,12 @@
 
 
     .owl-carousel .owl-carousel-item img{
-        max-width: 100%; 
+        max-width: 100%;
         height: auto;
     }
-   
 
-    
+
+
 }
 
 .header-carousel .owl-nav {

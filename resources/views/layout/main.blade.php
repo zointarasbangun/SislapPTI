@@ -172,7 +172,7 @@
                             data-accordion="false">
 
                             <li class="nav-item menu-open">
-                                <a href="#" class="nav-link ">
+                                <a href="/beranda" class="nav-link ">
                                     <i class="iconify nav-icon" data-icon="tabler:home"></i>
                                     <p>
                                         Beranda
@@ -294,7 +294,7 @@
     <!-- ./wrapper -->
 
     <script src="{{ asset('js/admintable.js') }}"></script>
-    <!-- jQuery --> 
+    <!-- jQuery -->
     <script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('lte/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
