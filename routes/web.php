@@ -56,3 +56,7 @@ Route::get('/tipekendaraan', function () {
 Route::get('/notifikasi', function () {
     return view('notifikasi');
 });
+
+Route::get('/dataperjalanan', function () {
+    return view('dataperjalanan');
+});

@@ -244,6 +244,37 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview" style="padding-left: 20px;">
+                                    <a href="/dataperjalanan" class="nav-link">
+                                    <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
+                                        <p>Data Perjalanan</p>
+                                    </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/charts/flot.html" class="nav-link">
+                                <i class="far fa-calendar-check nav-icon"></i>
+                                    <p>Status Perjalanan</p>
+                                </a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/widgets.html" class="nav-link">
+                            <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
+                                <p>
+                                    Pelacak Perjalanan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                            <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
+                                <p>
+                                    Kondisi Kendaraan
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview"
+                                style="padding-left: 20px;>
                                     <li class="nav-item">
                                         <a href="datakondisikendaraan" class="nav-link">
                                             <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
