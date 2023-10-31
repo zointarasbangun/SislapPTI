@@ -60,3 +60,7 @@ Route::get('/notifikasi', function () {
 Route::get('/dataperjalanan', function () {
     return view('dataperjalanan');
 });
+
+Route::get('/map', function () {
+    return view('map');
+});

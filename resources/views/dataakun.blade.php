@@ -35,7 +35,7 @@
                 <td>
                 <button type="button" class="btn btn-primary"><i class="iconify" data-icon="material-symbols:edit"></i></button>
                 <button type="button" class="btn btn-danger"><i class="iconify" data-icon="material-symbols:delete"></i></button>
-                <button type="button" class="btn btn-success"><i class="iconify" data-icon="bxs:detail"></i></button>
+                <button type="button" class="btn" style="background-color: #12ACED; color :#ffff"><i class="iconify" data-icon="bxs:detail"></i></button>
                 </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
                 <td>
                 <button type="button" class="btn btn-primary"><i class="iconify" data-icon="material-symbols:edit"></i></button>
                 <button type="button" class="btn btn-danger"><i class="iconify" data-icon="material-symbols:delete"></i></button>
-                <button type="button" class="btn btn-success"><i class="iconify" data-icon="bxs:detail"></i></button>
+                <button type="button" class="btn" style="background-color: #12ACED; color :#ffff"><i class="iconify" data-icon="bxs:detail"></i></button>
                 </td>
             </tr>
             <tr>
@@ -59,10 +59,10 @@
                 <td>
                 <button type="button" class="btn btn-primary"><i class="iconify" data-icon="material-symbols:edit"></i></button>
                 <button type="button" class="btn btn-danger"><i class="iconify" data-icon="material-symbols:delete"></i></button>
-                <button type="button" class="btn btn-success"><i class="iconify" data-icon="bxs:detail"></i></button>
+                <button type="button" class="btn" style="background-color: #12ACED; color :#ffff"><i class="iconify" data-icon="bxs:detail"></i></button>
                 </td>
             </tr>
-            
+
         </table>
     </div>
 </div>
