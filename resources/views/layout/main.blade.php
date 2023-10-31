@@ -4,27 +4,25 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Safety Drive| PGNCOM</title>
+    <title>Safety Drive | PGNCOM</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css') }}">
     <!--Iconify-->
     <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/iconify/2.0.0/iconify.min.js') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{ asset('lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- JQVMap -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/jqvmap/jqvmap.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('lte/plugins/MDB5/mdb.min.css') }}"> -->
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Daterange picker -->
@@ -32,12 +30,12 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/summernote/summernote-bs4.min.css') }}">
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
     <style>
         html,
@@ -86,8 +84,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ URL('images/pgncom1.jpeg') }}" alt="AdminLTELogo" width="100"
-                width="60">
+            <img class="animation__shake" src="{{ URL('lte/dist/img/pgncomlogo.png') }}" alt="PGNCOM_Logo" width="100" width="60">
         </div>
 
 
@@ -96,8 +93,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
 
@@ -142,11 +138,9 @@
                         <div class="dropdown-divider"></div>
                         <p class="dropdown-item dropdown-footer disabled ">Nama Admin</p>
                         <div class="dropdown-divider"></div>
-                        <a href="profil.html" class="dropdown-item dropdown-footer"><i
-                                class="far fa-user mx-2"></i>Lihat Profil</a>
+                        <a href="profil.html" class="dropdown-item dropdown-footer"><i class="far fa-user mx-2"></i>Lihat Profil</a>
                         <div class="dropdown-divider"></div>
-                        <a href="/" class="dropdown-item dropdown-footer"><i
-                                class="fas fa-sign-out-alt mx-2"></i>Logout</a>
+                        <a href="/" class="dropdown-item dropdown-footer"><i class="fas fa-sign-out-alt mx-2"></i>Logout</a>
                     </div>
                 </li>
 
@@ -168,10 +162,9 @@
 
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                            data-accordion="false">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-                            <li class="nav-item menu-open">
+                            <li class="nav-item menu-open active">
                                 <a href="/beranda" class="nav-link ">
                                     <i class="iconify nav-icon" data-icon="tabler:home"></i>
                                     <p>
@@ -210,37 +203,6 @@
                                     <p>
                                         Perjalanan
                                         <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview" style="padding-left: 20px;">
-                                    <li class="nav-item">
-                                        <a href="/dataperjalanan" class="nav-link">
-                                            <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
-                                            <p>Data Perjalanan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/statusperjalanan" class="nav-link">
-                                            <i class="far fa-calendar-check nav-icon"></i>
-                                            <p>Status Perjalanan</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/pelacakperjalanan" class="nav-link">
-                                    <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
-                                    <p>
-                                        Pelacak Perjalanan
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
-                                    <p>
-                                        Kondisi Kendaraan
-                                        <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview" style="padding-left: 20px;">
@@ -324,6 +286,11 @@
     </div>
     <!-- ./wrapper -->
 
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
     <script src="{{ asset('js/admintable.js') }}"></script>
     <!-- jQuery -->
     <script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script>
@@ -335,6 +302,7 @@
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- <script src="{{ asset('lte/plugins/MDB5/mdb.min.js') }}"></script> -->
     <!-- ChartJS -->
     <script src="{{ asset('lte/plugins/chart.js/Chart.min.js') }}"></script>
     <!-- Sparkline -->
@@ -360,8 +328,7 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('lte/dist/js/pages/dashboard.js') }}"></script>
 
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     @yield('js')
 </body>
 
