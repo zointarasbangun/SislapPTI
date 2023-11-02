@@ -54,7 +54,31 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/tipeKendaraan/{vehicle}', [KendaraanController::class, 'destroy'])->name('kendaraan.destroy');
         // Route::get('/tipeKendaraan/search', [KendaraanController::class, 'search'])->name('kendaraan.search');
 
-        
+        Route::get('/dataperjalanan', function () {
+            return view('perjalanan.dataPerjalanan');
+        });
+
+
+        Route::get('/statusperjalanan', function () {
+            return view('perjalanan.statusperjalanan');
+        });
+
+        Route::get('/pelacakperjalanan', function () {
+            return view('pelacak.pelacakperjalanan');
+        });
+
+        Route::get('/datakondisikendaraan', function () {
+            return view('kendaraan.kondisikendaraan');
+        });
+
+
+        Route::get('/notifikasi', function () {
+            return view('notifikasi.notifikasi');
+        });
+
+        Route::get('/map', function () {
+            return view('pelacak.map');
+        });
     });
 
 
