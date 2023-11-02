@@ -11,6 +11,7 @@
 
 
             <!-- Sidebar Menu -->
+            @if (Auth::user()->role == 'admin')
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
@@ -113,6 +114,128 @@
 
                 </ul>
             </nav>
+            @else
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+
+                    <li class="nav-item menu-open">
+                        <a href="{{ route('adminDashboard') }}" class="nav-link ">
+                            <i class="iconify nav-icon" data-icon="tabler:home"></i>
+                            <p>
+                                Beranda
+                            </p>
+                        </a>
+                    {{-- <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="iconify nav-icon ml-1" data-icon="pajamas:account"></i>
+                            <p>
+                                Kelola Akun
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" style="padding-left: 20px;">
+                            <li class="nav-item">
+                                <a href="{{ route('createAcount') }}" class="nav-link">
+                                    <!-- Tambahkan URL yang sesuai di sini -->
+                                    <i class="iconify nav-icon" data-icon="line-md:account-add"></i>
+                                    <p>Tambahkan Akun</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('acount.index') }}" class="nav-link">
+                                    <!-- Tambahkan URL yang sesuai di sini -->
+                                    <i class="iconify nav-icon" data-icon="gg:list"></i>
+                                    <p>Data Akun</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> --}}
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="iconify nav-icon" data-icon="tdesign:data"></i>
+                            <p>
+                                Perjalanan
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" style="padding-left: 20px;">
+                            <li class="nav-item">
+                                <a href="/dataperjalanan" class="nav-link">
+                                    <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
+                                    <p> Seluruh Data Perjalanan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/statusperjalanan" class="nav-link">
+                                    <i class="far fa-calendar-check nav-icon"></i>
+                                    <p>Tambah Data Perjalanan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/statusperjalanan" class="nav-link">
+                                    <i class="far fa-calendar-check nav-icon"></i>
+                                    <p>Status Perjalanan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/statusperjalanan" class="nav-link">
+                                    <i class="far fa-calendar-check nav-icon"></i>
+                                    <p>Riwayat Perjalanan saya</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/pelacakperjalanan" class="nav-link">
+                            <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
+                            <p>
+                                Pelacak Perjalanan
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
+                            <p>
+                                Kondisi Kendaraan
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" style="padding-left: 20px;">
+                            <li class="nav-item">
+                                <a href="datakondisikendaraan" class="nav-link">
+                                    <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
+                                    <p> Kendaraan saya</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('kendaraan.index') }}" class="nav-link">
+                                    <i class="iconify nav-icon" data-icon="mdi:car"></i>
+                                    <p>Data Kondisi Kendaraan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('kendaraan.index') }}" class="nav-link">
+                                    <i class="iconify nav-icon" data-icon="mdi:car"></i>
+                                    <p>Tipe Kendaraan</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/notifikasi" class="nav-link">
+                            <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
+                            <p>
+                                Notifikasi
+                            </p>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+            @endif
             <!-- /.sidebar-menu -->
         </div>
         <!-- /.sidebar -->
