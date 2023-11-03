@@ -1,118 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('auth.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PGNCOM| Log in </title>
+@section('content')
+{{-- <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Login') }}</div>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{ asset('lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css') }}">
-</head>
-<style>
-    body {
-        padding-top: 40px;
-        background-color: #70cce1;
-    }
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
 
-    .container-fluid {
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 10px;
-    }
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
-    .card {
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-    .card-header {
-        background-color: #f8f9fa;
-        border-bottom: none;
-        padding: 20px 30px;
-        font-size: 24px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-    .card-header img {
-        max-width: 100%;
-        /* IE8 */
-        display: block;
-        margin: 0 auto;
-    }
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
-    .card-header .header-content {
-        flex: 1;
-        text-align: center;
-    }
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-    .card-header .header-content:last-child {
-        text-align: right;
-    }
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-    .card-body {
-        padding: 30px;
-    }
+                        <div class="row mb-3">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-    .form-group {
-        margin-bottom: 20px;
-    }
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
-    .btn-primary {
-        background-color: #12ACED;
-        border-color: #12ACED;
-        padding: 12px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-        width: 100%;
-    }
 
-    .btn-primary:hover {
-        background-color: #0069d9;
-        border-color: #0062cc;
-    }
+                        <div class="row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
 
-    .btn-block {
-        display: block;
-    }
-
-    .mt-4 {
-        margin-top: 1.5rem;
-    }
-
-    .text-center {
-        text-align: center;
-    }
-
-    .text-center a {
-        color: #007bff;
-    }
-
-    .img-container {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .img-container img {
-        max-width: 100%;
-        height: auto;
-        width: auto\9;
-        /* IE8 */
-    }
-
-    .alert {
-        margin-bottom: 0;
-    }
-</style>
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
 
 <body class="hold-transition login-page" style="background: #00ABEC">
     <div class="container-fluid">
@@ -126,14 +84,15 @@
                     </div>
                     <h2 class="text-center" style="margin-top: 5px; font-weight: bold;">LOGIN</h2>
                     <div class="card-body">
-                        {{-- <form href="/beranda" > --}}
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
                             <div class="form-group">
-                                <label for="username">Username:</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
+                                <label for="email">Email:</label>
+                                <input type="text" name="email" class="form-control" id="email" name="username" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password:</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <input type="password" name="password" class="form-control" id="password" name="password" required>
                             </div>
                             <div class="text-center mt-4">
                                 <button type="submit" class="btn btn-primary btn-block" name="login" ><a href="/beranda" style="color:#fff "><b>Login</a></b></button>
@@ -141,7 +100,7 @@
                             <p style="text-align: center;">
                                 Kembali ke <a href="/">Landing page</a>
                             </p>
-                        {{-- </form> --}}
+                        </form>
                     </div>
                 </div>
 
@@ -151,31 +110,4 @@
     </div>
 </body>
 
-<!-- /.login-box -->
-
-<!-- jQuery -->
-<script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('lte/dist/js/adminlte.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-@if ($message = Session::get('succes'))
-    <script>
-        swal.fire('{{ $message }}')
-    </script>
-@endif
-
-@if ($message = Session::get('failed'))
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: '{{ $message }}',
-        })
-    </script>
-@endif
-</body>
-
-</html>
+@endsection

@@ -1,6 +1,8 @@
 <?php
-use App\Http\Controllers\AuthController;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AcountController;
+use App\Http\Controllers\KendaraanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,55 +14,79 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/loginproses', [AuthController::class, 'loginproses'])->name('loginproses');
 
-Route::get('/', [AuthController::class, 'home'])->name('public.index');
-
-Route::get('/login', function () {
-    return view('auth.login');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('/beranda', function () {
-    return view('beranda');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['admin']], function () {
+        Route::get('/adminDashboard', function(){
+            return view('dashboard.adminDashboard');
+            })->name('adminDashboard');
+
+        Route::get('/addAcount', [AcountController::class, 'create'])->name('createAcount');
+        Route::post('/addAcount', [AcountController::class, 'store'])->name('addAcount');
+        // Route::prefix('manageAcount')->as('acount.')->group(function () {
+        //     Route::get('/', [AcountController::class, 'index'])->name('index');
+        //     Route::get('/{user}/edit', [AcountController::class, 'edit'])->name('edit');
+        //     Route::put('/{user}', [AcountController::class, 'update'])->name('update');
+        //     Route::delete('/{user}', [AcountController::class, 'destroy'])->name('destroy');
+        // });
+        Route::get('/manageAcount', [AcountController::class, 'index'])->name('acount.index');
+        Route::get('/manageAcount/{user}/edit', [AcountController::class, 'edit'])->name('acount.edit');
+        Route::put('/manageAcount/{user}', [AcountController::class, 'update'])->name('acount.update');
+        Route::delete('/manageAcount/{user}', [AcountController::class, 'destroy'])->name('acount.destroy');
+
+        Route::get('/tipeKendaraan', [KendaraanController::class, 'index'])->name('kendaraan.index');
+        Route::get('/tipeKendaraan/create', [KendaraanController::class, 'create'])->name('kendaraan.create');
+        Route::post('/tipeKendaraan', [KendaraanController::class, 'store'])->name('kendaraan.store');
+        Route::get('/tipeKendaraan/{vehicle}/edit', [KendaraanController::class, 'edit'])->name('kendaraan.edit');
+        Route::put('/tipeKendaraan/{vehicle}', [KendaraanController::class, 'update'])->name('kendaraan.update');
+        Route::delete('/tipeKendaraan/{vehicle}', [KendaraanController::class, 'destroy'])->name('kendaraan.destroy');
+        // Route::get('/tipeKendaraan/search', [KendaraanController::class, 'search'])->name('kendaraan.search');
+
+        Route::get('/dataperjalanan', function () {
+            return view('perjalanan.dataPerjalanan');
+        });
+
+
+        Route::get('/statusperjalanan', function () {
+            return view('perjalanan.statusperjalanan');
+        });
+
+        Route::get('/pelacakperjalanan', function () {
+            return view('pelacak.pelacakperjalanan');
+        });
+
+        Route::get('/datakondisikendaraan', function () {
+            return view('kendaraan.kondisikendaraan');
+        });
+
+
+        Route::get('/notifikasi', function () {
+            return view('notifikasi.notifikasi');
+        });
+
+        Route::get('/map', function () {
+            return view('pelacak.map');
+        });
+    });
+
+
+    Route::group(['middleware' => ['user']], function () {
+        Route::get('/userDashboard', function(){
+            return view('dashboard.userDashboard');
+        })->name('userDashboard');
+    });
+
 });
 
-Route::get('/tambahakun', function () {
-    return view('tambahakun');
-});
-
-Route::get('/dataakun', function () {
-    return view('dataakun');
-});
-
-Route::get('/dataperjalanan', function () {
-    return view('dataperjalanan');
-});
-
-Route::get('/statusperjalanan', function () {
-    return view('statusperjalanan');
-});
-
-Route::get('/pelacakperjalanan', function () {
-    return view('pelacakperjalanan');
-});
-
-Route::get('/datakondisikendaraan', function () {
-    return view('datakondisikendaraan');
-});
-
-Route::get('/tipekendaraan', function () {
-    return view('tipekendaraan');
-});
-
-Route::get('/notifikasi', function () {
-    return view('notifikasi');
-});
-
-Route::get('/dataperjalanan', function () {
-    return view('dataperjalanan');
-});
-
-Route::get('/map', function () {
-    return view('map');
-});
