@@ -69,7 +69,7 @@
                 <th scope="col">Action</th>
             </tr>
             <tr>
-                <th>2023-09-20</th>
+                <td>2023-09-20</td>
                 <td>Palembang</td>
                 <td>Bandar Lampung</td>
                 <td>81</td>
@@ -77,14 +77,14 @@
             </tr>
             
             <tr>
-                <th>2023-10-10</th>
+                <td>2023-10-10</td>
                 <td>Palembang</td>
                 <td>Jakarta</td>
                 <td>100</td>
                 <td><i class="fa-brands fa-square-whatsapp" style="color: #2ee421; font-size: 30px;"></i></td>
             </tr>
             <tr>
-                <th>2023-09-27</th>
+                <td>2023-09-27</td>
                 <td>Lampung Timur</td>
                 <td>Bandar Lampung</td>
                 <td>50</td>
