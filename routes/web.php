@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AcountController;
 use App\Http\Controllers\KendaraanController;
@@ -86,6 +87,41 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/userDashboard', function(){
             return view('dashboard.userDashboard');
         })->name('userDashboard');
+
+        Route::get('/dataperjalanan', function () {
+            return view('perjalanan.dataPerjalanan');
+        });
+
+        Route::get('/kendaraanUser', function(){
+            return view('kendaraan.kendaraanUser');
+        });
+
+        Route::get('/tambahPerjalananUser', function(){
+            return view('perjalanan.tambahDataPerjalananUser');
+        });
+
+        Route::get('/statusPerjalananUser', function(){
+            return view('perjalanan.statusPerjalananUser');
+        });
+
+        Route::get('/pelacakPerjalananUser', function(){
+            return view('pelacak.pelacakPerjalananUser');
+        });
+
+        Route::get('/riwayatPerjalananUser', function(){
+            return view('perjalanan.riwayatPerjalananDriver');
+        });
+
+        Route::get('/notifikasiUser', function(){
+            return view('notifikasi.notifikasiUser');
+        });
+
+        Route::get('/datakondisikendaraan', function () {
+            return view('kendaraan.kondisikendaraan');
+        });
+
+        Route::get('/tipeKendaraan', [KendaraanController::class, 'index'])->name('kendaraan.index');
+
     });
 
 });

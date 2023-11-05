@@ -25,34 +25,37 @@
                                     </button>
                                 </div>
                                 <div class="modal-body mx-3">
-                                    <div class="mb-5">
-                                        <i class="iconify nav-icon mr-3" data-icon="mdi:car-select"></i>
-                                        <label data-error="wrong" data-success="right" for="defaultForm-tipe">Tipe Mobil :</label>
-                                        <input type="text" id="defaultForm-tipe" class="form-control validate" placeholder="contoh : Toyota || Avanza">
-                                    </div>
+                                    <form action="{{ route('kendaraan.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="mb-5 form-group">
+                                            <i class="iconify nav-icon mr-3" data-icon="mdi:car-select"></i>
+                                            <label data-error="wrong" data-success="right" for="defaultForm-tipe">Tipe Mobil :</label>
+                                            <input type="text" name="type" id="defaultForm-tipe" class="form-control validate" placeholder="contoh : Toyota || Avanza">
+                                        </div>
 
-                                    <div class="mb-5">
-                                        <i class="iconify nav-icon mr-3" data-icon="iconoir:input-field"></i>
-                                        <label data-error="wrong" data-success="right" for="defaultForm-nopol">No. Polisi :</label>
-                                        <input type="text" id="defaultForm-nopol" class="form-control validate" placeholder="BE-XXXX-XX">
-                                    </div>
+                                        <div class="mb-5 form-group">
+                                            <i class="iconify nav-icon mr-3" data-icon="iconoir:input-field"></i>
+                                            <label data-error="wrong" data-success="right" for="defaultForm-nopol">No. Polisi :</label>
+                                            <input type="text" name="no_polisi" id="defaultForm-nopol" class="form-control validate" placeholder="BE-XXXX-XX">
+                                        </div>
 
-                                    <div class="mb-5">
-                                        <i class="iconify nav-icon mr-3" data-icon="streamline:interface-calendar-download-arrow-calendar-date-day-down-download-month"></i>
-                                        <label data-error="wrong" data-success="right" for="defaultForm-tgl">Tanggal Masuk :</label>
-                                        <input type="date" id="defaultForm-tgl" class="form-control validate" placeholder="BE-XXXX-XX">
-                                    </div>
+                                        <div class="mb-5 form-group">
+                                            <i class="iconify nav-icon mr-3" data-icon="streamline:interface-calendar-download-arrow-calendar-date-day-down-download-month"></i>
+                                            <label data-error="wrong" data-success="right" for="defaultForm-tgl">Tanggal Masuk :</label>
+                                            <input type="date" name="tgl_masuk" id="defaultForm-tgl" class="form-control validate" placeholder="BE-XXXX-XX">
+                                        </div>
 
-                                    <div class="mb-4">
-                                        <i class="iconify nav-icon mr-3" data-icon="tabler:photo-plus"></i>
-                                        <label data-error="wrong" data-success="right" for="defaultForm-tgl">Foto Kendaraan :</label>
-                                        <input type="file" class="form-control-file">
-                                    </div>
+                                        <div class="mb-4 form-group">
+                                            <i class="iconify nav-icon mr-3" data-icon="tabler:photo-plus"></i>
+                                            <label data-error="wrong" data-success="right" for="defaultForm-tgl">Foto Kendaraan :</label>
+                                            <input type="file" name="photo" class="form-control-file">
+                                        </div>
 
-                                </div>
-                                <div class="modal-footer d-flex justify-content-center">
-                                    <button class="btn btn-success">Tambah Data</button>
-                                    <button class="btn btn-danger" class="close" data-dismiss="modal" aria-label="Close">Batal</button>
+                                        <div class=" d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-success">Tambah Data</button>
+                                            <button class="btn btn-danger" class="close" data-dismiss="modal" aria-label="Close">Batal</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -79,10 +82,11 @@
                 <th scope="col">Foto Kendaraan</th>
                 <th scope="col">Action</th>
             </tr>
+            @foreach ($kendaraans as $kendaraan)
             <tr>
-                <th scope="row">Nissan || GTR R35</th>
-                <td>BE-XXXX-XX</td>
-                <td>10/25/2023</td>
+                <th scope="row">{{ $kendaraan->type }}</th>
+                <td>{{ $kendaraan->no_polisi }}</td>
+                <td>{{ $kendaraan->tgl_masuk }}</td>
                 <td>
                     <!-- Modal -->
                     <div class="modal fade" id="modalLihat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -118,84 +122,9 @@
                     <button type="button" class="btn btn-danger"><i class="iconify" data-icon="material-symbols:delete"></i></button>
                 </td>
             </tr>
-            <tr>
-                <th scope="row">Rolls-Royce Limited || Ghost</th>
-                <td>BE-XXXX-XX</td>
-                <td>10/25/2023</td>
-                <td>
-                    <!-- Modal -->
-                    <div class="modal fade" id="modalLihat2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header text-start">
-                                    <h4 class="modal-title w-100 font-weight-bold">Lihat Foto Kendaraan</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body mx-3">
-                                    <div class="mb-0">
-                                    <img src="{{ URL('lte/dist/img/rrGhost.jpg') }}" class="img-fluid"/>
-                                    </div>
-                                </div>
-                                <div class="modal-footer d-flex justify-content-right">
-                                    <button class="btn btn-success" data-dismiss="modal" aria-label="Close">Oke</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /modal -->
+            @endforeach
 
-                    <!-- Button Modal -->
-                    <div class="text-center">
-                        <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalLihat2"><i class="iconify nav-icon mr-3" data-icon="mdi:eye"></i>Lihat Foto</a>
-                    </div>
-                    <!-- /button modal -->
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary"><i class="iconify" data-icon="material-symbols:edit"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="iconify" data-icon="material-symbols:delete"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Toyota || Supra mk4</th>
-                <td>BE-XXXX-XX</td>
-                <td>10/25/2023</td>
-                <td>
-                    <!-- Modal -->
-                    <div class="modal fade" id="modalLihat3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header text-start">
-                                    <h4 class="modal-title w-100 font-weight-bold">Lihat Foto Kendaraan</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body mx-3">
-                                    <div class="mb-0">
-                                    <img src="{{ URL('lte/dist/img/supramk4.jpeg') }}" class="img-fluid"/>
-                                    </div>
-                                </div>
-                                <div class="modal-footer d-flex justify-content-right">
-                                    <button class="btn btn-success" data-dismiss="modal" aria-label="Close">Oke</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /modal -->
 
-                    <!-- Button Modal -->
-                    <div class="text-center">
-                        <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalLihat3"><i class="iconify nav-icon mr-3" data-icon="mdi:eye"></i>Lihat Foto</a>
-                    </div>
-                    <!-- /button modal -->
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary"><i class="iconify" data-icon="material-symbols:edit"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="iconify" data-icon="material-symbols:delete"></i></button>
-                </td>
-            </tr>
         </table>
     </div>
     <!-- /table -->

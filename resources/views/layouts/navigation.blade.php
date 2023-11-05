@@ -12,26 +12,29 @@
 
             <!-- Sidebar Menu -->
             @if (Auth::user()->role == 'admin')
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
 
-                    <li class="nav-item menu-open">
-                        <a href="{{ route('adminDashboard') }}" class="nav-link ">
-                            <i class="iconify nav-icon" data-icon="tabler:home"></i>
-                            <p>
-                                Beranda
-                            </p>
-                        </a>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="iconify nav-icon ml-1" data-icon="pajamas:account"></i>
-                            <p>
-                                Kelola Akun
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview" style="padding-left: 20px;">
+                        <li class="nav-item {{ request()->is('adminDashboard') ? 'menu-open' : '' }}">
+                            <a href="{{ route('adminDashboard') }}"
+                                class="nav-link {{ request()->is('adminDashboard') ? 'active' : '' }}">
+                                <i class="iconify nav-icon" data-icon="tabler:home"></i>
+                                <p>
+                                    Beranda
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ request()->is('acount*') ? 'menu-open' : '' }}">
+                            <a href="{{ route('acount.index') }}"
+                                class="nav-link {{ request()->is('acount*') ? 'menu-open' : '' }}">
+                                <i class="iconify nav-icon ml-1" data-icon="pajamas:account"></i>
+                                <p>
+                                    Kelola Akun
+                                </p>
+                            </a>
+                        </li>
+                        {{-- <ul class="nav nav-treeview" style="padding-left: 20px;">
                             <li class="nav-item">
                                 <a href="{{ route('createAcount') }}" class="nav-link">
                                     <!-- Tambahkan URL yang sesuai di sini -->
@@ -46,87 +49,87 @@
                                     <p>Data Akun</p>
                                 </a>
                             </li>
-                        </ul>
-                    </li>
+                        </ul> --}}
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="iconify nav-icon" data-icon="tdesign:data"></i>
-                            <p>
-                                Perjalanan
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview" style="padding-left: 20px;">
-                            <li class="nav-item">
-                                <a href="/dataperjalanan" class="nav-link">
-                                    <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
-                                    <p>Data Perjalanan</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/statusperjalanan" class="nav-link">
-                                    <i class="far fa-calendar-check nav-icon"></i>
-                                    <p>Status Perjalanan</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/pelacakperjalanan" class="nav-link">
-                            <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
-                            <p>
-                                Pelacak Perjalanan
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
-                            <p>
-                                Kondisi Kendaraan
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview" style="padding-left: 20px;">
-                            <li class="nav-item">
-                                <a href="datakondisikendaraan" class="nav-link">
-                                    <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
-                                    <p>Data Kondisi Kendaraan</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('kendaraan.index') }}" class="nav-link">
-                                    <i class="iconify nav-icon" data-icon="mdi:car"></i>
-                                    <p>Tipe Kendaraan</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/notifikasi" class="nav-link">
-                            <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
-                            <p>
-                                Notifikasi
-                            </p>
-                        </a>
-                    </li>
 
-                </ul>
-            </nav>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="iconify nav-icon" data-icon="tdesign:data"></i>
+                                <p>
+                                    Perjalanan
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="padding-left: 20px;">
+                                <li class="nav-item">
+                                    <a href="/dataperjalanan" class="nav-link">
+                                        <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
+                                        <p>Data Perjalanan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/statusperjalanan" class="nav-link">
+                                        <i class="far fa-calendar-check nav-icon"></i>
+                                        <p>Status Perjalanan</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/pelacakperjalanan" class="nav-link">
+                                <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
+                                <p>
+                                    Pelacak Perjalanan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
+                                <p>
+                                    Kondisi Kendaraan
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="padding-left: 20px;">
+                                <li class="nav-item">
+                                    <a href="datakondisikendaraan" class="nav-link">
+                                        <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
+                                        <p>Data Kondisi Kendaraan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('kendaraan.index') }}" class="nav-link">
+                                        <i class="iconify nav-icon" data-icon="mdi:car"></i>
+                                        <p>Tipe Kendaraan</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/notifikasi" class="nav-link">
+                                <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
+                                <p>
+                                    Notifikasi
+                                </p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
             @else
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
 
-                    <li class="nav-item menu-open">
-                        <a href="{{ route('adminDashboard') }}" class="nav-link ">
-                            <i class="iconify nav-icon" data-icon="tabler:home"></i>
-                            <p>
-                                Beranda
-                            </p>
-                        </a>
-                    {{-- <li class="nav-item">
+                        <li class="nav-item menu-open">
+                            <a href="{{ route('userDashboard') }}" class="nav-link ">
+                                <i class="iconify nav-icon" data-icon="tabler:home"></i>
+                                <p>
+                                    Beranda
+                                </p>
+                            </a>
+                            {{-- <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="iconify nav-icon ml-1" data-icon="pajamas:account"></i>
                             <p>
@@ -152,89 +155,89 @@
                         </ul>
                     </li> --}}
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="iconify nav-icon" data-icon="tdesign:data"></i>
-                            <p>
-                                Perjalanan
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview" style="padding-left: 20px;">
-                            <li class="nav-item">
-                                <a href="/dataperjalanan" class="nav-link">
-                                    <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
-                                    <p> Seluruh Data Perjalanan</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/statusperjalanan" class="nav-link">
-                                    <i class="far fa-calendar-check nav-icon"></i>
-                                    <p>Tambah Data Perjalanan</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/statusperjalanan" class="nav-link">
-                                    <i class="far fa-calendar-check nav-icon"></i>
-                                    <p>Status Perjalanan</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/statusperjalanan" class="nav-link">
-                                    <i class="far fa-calendar-check nav-icon"></i>
-                                    <p>Riwayat Perjalanan saya</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/pelacakperjalanan" class="nav-link">
-                            <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
-                            <p>
-                                Pelacak Perjalanan
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
-                            <p>
-                                Kondisi Kendaraan
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview" style="padding-left: 20px;">
-                            <li class="nav-item">
-                                <a href="datakondisikendaraan" class="nav-link">
-                                    <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
-                                    <p> Kendaraan saya</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('kendaraan.index') }}" class="nav-link">
-                                    <i class="iconify nav-icon" data-icon="mdi:car"></i>
-                                    <p>Data Kondisi Kendaraan</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('kendaraan.index') }}" class="nav-link">
-                                    <i class="iconify nav-icon" data-icon="mdi:car"></i>
-                                    <p>Tipe Kendaraan</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/notifikasi" class="nav-link">
-                            <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
-                            <p>
-                                Notifikasi
-                            </p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="iconify nav-icon" data-icon="tdesign:data"></i>
+                                <p>
+                                    Perjalanan
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="padding-left: 20px;">
+                                <li class="nav-item">
+                                    <a href="/dataperjalanan" class="nav-link">
+                                        <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
+                                        <p> Seluruh Data Perjalanan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/tambahPerjalananUser" class="nav-link">
+                                        <i class="far fa-calendar-check nav-icon"></i>
+                                        <p>Tambah Data Perjalanan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/statusPerjalananUser" class="nav-link">
+                                        <i class="far fa-calendar-check nav-icon"></i>
+                                        <p>Status Perjalanan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/riwayatPerjalananUser" class="nav-link">
+                                        <i class="far fa-calendar-check nav-icon"></i>
+                                        <p>Riwayat Perjalanan saya</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/pelacakPerjalananUser" class="nav-link">
+                                <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
+                                <p>
+                                    Pelacak Perjalanan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
+                                <p>
+                                    Kondisi Kendaraan
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="padding-left: 20px;">
+                                <li class="nav-item">
+                                    <a href="/kendaraanUser" class="nav-link">
+                                        <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
+                                        <p> Kendaraan saya</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/datakondisikendaraan" class="nav-link">
+                                        <i class="iconify nav-icon" data-icon="mdi:car"></i>
+                                        <p>Data Kondisi Kendaraan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/tipeKendaraan" class="nav-link">
+                                        <i class="iconify nav-icon" data-icon="mdi:car"></i>
+                                        <p>Tipe Kendaraan</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/notifikasiUser" class="nav-link">
+                                <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
+                                <p>
+                                    Notifikasi
+                                </p>
+                            </a>
+                        </li>
 
-                </ul>
-            </nav>
+                    </ul>
+                </nav>
             @endif
             <!-- /.sidebar-menu -->
         </div>
@@ -260,7 +263,7 @@
                     </a>
 
                     <div class="nav__list">
-                        @if(Auth::user()->role == 'admin')
+                        @if (Auth::user()->role == 'admin')
                             <a href="{{ route('adminDashboard') }}" class="nav__link active">
                             <i class='bx bx-grid-alt nav__icon' ></i>
                                 <span class="nav__name">Dashboard</span>
