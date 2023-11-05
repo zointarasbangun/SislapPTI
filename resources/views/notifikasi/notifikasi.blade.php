@@ -16,10 +16,10 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid" style="backround-color: #12ACED;">
+      <div class="container-fluid" >
         <!-- COLOR PALETTE -->
-        <div class="card card-default" style="backround-color: #12ACED;">
-          <div class="notifikasi" style="margin-left: 20px;">
+        <div class="card card-default">
+          <div class="notifikasi" style="margin-left: 20px;" style="background-color: #12ACED;">
           <div class="">
             <p>30 September 2023, 11:23</p>
           </div>
