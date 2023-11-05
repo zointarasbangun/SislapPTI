@@ -14,73 +14,27 @@
             </div>
             <div class="col-lg-3 col-sm-12">
                 <div class="float-right">
-                    <!-- Modal -->
-                    <div class="modal fade" id="modalCarForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header text-start">
-                                    <h4 class="modal-title w-100 font-weight-bold">Tambah Data Kendaraan</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body mx-3">
-                                    <form action="{{ route('kendaraan.store') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="mb-5 form-group">
-                                            <i class="iconify nav-icon mr-3" data-icon="mdi:car-select"></i>
-                                            <label data-error="wrong" data-success="right" for="defaultForm-tipe">Tipe Mobil :</label>
-                                            <input type="text" name="type" id="defaultForm-tipe" class="form-control validate" placeholder="contoh : Toyota || Avanza">
-                                        </div>
-
-                                        <div class="mb-5 form-group">
-                                            <i class="iconify nav-icon mr-3" data-icon="iconoir:input-field"></i>
-                                            <label data-error="wrong" data-success="right" for="defaultForm-nopol">No. Polisi :</label>
-                                            <input type="text" name="no_polisi" id="defaultForm-nopol" class="form-control validate" placeholder="BE-XXXX-XX">
-                                        </div>
-
-                                        <div class="mb-5 form-group">
-                                            <i class="iconify nav-icon mr-3" data-icon="streamline:interface-calendar-download-arrow-calendar-date-day-down-download-month"></i>
-                                            <label data-error="wrong" data-success="right" for="defaultForm-tgl">Tanggal Masuk :</label>
-                                            <input type="date" name="tgl_masuk" id="defaultForm-tgl" class="form-control validate" placeholder="BE-XXXX-XX">
-                                        </div>
-
-                                        <div class="mb-4 form-group">
-                                            <i class="iconify nav-icon mr-3" data-icon="tabler:photo-plus"></i>
-                                            <label data-error="wrong" data-success="right" for="defaultForm-tgl">Foto Kendaraan :</label>
-                                            <input type="file" name="photo" class="form-control-file">
-                                        </div>
-
-                                        <div class=" d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-success">Tambah Data</button>
-                                            <button class="btn btn-danger" class="close" data-dismiss="modal" aria-label="Close">Batal</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /modal -->
-
-                    <!-- Button Modal -->
-                    <div class="text-center">
-                        <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalCarForm"><i class="iconify nav-icon mr-3" data-icon="gridicons:add"></i>Tambah Data Kendaraan</a>
-                    </div>
+                
                 </div>
             </div>
         </div>
     </div>
     <!-- /header content -->
-
+    <div class="container-fluid">
+        <div class="row mt-2">
+            <div class="col-sm-6">
+                <h5>Tipe Kendaraan</h5>
+            </div>
+        </div>
+    </div>
     <!-- table -->
-    <div class="container-fluid mt-5">
+    <div class="container-fluid mt-4">
         <table class="table table-striped text-center" id="tablecar">
             <tr>
                 <th scope="col">Tipe Mobil</th>
                 <th scope="col">No. Polisi</th>
                 <th scope="col">Tanggal Masuk</th>
                 <th scope="col">Foto Kendaraan</th>
-                <th scope="col">Action</th>
             </tr>
             @foreach ($kendaraans as $kendaraan)
             <tr>
