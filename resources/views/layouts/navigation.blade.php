@@ -106,8 +106,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="/notifikasi" class="nav-link">
+                        <li class="nav-item {{ request()->is('/notifikasi') ? 'menu-open' : '' }}">
+                            <a href="/notifikasi" class="nav-link {{ request()->is('/notifikasi') ? 'active' : '' }}">
                                 <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
                                 <p>
                                     Notifikasi

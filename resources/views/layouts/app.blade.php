@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -129,7 +130,7 @@
                             <i class="fas fa-envelope mr-2"></i> 4 new messages
                             <span class="float-right text-muted text-sm">3 mins</span>
                         </a>
-                        <div class="dropdown-divider"></div>
+                        {{-- <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-users mr-2"></i> 8 friend requests
                             <span class="float-right text-muted text-sm">12 hours</span>
@@ -140,7 +141,7 @@
                             <span class="float-right text-muted text-sm">2 days</span>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a> --}}
                     </div>
                 </li>
                 <!-- /Notif -->
@@ -153,21 +154,21 @@
 
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         {{-- <div class="dropdown-divider"></div> --}}
-                        <p class="dropdown-item dropdown-footer disabled ">Nama Admin</p>
+                        <p class="dropdown-item dropdown-footer disabled ">Nama</p>
                         {{-- <div class="dropdown-divider"></div> --}}
-                        <a href="profil.html" class="dropdown-item dropdown-footer"><i
-                                class="far fa-user mx-2"></i>Lihat Profil</a>
+                        <a href="/profile" class="dropdown-item dropdown-footer"><i class="far fa-user mx-2"></i>Lihat
+                            Profil</a>
                         {{-- <div class="dropdown-divider"></div> --}}
                         <div>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                                {{ __('Logout') }}
+                            </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
 
                         </div>
                     </div>
