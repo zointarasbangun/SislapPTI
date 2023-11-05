@@ -24,7 +24,7 @@
     <div class="container-fluid">
         <div class="row mt-4">
             <div class="col-sm-6">
-                <h5>Data Kondisi Kendaraan</h5>
+                <h5>Kendaraan Saya</h5>
             </div>
         </div>
     </div><!-- /.container-fluid -->
