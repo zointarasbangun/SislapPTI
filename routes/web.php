@@ -80,6 +80,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/map', function () {
             return view('pelacak.map');
         });
+
+        Route::get('/profile', function () {
+            return view('auth.profile');
+        });
+
+        Route::get('/editProfile', function () {
+            return view('auth.editProfile');
+        });
     });
 
 
@@ -88,8 +96,8 @@ Route::group(['middleware' => ['auth']], function () {
             return view('dashboard.userDashboard');
         })->name('userDashboard');
 
-        Route::get('/dataperjalanan', function () {
-            return view('perjalanan.dataPerjalanan');
+        Route::get('/dataperjalananUser', function () {
+            return view('perjalanan.dataPerjalananUser');
         });
 
         Route::get('/kendaraanUser', function(){
@@ -116,12 +124,19 @@ Route::group(['middleware' => ['auth']], function () {
             return view('notifikasi.notifikasiUser');
         });
 
-        Route::get('/datakondisikendaraan', function () {
+        Route::get('/datakondisikendaraanUser', function () {
             return view('kendaraan.kondisikendaraan');
         });
 
-        Route::get('/tipeKendaraan', [KendaraanController::class, 'index'])->name('kendaraan.index');
+        Route::get('/tipeKendaraanUser', [KendaraanController::class, 'index'])->name('kendaraanUser.index');
 
+        Route::get('/profile', function () {
+            return view('auth.profile');
+        });
+
+        Route::get('/editProfile', function () {
+            return view('auth.editProfile');
+        });
     });
 
 });

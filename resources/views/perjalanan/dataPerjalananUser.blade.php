@@ -32,7 +32,7 @@
     <div class="container-fluid">
         <div class="row mt-2">
             <div class="col-sm-6">
-                <h5>Riwayat Perjalanan Saya</h5>
+                <h5>Seluruh Data Perjalanan</h5>
             </div>
         </div>
     </div>
@@ -40,9 +40,10 @@
     <div class="container-fluid mt-3">
         <table class="table table-striped text-center" id="tableakun">
             <tr>
+                <th scope="col">User</th>
                 <th scope="col">Tanggal</th>
-                <th scope="col">Alamat <br>Awal</th>
-                <th scope="col">Alamat <br>Akhir</th>
+                <th scope="col">Alamat Awal</th>
+                <th scope="col">Alamat Akhir</th>
                 <th scope="col">KM Awal</th>
                 <th scope="col">KM Akhir</th>
                 <th scope="col">Total KM</th>
@@ -52,26 +53,28 @@
                 <th scope="col">Foto KM Akhir</th>
             </tr>
             <tr>
-                <td>2023-11-05</td>
-                <td>Lampung Timur</td>
-                <td>Bandar Lampung</td>
-                <td>50</td>
-                <td>85</td>
-                <td>35</td>
-                <td>Luar</td>
+                <td>Joe</td>
+                <td>2023-09-10</td>
+                <td>Surabaya</td>
+                <td>Malang</td>
+                <td>100</td>
+                <td>200</td>
+                <td>300</td>
+                <td>Perjalanan Dinas</td>
                 <td>5</td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td>2023-11-07</td>
+                <td>Akbar</td>
+                <td>2023-09-15</td>
                 <td>Bandar Lampung</td>
-                <td>Bandar Lampung</td>
-                <td>55</td>
-                <td>90</td>
-                <td>35</td>
-                <td>Dalam</td>
-                <td>3</td>
+                <td>Malang</td>
+                <td>150</td>
+                <td>210</td>
+                <td>60</td>
+                <td>Perjalanan Dinas</td>
+                <td>10</td>
                 <td></td>
                 <td></td>
             </tr>

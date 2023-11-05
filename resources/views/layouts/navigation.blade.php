@@ -165,7 +165,7 @@
                             </a>
                             <ul class="nav nav-treeview" style="padding-left: 20px;">
                                 <li class="nav-item">
-                                    <a href="/dataperjalanan" class="nav-link">
+                                    <a href="/dataperjalananUser" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
                                         <p> Seluruh Data Perjalanan</p>
                                     </a>
@@ -214,13 +214,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/datakondisikendaraan" class="nav-link">
+                                    <a href="/datakondisikendaraanUser" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="mdi:car"></i>
                                         <p>Data Kondisi Kendaraan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/tipeKendaraan" class="nav-link">
+                                    <a href="/tipeKendaraanUser" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="mdi:car"></i>
                                         <p>Tipe Kendaraan</p>
                                     </a>

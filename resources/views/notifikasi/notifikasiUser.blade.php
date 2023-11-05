@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h5>Notifikasi dan Pemberitahuan</h5>
+                        <h5>Notifikasi</h5>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -49,4 +49,50 @@
                 
             </div>
             </div>
+            <div>
+            <section class="content-header mb-5">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h5>Pemberitahuan</h5>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+                <!-- Table -->
+            <div class="container-fluid mt-4">
+            <table class="table table-striped text-center" id="tablepemberitahuan">
+            <tr>
+                <th scope="col">Tanggal</th>
+                <th scope="col">Alamat Awal</th>
+                <th scope="col">Alamat Akhir</th>
+                <th scope="col">Total KM</th>
+                <th scope="col">Action</th>
+            </tr>
+            <tr>
+                <td>2023-09-20</td>
+                <td>Palembang</td>
+                <td>Bandar Lampung</td>
+                <td>81</td>
+                <td><i class="fa-brands fa-square-whatsapp" style="color: #2ee421; font-size: 30px;"></i></td>
+            </tr>
+            
+            <tr>
+                <td>2023-10-10</td>
+                <td>Palembang</td>
+                <td>Jakarta</td>
+                <td>100</td>
+                <td><i class="fa-brands fa-square-whatsapp" style="color: #2ee421; font-size: 30px;"></i></td>
+            </tr>
+            <tr>
+                <td>2023-09-27</td>
+                <td>Lampung Timur</td>
+                <td>Bandar Lampung</td>
+                <td>50</td>
+                <td><i class="fa-brands fa-square-whatsapp" style="color: #2ee421; font-size: 30px;"></i></td>
+            </tr>
+        </table>
+        </div>
+    </div>
+            </section>
+            
         @endsection

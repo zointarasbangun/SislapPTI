@@ -63,9 +63,16 @@
         </div>
     </div>
 
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-sm-6">
+                <h5>Data Kondisi Kendaraan</h5>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
     <!-- Table -->
     <div class="container-fluid">
-        <div class="container-fluid mt-5">
+        <div class="container-fluid mt-3">
             <table class="table table-striped text-center" id="tableakun">
                 <tr>
                     <th scope="col">User</th>
