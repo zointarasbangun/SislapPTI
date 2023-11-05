@@ -80,6 +80,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/map', function () {
             return view('pelacak.map');
         });
+
+        Route::get('/profile', function () {
+            return view('auth.profile');
+        });
+
+        Route::get('/editProfile', function () {
+            return view('auth.editProfile');
+        });
     });
 
 
@@ -122,6 +130,13 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/tipeKendaraan', [KendaraanController::class, 'index'])->name('kendaraan.index');
 
+        Route::get('/profile', function () {
+            return view('auth.profile');
+        });
+
+        Route::get('/editProfile', function () {
+            return view('auth.editProfile');
+        });
     });
 
 });

@@ -153,9 +153,9 @@
 
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         {{-- <div class="dropdown-divider"></div> --}}
-                        <p class="dropdown-item dropdown-footer disabled ">Nama Admin</p>
+                        <p class="dropdown-item dropdown-footer disabled ">Nama</p>
                         {{-- <div class="dropdown-divider"></div> --}}
-                        <a href="profil.html" class="dropdown-item dropdown-footer"><i
+                        <a href="/profile" class="dropdown-item dropdown-footer"><i
                                 class="far fa-user mx-2"></i>Lihat Profil</a>
                         {{-- <div class="dropdown-divider"></div> --}}
                         <div>
