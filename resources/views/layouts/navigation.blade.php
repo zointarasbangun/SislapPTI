@@ -171,19 +171,19 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/statusperjalanan" class="nav-link">
+                                    <a href="/tambahPerjalananUser" class="nav-link">
                                         <i class="far fa-calendar-check nav-icon"></i>
                                         <p>Tambah Data Perjalanan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/statusperjalanan" class="nav-link">
+                                    <a href="/statusPerjalananUser" class="nav-link">
                                         <i class="far fa-calendar-check nav-icon"></i>
                                         <p>Status Perjalanan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/statusperjalanan" class="nav-link">
+                                    <a href="/riwayatPerjalananUser" class="nav-link">
                                         <i class="far fa-calendar-check nav-icon"></i>
                                         <p>Riwayat Perjalanan saya</p>
                                     </a>
@@ -191,7 +191,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="/pelacakperjalanan" class="nav-link">
+                            <a href="/pelacakPerjalananUser" class="nav-link">
                                 <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
                                 <p>
                                     Pelacak Perjalanan
@@ -208,19 +208,19 @@
                             </a>
                             <ul class="nav nav-treeview" style="padding-left: 20px;">
                                 <li class="nav-item">
-                                    <a href="datakondisikendaraan" class="nav-link">
+                                    <a href="/kendaraanUser" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
                                         <p> Kendaraan saya</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('kendaraan.index') }}" class="nav-link">
+                                    <a href="/datakondisikendaraan" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="mdi:car"></i>
                                         <p>Data Kondisi Kendaraan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('kendaraan.index') }}" class="nav-link">
+                                    <a href="/tipeKendaraan" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="mdi:car"></i>
                                         <p>Tipe Kendaraan</p>
                                     </a>
@@ -228,7 +228,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="/notifikasi" class="nav-link">
+                            <a href="/notifikasiUser" class="nav-link">
                                 <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
                                 <p>
                                     Notifikasi
