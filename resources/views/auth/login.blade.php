@@ -98,7 +98,7 @@
                                 <button type="submit" class="btn btn-primary btn-block" name="login" ><a href="/beranda" style="color:#fff "><b>Login</a></b></button>
                             </div>
                             <p style="text-align: center;">
-                                Kembali ke <a href="/">Landing page</a>
+                                Kembali ke <a href="/">Halaman Utama</a>
                             </p>
                         </form>
                     </div>
