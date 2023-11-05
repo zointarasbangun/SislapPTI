@@ -136,8 +136,6 @@ Route::group(['middleware' => ['auth']], function () {
             return view('kendaraan.kondisikendaraan');
         });
 
-        
-
         Route::get('/tipeKendaraanUser', [KendaraanController::class, 'index'])->name('kendaraanUser.index');
 
         Route::get('/profile', function () {
@@ -150,4 +148,3 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
 });
-
