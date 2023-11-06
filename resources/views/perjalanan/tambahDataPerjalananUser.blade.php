@@ -302,7 +302,17 @@
                 <!-- /Bagian Mobil -->
 
                 <!-- Foto -->
-                <h3 class="text-primary ml-3 mt-5">Foto</h3>
+                <h3 class="text-primary ml-3 mt-5">Foto KM Awal</h3>
+                <hr class="hr" />
+
+                <div class="input-group custom-file-button">
+                    <label class="input-group-text" for="dokmobil1">Dokumentasi Mobil</label>
+                    <input type="file" class="form-control" id="dokmobil1">
+                </div>
+                <!-- /Foto -->
+
+                <!-- Foto -->
+                <h3 class="text-primary ml-3 mt-5">Foto KM Akhir</h3>
                 <hr class="hr" />
 
                 <div class="input-group custom-file-button">

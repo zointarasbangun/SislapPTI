@@ -27,14 +27,14 @@ class AcountController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'role' => 'required|in:user', // Sesuaikan dengan role yang digunakan
+            // 'role' => 'required|in:user', // Sesuaikan dengan role yang digunakan
         ]);
 
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
-            'role' => $validatedData['role'],
+            // 'role' => $validatedData['role'],
         ]);
 
         return redirect()->route('acount.index')->with('success', 'User created successfully.');

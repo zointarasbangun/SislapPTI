@@ -72,50 +72,54 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body mx-3">
-                                        <div class="mb-5">
-                                            <i class="iconify nav-icon mr-3" data-icon="ic:outline-email"></i>
-                                            <label data-error="wrong" data-success="right"
-                                                for="defaultForm-email">Email</label>
-                                            <input type="email" id="defaultForm-email" class="form-control validate"
-                                                placeholder="Input email">
-                                        </div>
-
-                                        <div class="mb-5">
-                                            <i class="mr-3 fa-regular fa-user"></i>
-                                            <label data-error="wrong" data-success="right"
-                                                for="defaultForm-Username">Username</label>
-                                            <input type="email" id="defaultForm-email" class="form-control validate"
-                                                placeholder="Input nama">
-                                        </div>
-
-                                        <div class="mb-5">
-                                            <i class="iconify nav-icon mr-3" data-icon="teenyicons:password-outline"></i>
-                                            <label data-error="wrong" data-success="right"
-                                                for="defaultForm-pass">Password</label>
-                                            <input type="password" id="defaultForm-pass" class="form-control validate"
-                                                placeholder="Input password">
-                                        </div>
-
-                                        {{-- <div class="mb-5">
-                                            <div class="d-flex align-items-center">
-                                                <i class="iconify" data-icon="carbon:user-role"></i>
-                                                <select class="form-select border-0 w-50 ml-3"
-                                                    aria-label="Default select example">
-                                                    <option selected disabled>Role</option>
-                                                    <option value="2">User</option>
-                                                </select>
+                                    <form class="" method="POST" action="{{ route('addAcount') }}">
+                                        @csrf
+                                        <div class="modal-body mx-3">
+                                            <div class="mb-5">
+                                                <i class="iconify nav-icon mr-3" data-icon="ic:outline-email"></i>
+                                                <label data-error="wrong" data-success="right"
+                                                    for="defaultForm-email">Email</label>
+                                                <input type="email" name="email" id="defaultForm-email" class="form-control validate"
+                                                    placeholder="Input email">
                                             </div>
-                                        </div> --}}
+
+                                            <div class="mb-5">
+                                                <i class="mr-3 fa-regular fa-user"></i>
+                                                <label data-error="wrong" data-success="right"
+                                                    for="defaultForm-Username">Username</label>
+                                                <input type="text" name="name" id="defaultForm-username" class="form-control validate"
+                                                    placeholder="Input nama">
+                                            </div>
+
+                                            <div class="mb-5">
+                                                <i class="iconify nav-icon mr-3" data-icon="teenyicons:password-outline"></i>
+                                                <label data-error="wrong" data-success="right"
+                                                    for="defaultForm-pass">Password</label>
+                                                <input type="password" name="password" id="defaultForm-pass" class="form-control validate"
+                                                    placeholder="Input password">
+                                            </div>
+
+                                            {{-- <div class="mb-5">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="iconify" data-icon="carbon:user-role"></i>
+                                                    <select class="form-select border-0 w-50 ml-3"
+                                                        aria-label="Default select example">
+                                                        <option >Role</option>
+                                                        <option selected disabled value="user">User</option>
+                                                    </select>
+                                                </div>
+                                            </div> --}}
 
 
-                                    </div>
-                                    <div class="modal-footer d-flex justify-content-center">
-                                        <button class="btn btn-success">Buat Akun</button>
-                                    </div>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-success">Buat Akun</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+
                         <!-- /modal -->
 
                         <!-- Button Modal -->

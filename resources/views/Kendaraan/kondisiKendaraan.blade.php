@@ -99,10 +99,10 @@
                         <!-- button detail modal -->
 
                         <!-- button edit modal -->
-                        <button class="btn btn-primary mb-1" type="button" data-toggle="modal"
+                        {{-- <button class="btn btn-primary mb-1" type="button" data-toggle="modal"
                             data-target="#modalEditForm">
                             <i class="iconify" data-icon="material-symbols:edit"></i>
-                        </button>
+                        </button> --}}
                         <!-- button edit modal -->
                     </td>
                 </tr>
