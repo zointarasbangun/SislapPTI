@@ -51,44 +51,44 @@
     @yield('styles')
 
     <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+    }
 
-        .leaflet-container {
-            color: 212B36;
-            height: 400px;
-            width: 600px;
-            max-width: 100%;
-            max-height: 100%;
-        }
+    .leaflet-container {
+        color: 212B36;
+        height: 400px;
+        width: 600px;
+        max-width: 100%;
+        max-height: 100%;
+    }
 
-        .sidebar-dark-primary {
-            background-color: #212B36;
-        }
+    .sidebar-dark-primary {
+        background-color: #212B36;
+    }
 
-        .sidebar-dark-primary .nav-sidebar .nav-item .nav-link.active {
-            background-color: #1A232A;
-        }
+    .sidebar-dark-primary .nav-sidebar .nav-item .nav-link.active {
+        background-color: #1A232A;
+    }
 
-        .sidebar-dark-primary .nav-sidebar .nav-item .nav-link.active:hover {
-            background-color: #1A232A;
-        }
+    .sidebar-dark-primary .nav-sidebar .nav-item .nav-link.active:hover {
+        background-color: #1A232A;
+    }
 
-        .sidebar-dark-primary .nav-sidebar .nav-item .nav-link:hover {
-            background-color: #1A232A;
-        }
+    .sidebar-dark-primary .nav-sidebar .nav-item .nav-link:hover {
+        background-color: #1A232A;
+    }
 
-        .sidebar-dark-primary .brand-link {
-            background-color: #212B36;
-            border-bottom: 0;
-        }
+    .sidebar-dark-primary .brand-link {
+        background-color: #212B36;
+        border-bottom: 0;
+    }
 
-        .sidebar-dark-primary .brand-link:hover {
-            background-color: #212B36;
-        }
+    .sidebar-dark-primary .brand-link:hover {
+        background-color: #212B36;
+    }
     </style>
 
     <!-- Scripts -->
@@ -101,36 +101,35 @@
         {{-- <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="{{ URL('images/pgncom1.jpeg') }}" alt="AdminLTELogo" width="100"
-                width="60">
-        </div> --}}
+        width="60">
+    </div> --}}
 
 
-        <!-- /.navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
-                </li>
-            </ul>
+    <!-- /.navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+        </ul>
 
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto ">
-                <!-- Notif -->
-                <li class="nav-item dropdown mr-4">
-                    <a class="nav-link rounded-circle" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto ">
+            <!-- Notif -->
+            <li class="nav-item dropdown mr-4">
+                <a class="nav-link rounded-circle" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">15</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-item dropdown-header disabled ">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header disabled ">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        {{-- <div class="dropdown-divider"></div>
+                    {{-- <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-users mr-2"></i> 8 friend requests
                             <span class="float-right text-muted text-sm">12 hours</span>
@@ -142,46 +141,45 @@
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a> --}}
-                    </div>
-                </li>
-                <!-- /Notif -->
+                </div>
+            </li>
+            <!-- /Notif -->
 
-                <!-- Profile -->
-                <li class="nav-item dropdown">
-                    <a data-toggle="dropdown" href="#">
-                        <img src="{{ URL('img/photoprofil.png') }}" class="img-circle elevation-2" alt="User Image">
-                    </a>
+            <!-- Profile -->
+            <li class="nav-item dropdown">
+                <a data-toggle="dropdown" href="#">
+                    <img src="{{ URL('img/photoprofil.png') }}" class="img-circle elevation-2" alt="User Image">
+                </a>
 
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        {{-- <div class="dropdown-divider"></div> --}}
-                        <p class="dropdown-item dropdown-footer disabled ">Nama</p>
-                        {{-- <div class="dropdown-divider"></div> --}}
-                        <a href="/profile" class="dropdown-item dropdown-footer"><i
-                                class="far fa-user mx-2"></i>Lihat Profil</a>
-                        {{-- <div class="dropdown-divider"></div> --}}
-                        <div>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    {{-- <div class="dropdown-divider"></div> --}}
+                    <p class="dropdown-item dropdown-footer disabled ">Nama</p>
+                    {{-- <div class="dropdown-divider"></div> --}}
+                    <a href="/profile" class="dropdown-item dropdown-footer"><i class="far fa-user mx-2"></i>Lihat
+                        Profil</a>
+                    {{-- <div class="dropdown-divider"></div> --}}
+                    <div>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+                            {{ __('Logout') }}
+                        </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
 
-                        </div>
                     </div>
+                </div>
 
-                </li>
+            </li>
 
-                <!-- /Profile -->
-            </ul>
-        </nav>
+            <!-- /Profile -->
+        </ul>
+    </nav>
 
-        @include('layouts.navigation')
+    @include('layouts.navigation')
 
-        @yield('content')
+    @yield('content')
 
     </div>
     <!-- ./wrapper -->
@@ -193,7 +191,7 @@
     <script src="{{ asset('lte/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -222,8 +220,8 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('lte/dist/js/pages/dashboard.js') }}"></script>
 
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     @yield('js')
 </body>
 
@@ -234,64 +232,66 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+{{ config('app.name', 'Laravel') }}
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+    <span class="navbar-toggler-icon"></span>
+</button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <!-- Left Side Of Navbar -->
+    <ul class="navbar-nav me-auto">
 
-                    </ul>
+    </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+    <!-- Right Side Of Navbar -->
+    <ul class="navbar-nav ms-auto">
+        <!-- Authentication Links -->
+        @guest
+        @if (Route::has('login'))
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+        </li>
+        @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+        @if (Route::has('register'))
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+        </li>
+        @endif
+        @else
+        <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }}
+            </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                    {{ __('Logout') }}
+                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @include('layouts.navigation')
-                        @endguest
-                    </ul>
-                </div>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </div>
-        </nav>
+        </li>
+        @include('layouts.navigation')
+        @endguest
+    </ul>
+</div>
+</div>
+</nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+<main class="py-4">
+    @yield('content')
+</main>
+</div>
 
-    <script src="js/main.js"></script>
-    @yield('scripts')
+<script src="js/main.js"></script>
+@yield('scripts')
 </body>
+
 </html> --}}

@@ -20,6 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/profil', function () {
+            return view('auth.profil');
+        });
+
+Route::get('/editprofil', function () {
+            return view('auth.editprofil');
+        });
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -140,4 +148,3 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
 });
-
