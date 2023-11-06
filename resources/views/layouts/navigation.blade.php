@@ -167,7 +167,7 @@
                                 <li class="nav-item">
                                     <a href="/dataperjalananUser" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
-                                        <p> Seluruh Data Perjalanan</p>
+                                        <p>Data Perjalanan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
