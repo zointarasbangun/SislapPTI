@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AcountController;
 use App\Http\Controllers\KendaraanController;
+use App\Http\Controllers\PerjalananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/manageAcount/{user}', [AcountController::class, 'destroy'])->name('acount.destroy');
 
         Route::get('/tipeKendaraan', [KendaraanController::class, 'index'])->name('kendaraan.index');
-        Route::get('/tipeKendaraan/create', [KendaraanController::class, 'create'])->name('kendaraan.create');
+        // Route::get('/tipeKendaraan/create', [KendaraanController::class, 'create'])->name('kendaraan.create');
         Route::post('/tipeKendaraan', [KendaraanController::class, 'store'])->name('kendaraan.store');
         Route::get('/tipeKendaraan/{vehicle}/edit', [KendaraanController::class, 'edit'])->name('kendaraan.edit');
         Route::put('/tipeKendaraan/{vehicle}', [KendaraanController::class, 'update'])->name('kendaraan.update');
@@ -104,17 +106,23 @@ Route::group(['middleware' => ['auth']], function () {
             return view('dashboard.userDashboard');
         })->name('userDashboard');
 
-        Route::get('/dataperjalananUser', function () {
-            return view('perjalanan.dataPerjalananUser');
+        Route::get('/tambahPerjalananUser', function(){
+            return view('perjalanan.tambahDataPerjalananUser');
         });
+        Route::get('/tambahPerjalananUser', [PerjalananController::class, 'create'])->name('tambahPerjalananUser');
+        Route::post('/tambahPerjalananUser', [PerjalananController::class, 'store'])->name('tambahPerjalananUser.store');
+        // Route::get('/dataPerjalananUser', [PerjalananController::class, 'index'])->name('dataPerjalananUser.index');
+        Route::get('/dataPerjalananUser/{perjalanan}/edit', [PerjalananController::class, 'edit'])->name('dataPerjalananUser.edit');
+        Route::put('/dataPerjalananUser/{perjalanan}', [PerjalananController::class, 'update'])->name('dataPerjalananUser.update');
+        // Route::get('/dataperjalananUser', function () {
+        //     return view('perjalanan.dataPerjalananUser');
+        // });
+
 
         Route::get('/kendaraanUser', function(){
             return view('kendaraan.kendaraanUser');
         });
 
-        Route::get('/tambahPerjalananUser', function(){
-            return view('perjalanan.tambahDataPerjalananUser');
-        });
 
         Route::get('/statusPerjalananUser', function(){
             return view('perjalanan.statusPerjalananUser');

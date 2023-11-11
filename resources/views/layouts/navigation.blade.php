@@ -171,7 +171,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/tambahPerjalananUser" class="nav-link">
+                                    <a href="tambahPerjalananUser" class="nav-link">
                                         <i class="far fa-calendar-check nav-icon"></i>
                                         <p>Tambah Data Perjalanan</p>
                                     </a>

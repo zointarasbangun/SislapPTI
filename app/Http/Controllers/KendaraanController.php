@@ -74,4 +74,10 @@ class KendaraanController extends Controller
 
         return redirect()->route('kendaraan.index');
     }
+
+    // public function getData()
+    // {
+    //     $kendaraan = Kendaraan::all(); // Ambil semua data kendaraan dari tabel kendaraan
+    //     return view('perjalanan.tambahDataPerjalananUser', compact('kendaraan'));
+    // }
 }

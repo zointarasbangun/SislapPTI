@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Perjalanan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Kendaraan extends Model
 {
@@ -15,6 +16,11 @@ class Kendaraan extends Model
         'tgl_masuk',
         'photo'
     ];
+
+    public function Perjalanan(): HasMany
+    {
+        return $this->hasMany(Perjalanan::class);
+    }
 
     // protected $appends = ['photo_url'];
 

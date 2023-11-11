@@ -10,51 +10,59 @@
                 <h5 class="mb-0">Tambah Laporan Perjalanan</h5>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-12 col-sm-12 mb-4">
-                        <label class="form-label" for="tanggal">Tanggal</label>
-                        <input type="date" id="tanggal" class="form-control" />
-                    </div>
-                    <div class="col-lg-6 col-sm-12 mb-4">
-                        <label class="form-label" for="alamatawal">Alamat Awal</label>
-                        <input type="text" id="alamatawal" class="form-control" disabled
-                            placeholder="Lokasi Saya Saat Ini" />
-                    </div>
-                    <div class="col-lg-6 col-sm-12 mb-4">
-                        <label class="form-label" for="alamatujuan">Alamat Tujuan</label>
-                        <input type="text" id="alamatujuan" class="form-control" />
-                    </div>
-                    <div class="col-lg-6 col-sm-12 mb-4">
-                        <label class="form-label" for="kmawal">KM Awal</label>
-                        <input type="number" id="kmawal" class="form-control" />
-                    </div>
-                    <div class="col-lg-6 col-sm-12 mb-4">
-                        <label class="form-label" for="kmakhir">KM Akhir</label>
-                        <input type="number" id="kmakhir" class="form-control" />
-                    </div>
-                    <div class="col-lg-6 col-sm-12 mb-4">
-                        <label class="form-label" for="tipemobil">Tipe Mobil</label>
-                        <select id="tmobilSelect" class="form-control select" style="display: inline;">
-                            <option value="x" selected disabled>Tipe Mobil</option>
-                            <option value="1">Mobil 1</option>
-                            <option value="2">Mobil 2</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-6 col-sm-12 mb-4">
-                        <label class="form-label" for="nopol">No Polisi</label>
-                        <input type="text" id="nopol" class="form-control" placeholder="BE-XXXX-XX" />
-                    </div>
-                    <div class="col-lg-12 col-sm-12 mb-4 dropdown">
-                        <div id="jenisperjalanan">
-                            <label class="form-label select-label">Jenis Perjalanan</label>
-                            <select id="jperjalananSelect" class="form-control select" style="display: inline;">
-                                <option value="x" selected disabled>Pilih Perjalanan</option>
-                                <option value="1">Perjalanan Luar</option>
-                                <option value="2">Perjalanan Dalam</option>
+                <form method="POST" action="{{ route('tambahPerjalananUser.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 mb-4">
+                            <label class="form-label" for="tanggal">Tanggal</label>
+                            <input type="date" name="tgl_perjalanan" id="tanggal" class="form-control" />
+                        </div>
+                        <div class="col-lg-6 col-sm-12 mb-4">
+                            <label class="form-label" for="alamatawal">Alamat Awal</label>
+                            <input type="text" name="alamat_awal" id="alamatawal" class="form-control"
+                                placeholder="Lokasi Saya Saat Ini" />
+                        </div>
+                        <div class="col-lg-6 col-sm-12 mb-4">
+                            <label class="form-label" for="alamatujuan">Alamat Tujuan</label>
+                            <input type="text" name="alamat_tujuan" id="alamatujuan" class="form-control" />
+                        </div>
+                        <div class="col-lg-6 col-sm-12 mb-4">
+                            <label class="form-label" for="kmawal">KM Awal</label>
+                            <input type="number" name="km_awal" id="kmawal" class="form-control" />
+                        </div>
+                        <div class="col-lg-6 col-sm-12 mb-4">
+                            <label class="form-label" for="kmakhir">KM Akhir</label>
+                            <input type="number" name="km_akhir" id="kmakhir" class="form-control" />
+                        </div>
+                        <div class="col-lg-6 col-sm-12 mb-4">
+                            <label class="form-label" for="tipemobil">Tipe Mobil</label>
+                            <select id="tmobilSelect" name="tipe_kendaraan" class="form-control select" style="display: inline;">
+                                <option value="x" selected disabled>Tipe Mobil</option>
+                                {{-- @foreach ($kendaraans as $kendaraan)
+                                <option value="1">{{ $kendaraan->type }}</option>
+                                @endforeach --}}
+                                @foreach($perjalanans as $perjalanan)
+                                    <option value="{{ $perjalanan->id }}">{{ $perjalanan->type }}</option>
+                                @endforeach
                             </select>
                         </div>
+                        <div class="col-lg-6 col-sm-12 mb-4">
+                            <label class="form-label" for="nopol">No Polisi</label>
+                            <input type="text" name="no_polisi" id="nopol" class="form-control" placeholder="BE-XXXX-XX" />
+                        </div>
+                        <div class="col-lg-12 col-sm-12 mb-4 dropdown">
+                            <div id="jenisperjalanan">
+                                <label class="form-label select-label">Jenis Perjalanan</label>
+                                <select id="jperjalananSelect" name="jenis_perjalanan" class="form-control select" style="display: inline;">
+                                    <option value="x" selected disabled>Pilih Perjalanan</option>
+                                    <option value="perjalanan luar">Perjalanan Luar</option>
+                                    <option value="perjalanan dalam">Perjalanan Dalam</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
     </div>
