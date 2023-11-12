@@ -47,17 +47,20 @@
                 <th scope="col">Status</th>
                 <th scope="col">Action</th>
             </tr>
+            @foreach ($perjalanans as $perjalanan)
             <tr>
-                <th scope="row">Budi Lestari</th>
-                <td>2023-09-10</td>
-                <td>Palembang</td>
-                <td>Bandar Lampung</td>
+                <th scope="row">{{ $perjalanan->user->name }}</th>
+                <td>{{ $perjalanan->tgl_perjalanan }}</td>
+                <td>{{ $perjalanan->alamat_awal }}</td>
+                <td>{{ $perjalanan->alamat_tujuan }}</td>
                 <td><span class="badge badge-success">Disetujui</span></td>
                 <td style="width: 12rem;">
                     <button class="btn btn-primary ml-1" type="button"><i class="iconify" data-icon="material-symbols:edit"></i></button>
                     {{-- <button type="button" class="btn" style="background-color: #12ACED; color :#ffff"><i class="iconify" data-icon="bxs:detail"></i></button> --}}
                 </td>
             </tr>
+            @endforeach
+
         </table>
     </div>
 </div>

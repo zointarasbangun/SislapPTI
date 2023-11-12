@@ -106,16 +106,19 @@ Route::group(['middleware' => ['auth']], function () {
             return view('dashboard.userDashboard');
         })->name('userDashboard');
 
-        Route::get('/tambahPerjalananUser', function(){
-            return view('perjalanan.tambahDataPerjalananUser');
-        });
+        // Route::get('/tambahPerjalananUser', function(){
+        //     return view('perjalanan.tambahDataPerjalananUser');
+        // });
         Route::get('/tambahPerjalananUser', [PerjalananController::class, 'create'])->name('tambahPerjalananUser');
         Route::post('/tambahPerjalananUser', [PerjalananController::class, 'store'])->name('tambahPerjalananUser.store');
         // Route::get('/dataPerjalananUser', [PerjalananController::class, 'index'])->name('dataPerjalananUser.index');
-        Route::get('/dataPerjalananUser/{perjalanan}/edit', [PerjalananController::class, 'edit'])->name('dataPerjalananUser.edit');
-        Route::put('/dataPerjalananUser/{perjalanan}', [PerjalananController::class, 'update'])->name('dataPerjalananUser.update');
+        Route::get('/statusPerjalananUser/{perjalanan}/edit', [PerjalananController::class, 'edit'])->name('statusPerjalananUser.edit');
+        Route::put('/statusPerjalananUser/{perjalanan}', [PerjalananController::class, 'update'])->name('statusPerjalananUser.update');
+        Route::get('/statusPerjalananUser', [PerjalananController::class, 'index'])->name('statusPerjalananUser.index');
+        Route::get('/dataPerjalananUser', [PerjalananController::class, 'getData'])->name('dataPerjalanan');
+
         // Route::get('/dataperjalananUser', function () {
-        //     return view('perjalanan.dataPerjalananUser');
+        //     return view('perjalanan.dataPerjalanan');
         // });
 
 
@@ -124,9 +127,9 @@ Route::group(['middleware' => ['auth']], function () {
         });
 
 
-        Route::get('/statusPerjalananUser', function(){
-            return view('perjalanan.statusPerjalananUser');
-        });
+        // Route::get('/statusPerjalananUser', function(){
+        //     return view('perjalanan.statusPerjalananUser');
+        // });
 
         Route::get('/pelacakPerjalananUser', function(){
             return view('pelacak.pelacakPerjalananUser');

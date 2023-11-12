@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\User;
+
 use App\Models\Kendaraan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Perjalanan extends Model
@@ -20,8 +23,8 @@ class Perjalanan extends Model
         'no_polisi',
         'jenis_perjalanan',
         'lampu_depan',
-        'lampu_sen_depan',
-        'lampu_sen_belakang',
+        'lampusen_depan',
+        'lampusen_belakang',
         'lampu_rem',
         'lampu_mundur',
         'body',
@@ -38,6 +41,12 @@ class Perjalanan extends Model
         'photo_km_akhir',
         'catatan',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
     public function Kendaraan(): BelongsTo
     {

@@ -62,7 +62,7 @@
                             </a>
                             <ul class="nav nav-treeview" style="padding-left: 20px;">
                                 <li class="nav-item">
-                                    <a href="/dataperjalanan" class="nav-link">
+                                    <a href="{{ route('dataPerjalanan') }}" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
                                         <p>Data Perjalanan</p>
                                     </a>
@@ -165,19 +165,19 @@
                             </a>
                             <ul class="nav nav-treeview" style="padding-left: 20px;">
                                 <li class="nav-item">
-                                    <a href="/dataperjalananUser" class="nav-link">
+                                    <a href="{{ route('dataPerjalanan') }}" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
                                         <p>Data Perjalanan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="tambahPerjalananUser" class="nav-link">
+                                    <a href="{{ route('tambahPerjalananUser') }}" class="nav-link">
                                         <i class="far fa-calendar-check nav-icon"></i>
                                         <p>Tambah Data Perjalanan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/statusPerjalananUser" class="nav-link">
+                                    <a href="{{ route('statusPerjalananUser.index') }}" class="nav-link">
                                         <i class="far fa-calendar-check nav-icon"></i>
                                         <p>Status Perjalanan</p>
                                     </a>
