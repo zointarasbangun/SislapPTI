@@ -93,7 +93,7 @@
                             </a>
                             <ul class="nav nav-treeview" style="padding-left: 20px;">
                                 <li class="nav-item">
-                                    <a href="datakondisikendaraan" class="nav-link">
+                                    <a href="{{ route('kendaraan.kondisi') }}" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
                                         <p>Data Kondisi Kendaraan</p>
                                     </a>
@@ -165,7 +165,7 @@
                             </a>
                             <ul class="nav nav-treeview" style="padding-left: 20px;">
                                 <li class="nav-item">
-                                    <a href="{{ route('dataPerjalanan') }}" class="nav-link">
+                                    <a href="{{ route('dataPerjalananUser') }}" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
                                         <p>Data Perjalanan</p>
                                     </a>
@@ -214,7 +214,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/datakondisikendaraanUser" class="nav-link">
+                                    <a href="{{ route('kendaraanUser.kondisi') }}" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="mdi:car"></i>
                                         <p>Data Kondisi Kendaraan</p>
                                     </a>

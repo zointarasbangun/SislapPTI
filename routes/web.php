@@ -65,9 +65,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/tipeKendaraan/{vehicle}', [KendaraanController::class, 'destroy'])->name('kendaraan.destroy');
         // Route::get('/tipeKendaraan/search', [KendaraanController::class, 'search'])->name('kendaraan.search');
 
-        Route::get('/dataperjalanan', function () {
-            return view('perjalanan.dataPerjalanan');
-        });
+        Route::get('/kondisiKendaraan', [KendaraanController::class, 'kondisi'])->name('kendaraan.kondisi');
+
+        Route::get('/dataPerjalanan', [PerjalananController::class, 'getData'])->name('dataPerjalanan');
+
+        // Route::get('/dataperjalanan', function () {
+        //     return view('perjalanan.dataPerjalanan');
+        // });
 
 
         Route::get('/statusperjalanan', function () {
@@ -78,9 +82,9 @@ Route::group(['middleware' => ['auth']], function () {
             return view('pelacak.pelacakperjalanan');
         });
 
-        Route::get('/datakondisikendaraan', function () {
-            return view('kendaraan.kondisikendaraan');
-        });
+        // Route::get('/datakondisikendaraan', function () {
+        //     return view('kendaraan.kondisikendaraan');
+        // });
 
 
         Route::get('/notifikasi', function () {
@@ -115,7 +119,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/statusPerjalananUser/{perjalanan}/edit', [PerjalananController::class, 'edit'])->name('statusPerjalananUser.edit');
         Route::put('/statusPerjalananUser/{perjalanan}', [PerjalananController::class, 'update'])->name('statusPerjalananUser.update');
         Route::get('/statusPerjalananUser', [PerjalananController::class, 'index'])->name('statusPerjalananUser.index');
-        Route::get('/dataPerjalananUser', [PerjalananController::class, 'getData'])->name('dataPerjalanan');
+        Route::get('/dataPerjalananUser', [PerjalananController::class, 'getData'])->name('dataPerjalananUser');
 
         // Route::get('/dataperjalananUser', function () {
         //     return view('perjalanan.dataPerjalanan');
@@ -125,6 +129,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/kendaraanUser', function(){
             return view('kendaraan.kendaraanUser');
         });
+
+        Route::get('/kondisiKendaraanUser', [KendaraanController::class, 'kondisi'])->name('kendaraanUser.kondisi');
 
 
         // Route::get('/statusPerjalananUser', function(){

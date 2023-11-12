@@ -50,6 +50,6 @@ class Perjalanan extends Model
 
     public function Kendaraan(): BelongsTo
     {
-        return $this->belongsTo(Kendaraan::class);
+        return $this->belongsTo(Kendaraan::class, 'tipe_kendaraan_id');
     }
 }

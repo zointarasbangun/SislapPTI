@@ -38,17 +38,19 @@
                                 <label class="form-label" for="tipemobil">Tipe Mobil</label>
                                 <select id="tmobilSelect" name="tipe_kendaraan" class="form-control select" style="display: inline;">
                                     <option value="x" selected disabled>Tipe Mobil</option>
-                                    {{-- @foreach ($kendaraans as $kendaraan)
-                                    <option value="1">{{ $kendaraan->type }}</option>
-                                    @endforeach --}}
                                     @foreach($perjalanans as $perjalanan)
-                                        <option value="{{ $perjalanan->type }}">{{ $perjalanan->type }}</option>
+                                        <option value="{{ $perjalanan->type }}">{{ $perjalanan->type}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-4">
-                                <label class="form-label" for="nopol">No Polisi</label>
-                                <input type="text" name="no_polisi" id="nopol" class="form-control" placeholder="BE-XXXX-XX" />
+                                <label class="form-label" for="nopolisi">No Polisi</label>
+                                <select id="npolisiSelect" name="no_polisi" class="form-control select" style="display: inline;">
+                                    <option value="x" selected disabled>No Polisi</option>
+                                    @foreach($perjalanans as $perjalanan)
+                                        <option value="{{ $perjalanan->no_polisi }}">{{ $perjalanan->no_polisi }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-lg-12 col-sm-12 mb-4 dropdown">
                                 <div id="jenisperjalanan">
