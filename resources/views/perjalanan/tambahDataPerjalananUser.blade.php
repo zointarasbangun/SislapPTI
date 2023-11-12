@@ -1,105 +1,133 @@
 @extends('layouts.app')
 
 @section('content')
+    <section class="content-wrapper">
+        <!-- Data Perjalanan -->
+        <form method="POST" action="{{ route('tambahPerjalananUser.store') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="container">
+                <div class="card mt-3 mb-4">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0">Tambah Laporan Perjalanan</h5>
+                    </div>
+                    <div class="card-body">
 
-<section class="content-wrapper">
-    <!-- Data Perjalanan -->
-    <div class="container">
-        <div class="card mt-3 mb-4">
-            <div class="card-header py-3">
-                <h5 class="mb-0">Tambah Laporan Perjalanan</h5>
-            </div>
-            <div class="card-body">
-                <form method="POST" action="{{ route('tambahPerjalananUser.store') }}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-12 mb-4">
-                            <label class="form-label" for="tanggal">Tanggal</label>
-                            <input type="date" name="tgl_perjalanan" id="tanggal" class="form-control" />
-                        </div>
-                        <div class="col-lg-6 col-sm-12 mb-4">
-                            <label class="form-label" for="alamatawal">Alamat Awal</label>
-                            <input type="text" name="alamat_awal" id="alamatawal" class="form-control"
-                                placeholder="Lokasi Saya Saat Ini" />
-                        </div>
-                        <div class="col-lg-6 col-sm-12 mb-4">
-                            <label class="form-label" for="alamatujuan">Alamat Tujuan</label>
-                            <input type="text" name="alamat_tujuan" id="alamatujuan" class="form-control" />
-                        </div>
-                        <div class="col-lg-6 col-sm-12 mb-4">
-                            <label class="form-label" for="kmawal">KM Awal</label>
-                            <input type="number" name="km_awal" id="kmawal" class="form-control" />
-                        </div>
-                        <div class="col-lg-6 col-sm-12 mb-4">
-                            <label class="form-label" for="kmakhir">KM Akhir</label>
-                            <input type="number" name="km_akhir" id="kmakhir" class="form-control" />
-                        </div>
-                        <div class="col-lg-6 col-sm-12 mb-4">
-                            <label class="form-label" for="tipemobil">Tipe Mobil</label>
-                            <select id="tmobilSelect" name="tipe_kendaraan" class="form-control select" style="display: inline;">
-                                <option value="x" selected disabled>Tipe Mobil</option>
-                                {{-- @foreach ($kendaraans as $kendaraan)
+
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 mb-4">
+                                <label class="form-label" for="tanggal">Tanggal</label>
+                                <input type="date" name="tgl_perjalanan" id="tanggal" class="form-control" />
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-4">
+                                <label class="form-label" for="alamatawal">Alamat Awal</label>
+                                <input type="text" name="alamat_awal" id="alamatawal" class="form-control"
+                                    placeholder="Lokasi Saya Saat Ini" />
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-4">
+                                <label class="form-label" for="alamatujuan">Alamat Tujuan</label>
+                                <input type="text" name="alamat_tujuan" id="alamatujuan" class="form-control" />
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-4">
+                                <label class="form-label" for="kmawal">KM Awal</label>
+                                <input type="number" name="km_awal" id="kmawal" class="form-control" />
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-4">
+                                <label class="form-label" for="kmakhir">KM Akhir</label>
+                                <input type="number" name="km_akhir" id="kmakhir" class="form-control" />
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-4">
+                                <label class="form-label" for="tipemobil">Tipe Mobil</label>
+                                <select id="tmobilSelect" name="tipe_kendaraan" class="form-control select"
+                                    style="display: inline;">
+                                    <option value="x" selected disabled>Tipe Mobil</option>
+                                    {{-- @foreach ($kendaraans as $kendaraan)
                                 <option value="1">{{ $kendaraan->type }}</option>
                                 @endforeach --}}
-                                @foreach($perjalanans as $perjalanan)
-                                    <option value="{{ $perjalanan->id }}">{{ $perjalanan->type }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-lg-6 col-sm-12 mb-4">
-                            <label class="form-label" for="nopol">No Polisi</label>
-                            <input type="text" name="no_polisi" id="nopol" class="form-control" placeholder="BE-XXXX-XX" />
-                        </div>
-                        <div class="col-lg-12 col-sm-12 mb-4 dropdown">
-                            <div id="jenisperjalanan">
-                                <label class="form-label select-label">Jenis Perjalanan</label>
-                                <select id="jperjalananSelect" name="jenis_perjalanan" class="form-control select" style="display: inline;">
-                                    <option value="x" selected disabled>Pilih Perjalanan</option>
-                                    <option value="perjalanan luar">Perjalanan Luar</option>
-                                    <option value="perjalanan dalam">Perjalanan Dalam</option>
+                                    @foreach ($perjalanans as $perjalanan)
+                                        <option value="{{ $perjalanan->id }}">{{ $perjalanan->type }}</option>
+                                    @endforeach
                                 </select>
                             </div>
+                            <div class="col-lg-6 col-sm-12 mb-4">
+                                <label class="form-label" for="nopol">No Polisi</label>
+                                {{-- <select type="text" name="no_polisi" id="nopol" class="form-control" placeholder="BE-XXXX-XX" /> --}}
+                                <select id="nopol" name="no_polisi" class="form-control select"
+                                    style="display: inline;">
+                                    <option value="x" selected disabled>No polisi</option>
+                                    {{-- @foreach ($kendaraans as $kendaraan)
+                                <option value="1">{{ $kendaraan->type }}</option>
+                                @endforeach --}}
+                                    @foreach ($perjalanans as $perjalanan)
+                                        <option value="{{ $perjalanan->id }}">{{ $perjalanan->no_polisi }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-lg-12 col-sm-12 mb-4 dropdown">
+                                <div id="jenisperjalanan">
+                                    <label class="form-label select-label">Jenis Perjalanan</label>
+                                    <select id="jperjalananSelect" name="jenis_perjalanan" class="form-control select"
+                                        style="display: inline;">
+                                        <option value="x" selected disabled>Pilih Perjalanan</option>
+                                        <option value="perjalanan luar">Perjalanan Luar</option>
+                                        <option value="perjalanan dalam">Perjalanan Dalam</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </form>
 
-            </div>
-        </div>
-    </div>
-    <!-- /Data Perjalanan -->
 
-    <div class="container mb-5">
-        <!-- Kondisi Kendaraan -->
-        <div class="card">
-            <div class="card-header py-3">
-                <h5 class="mb-0">Kondisi Kendaraan</h5>
-            </div>
-            <div class="card-body">
-                <!-- Navigasi -->
-                <h3 class="text-primary ml-3 mt-4">Navigasi</h3>
-                <hr class="hr" />
-
-                <div class="row p-2 mt-4">
-                    <div class="col-lg-4 col-sm-2">
-                        <p>Lampu Depan</p>
-                    </div>
-
-                    <div class="col-lg-8 col-sm-10 btn-group">
-                        <input type="radio" class="btn-check" name="ld" id="ld" autocomplete="off" />
-                        <label class="btn btn-outline-success" for="ld">Berfungsi</label>
-
-                        <input type="radio" class="btn-check" name="ld" id="ld0" autocomplete="off" />
-                        <label class="btn btn-outline-danger" for="ld0">Tidak Berfungsi</label>
                     </div>
                 </div>
-                <hr class="hr" />
+            </div>
+            <!-- /Data Perjalanan -->
 
-                <div class="row p-2 mt-4">
+            <div class="container mb-5">
+                <!-- Kondisi Kendaraan -->
+                <div class="card">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0">Kondisi Kendaraan</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Navigasi -->
+                        <h3 class="text-primary ml-3 mt-4">Navigasi</h3>
+                        <hr class="hr" />
+
+                        <div class="row p-2 mt-4">
+                        <div class="col-lg-4 col-sm-2">
+                            <label class="form-label">Lampu Depan</label>
+                        </div>
+
+                        <div class="col-lg-8 col-sm-10">
+                            <select name="lampu_depan" class="form-control">
+                                <option value="berfungsi" >Berfungsi</option>
+                                <option value="tidak_berfungsi">Tidak Berfungsi</option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr class="hr" />
+
+                        {{-- <div class="row p-2 mt-4">
+                            <div class="col-lg-4 col-sm-2">
+                                <p>Lampu Sen Depan</p>
+                            </div>
+
+                            <div class="col-lg-8 col-sm-10 btn-group" name="lampusen_depan">
+                                <input type="radio" class="btn-check" name="lsd" id="lsd" autocomplete="off"
+                                    value="berfungsi" />
+                                <label class="btn btn-outline-success" for="lsd" value="berfungsi">Berfungsi</label>
+
+                                <input type="radio" class="btn-check" name="lsd" id="lsd0" autocomplete="off"
+                                    value="tidak_berfungsi" />
+                                <label class="btn btn-outline-danger" for="lsd0" value="tidak_berfungsi">Tidak
+                                    Berfungsi</label>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="row p-2 mt-4">
                     <div class="col-lg-4 col-sm-2">
                         <p>Lampu Sen Depan</p>
                     </div>
 
-                    <div class="col-lg-8 col-sm-10 btn-group">
+                    <div class="col-lg-8 col-sm-10 btn-group" name="lampusen_depan">
                         <input type="radio" class="btn-check" name="lsd" id="lsd" autocomplete="off" />
                         <label class="btn btn-outline-success" for="lsd">Berfungsi</label>
 
@@ -334,16 +362,17 @@
                 <hr class="hr" />
                 <textarea class="form-control" rows="5" id="notes" placeholder="Catatan"></textarea>
                 <!-- notes -->
-            </div>
+            </div> --}}
+                    </div>
+                </div>
+                <!-- /Kondisi Kendaraan -->
+
+                <!-- button -->
+                <button type="submit" class="btn btn-primary ml-3 px-5">Save</button>
+                <button class="btn btn-danger ml-2 px-5">Cancel</button>
+        </form> 
+        <!-- button -->
         </div>
-        <!-- /Kondisi Kendaraan -->
 
-        <!-- button -->
-        <button class="btn btn-primary ml-3 px-5">Save</button>
-        <button class="btn btn-danger ml-2 px-5">Cancel</button>
-        <!-- button -->
-    </div>
-
-</section>
-
+    </section>
 @endsection

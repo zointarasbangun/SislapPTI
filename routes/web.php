@@ -23,12 +23,12 @@ Route::get('/', function () {
 });
 
 Route::get('/profil', function () {
-            return view('auth.profil');
-        });
+    return view('auth.profil');
+});
 
 Route::get('/editprofil', function () {
-            return view('auth.editprofil');
-        });
+    return view('auth.editprofil');
+});
 
 Auth::routes();
 
@@ -40,9 +40,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['admin']], function () {
-        Route::get('/adminDashboard', function(){
+        Route::get('/adminDashboard', function () {
             return view('dashboard.adminDashboard');
-            })->name('adminDashboard');
+        })->name('adminDashboard');
 
         Route::get('/addAcount', [AcountController::class, 'create'])->name('createAcount');
         Route::post('/addAcount', [AcountController::class, 'store'])->name('addAcount');
@@ -102,11 +102,14 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::group(['middleware' => ['user']], function () {
-        Route::get('/userDashboard', function(){
+        Route::get('/userDashboard', function () {
             return view('dashboard.userDashboard');
         })->name('userDashboard');
 
-        Route::get('/tambahPerjalananUser', function(){
+        Route::get('/dataPerjalananUser', function () {
+            return view('perjalanan.DataPerjalananUser');
+        });
+        Route::get('/tambahPerjalananUser', function () {
             return view('perjalanan.tambahDataPerjalananUser');
         });
         Route::get('/tambahPerjalananUser', [PerjalananController::class, 'create'])->name('tambahPerjalananUser');
@@ -119,24 +122,24 @@ Route::group(['middleware' => ['auth']], function () {
         // });
 
 
-        Route::get('/kendaraanUser', function(){
+        Route::get('/kendaraanUser', function () {
             return view('kendaraan.kendaraanUser');
         });
 
 
-        Route::get('/statusPerjalananUser', function(){
+        Route::get('/statusPerjalananUser', function () {
             return view('perjalanan.statusPerjalananUser');
         });
 
-        Route::get('/pelacakPerjalananUser', function(){
+        Route::get('/pelacakPerjalananUser', function () {
             return view('pelacak.pelacakPerjalananUser');
         });
 
-        Route::get('/riwayatPerjalananUser', function(){
+        Route::get('/riwayatPerjalananUser', function () {
             return view('perjalanan.riwayatPerjalananDriver');
         });
 
-        Route::get('/notifikasiUser', function(){
+        Route::get('/notifikasiUser', function () {
             return view('notifikasi.notifikasiUser');
         });
 

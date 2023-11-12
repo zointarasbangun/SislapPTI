@@ -165,13 +165,13 @@
                             </a>
                             <ul class="nav nav-treeview" style="padding-left: 20px;">
                                 <li class="nav-item">
-                                    <a href="/dataperjalananUser" class="nav-link">
+                                    <a href="/dataPerjalananUser" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
                                         <p>Data Perjalanan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="tambahPerjalananUser" class="nav-link">
+                                    <a href="/tambahPerjalananUser" class="nav-link">
                                         <i class="far fa-calendar-check nav-icon"></i>
                                         <p>Tambah Data Perjalanan</p>
                                     </a>
