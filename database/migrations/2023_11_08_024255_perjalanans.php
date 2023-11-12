@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('perjalanans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->date('tgl_perjalanan');
             $table->string('alamat_awal');
             $table->string('alamat_tujuan');
             $table->integer('km_awal');
             $table->integer('km_akhir');
-            $table->foreignIdFor(Kendaraan::class);
+            $table->foreignId('tipe_kendaraan_id')->constrained('kendaraans');
             $table->string('tipe_kendaraan');
             $table->string('no_polisi');
             $table->string('jenis_perjalanan');

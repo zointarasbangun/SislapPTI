@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kendaraan;
+use App\Models\Perjalanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -80,4 +81,20 @@ class KendaraanController extends Controller
     //     $kendaraan = Kendaraan::all(); // Ambil semua data kendaraan dari tabel kendaraan
     //     return view('perjalanan.tambahDataPerjalananUser', compact('kendaraan'));
     // }
+
+    public function kondisi()
+    {
+        $subquery = Perjalanan::selectRaw('tipe_kendaraan_id, MAX(tgl_perjalanan) as max_tgl_perjalanan')
+            ->groupBy('tipe_kendaraan_id');
+
+        $perjalanans = Perjalanan::joinSub($subquery, 'latest_perjalanan', function ($join) {
+                $join->on('perjalanans.tipe_kendaraan_id', '=', 'latest_perjalanan.tipe_kendaraan_id')
+                    ->on('perjalanans.tgl_perjalanan', '=', 'latest_perjalanan.max_tgl_perjalanan');
+            })
+            ->with(['kendaraan', 'user'])
+            ->get();
+
+
+        return view('kendaraan.kondisikendaraan', compact('perjalanans'));
+    }
 }
