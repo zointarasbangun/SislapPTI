@@ -1,0 +1,17 @@
+{
+    "name": "SAFETY DRIVER",
+    "short_name": "pgn",
+    "start_url": "/index.php",
+    "background_color": "#6777ef",
+    "description": "Safety driver PWA",
+    "display": "fullscreen",
+    "theme_color": "#00ABEC",
+    "icons": [
+        {
+            "src": "pgncomlogo.PNG",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

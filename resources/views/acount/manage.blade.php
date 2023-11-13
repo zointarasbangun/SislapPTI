@@ -160,9 +160,6 @@
                                             <i class="iconify" data-icon="material-symbols:delete"></i>
                                         </button>
                                     </form>
-                                    <button class="btn" style="background-color: #12ACED; color: #fff">
-                                        <i class="iconify" data-icon="bxs:detail"></i>
-                                    </button>
                                 </div>
                             </td>
 
