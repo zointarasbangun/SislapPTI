@@ -145,7 +145,6 @@
                     if ($perjalanan->oli_mesin == 'terisi') {
                         $nilaiPersentase += 6.6;
                     }
-                    // Tambahkan logika serupa untuk atribut lainnya
 
                     // Tambahkan persentase ke akumulator
                     $persentaseAkumulatif += $nilaiPersentase;

@@ -153,16 +153,15 @@
                                     <a href="{{ route('acount.edit', $user->id) }}" class="btn btn-primary mr-2">
                                         <i class="iconify" data-icon="material-symbols:edit"></i>
                                     </a>
-                                    <form action="{{ route('acount.destroy', $user->id) }}" method="POST">
+                                    <form id="deleteForm{{ $user->id }}" action="{{ route('acount.destroy', $user->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger mr-2">
+                                        <button type="button" class="btn btn-danger mr-2" onclick="confirmDelete()">
                                             <i class="iconify" data-icon="material-symbols:delete"></i>
                                         </button>
                                     </form>
-                                    <button class="btn" style="background-color: #12ACED; color: #fff">
-                                        <i class="iconify" data-icon="bxs:detail"></i>
-                                    </button>
+
+
                                 </div>
                             </td>
 
@@ -175,4 +174,13 @@
                 </table>
             </div>
         </div>
+
+        <script>
+            function confirmDelete() {
+                if (confirm("Apakah Anda yakin ingin menghapus akun? {{ $user->name }}")) {
+                    document.getElementById("deleteForm{{ $user->id }}").submit();
+                }
+            }
+        </script>
+
     @endsection

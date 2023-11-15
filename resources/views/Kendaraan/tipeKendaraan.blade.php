@@ -167,7 +167,7 @@
 
                                 <a href="{{ route('kendaraan.edit', $kendaraan->id) }}" class="btn btn-primary"><i
                                         class="iconify" data-icon="material-symbols:edit"></i></a>
-                                <form action="{{ route('kendaraan.destroy', $kendaraan->id) }}" method="POST"
+                                <form id="deleteForm{{ $kendaraan->id }}" action="{{ route('kendaraan.destroy', $kendaraan->id) }}" method="POST"
                                     style="display: inline">
                                     @csrf
                                     @method('DELETE')
@@ -178,10 +178,20 @@
                         @endif
                         </td>
                     </tr>
+
                 @endforeach
             </table>
         </div>
 
         <!-- /table -->
     </div>
+    {{-- <script>
+        function confirmDelete(kendaraanId) {
+            if (confirm("Apakah Anda yakin ingin menghapus kendaraan dengan ID " + kendaraanId + "?")) {
+                return true; // Submit the form
+            } else {
+                return false; // Cancel the form submission
+            }
+        }
+    </script> --}}
 @endsection
