@@ -50,7 +50,7 @@ class KendaraanController extends Controller
         $data = $request->validate([
             'type' => 'required|string',
             'no_polisi' => 'required|string',
-            'tgl_masuk' => 'required|date',
+            'tgl_masuk' => 'require d|date',
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 

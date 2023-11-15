@@ -119,7 +119,7 @@ class PerjalananController extends Controller
             'km_awal' => 'required|numeric',
             'km_akhir' => 'required|numeric',
             'tipe_kendaraan' => 'exists:kendaraans,type',
-            'no_polisi' => 'required|string',
+            'no_polisi' => 'string',
             'jenis_perjalanan' => 'required|string|in:perjalanan luar,perjalanan dalam',
             'lampu_depan' => 'string|in:berfungsi,tidak berfungsi',
             'lampusen_depan' => 'string|in:berfungsi,tidak berfungsi',
@@ -143,6 +143,7 @@ class PerjalananController extends Controller
 
         // Simpan data ke model
         $perjalanan = new Perjalanan($request->all());
+        $perjalanan->tipe_kendaraan_id = Kendaraan::where('type', $request->tipe_kendaraan)->first()->id;
         $perjalanan->tipe_kendaraan_id = Kendaraan::where('type', $request->tipe_kendaraan)->first()->id;
         $perjalanan->user_id = auth()->id();
         $perjalanan->save();
