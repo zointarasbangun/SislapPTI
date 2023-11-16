@@ -55,12 +55,11 @@
                 <td>{{ $perjalanan->alamat_tujuan }}</td>
                 <td><span class="badge badge-success">Disetujui</span></td>
                 <td style="width: 12rem;">
-                    <button class="btn btn-primary ml-1" type="button"><i class="iconify" data-icon="material-symbols:edit"></i></button>
+                    <a href="{{ route('statusPerjalananUser.edit', $perjalanan->id) }}"><button class="btn btn-primary ml-1" type="button"><i class="iconify" data-icon="material-symbols:edit"></i></button></a>
                     {{-- <button type="button" class="btn" style="background-color: #12ACED; color :#ffff"><i class="iconify" data-icon="bxs:detail"></i></button> --}}
                 </td>
             </tr>
             @endforeach
-
         </table>
     </div>
 </div>
