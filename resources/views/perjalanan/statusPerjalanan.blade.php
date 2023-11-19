@@ -39,56 +39,49 @@
                     <th scope="col">Tanggal</th>
                     <th scope="col">Alamat Awal</th>
                     <th scope="col">Alamat Akhir</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
-                <tr>
-                    <th scope="row">Donquixote Doflamingo</th>
-                    <td>2023-09-10</td>
-                    <td>Palembang</td>
-                    <td>Bandar Lampung</td>
-                    <td><span class="badge badge-success">Disetujui</span></td>
-                    <td>
-                        <button class="btn  ml-1" type="button" style="background-color: #31CF55"><i class="iconify" data-icon="fa-solid:check" style="color: #ffff"></i></button>
-                        <button class="btn btn-success ml-1" type="button" style="background-color: #1265A8"><i class="iconify"
-                            data-icon="ic:baseline-pending-actions"></i></button>
-                        <button class="btn btn-danger ml-1" type="button">
-                            <i class="iconify" data-icon="mingcute:close-fill" ></i>
-                        </button>
+                @foreach ($perjalanans as $perjalanan)
+                    <tr>
+                        <th scope="row">{{ $perjalanan->user->name }}</th>
+                        <td>{{ $perjalanan->tgl_perjalanan }}</td>
+                        <td>{{ $perjalanan->alamat_awal }}</td>
+                        <td>{{ $perjalanan->alamat_tujuan }}</td>
+                        <td>
+                            <form id="statusForm{{ $perjalanan->id }}"
+                                action="{{ route('admin.update_status', $perjalanan->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="btn-group" role="group" aria-label="Pilihan Status">
+                                    <button type="button" class="btn btn-outline-success mr-2"
+                                        onclick="updateStatus('{{ $perjalanan->id }}', 'disetujui')">
+                                        <i class="fas fa-check fa-fw"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-warning mr-2"
+                                        onclick="updateStatus('{{ $perjalanan->id }}', 'pending')">
+                                        <i class="fas fa-question fa-fw"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger"
+                                        onclick="updateStatus('{{ $perjalanan->id }}', 'ditolak')">
+                                        <i class="fas fa-times fa-fw"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
 
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Donquixote Doflamingo</th>
-                    <td>2023-09-10</td>
-                    <td>Palembang</td>
-                    <td>Bandar Lampung</td>
-                    <td><span class="badge badge-success">Disetujui</span></td>
-                    <td>
-                        <button class="btn  ml-1" type="button" style="background-color: #31CF55"><i class="iconify" data-icon="fa-solid:check" style="color: #ffff"></i></button>
-                        <button class="btn btn-success ml-1" type="button" style="background-color: #1265A8"><i class="iconify"
-                                data-icon="ic:baseline-pending-actions"></i></button>
-                                <button class="btn btn-danger ml-1" type="button">
-                                    <i class="iconify" data-icon="mingcute:close-fill" ></i>
-                                </button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Donquixote Doflamingo</th>
-                    <td>2023-09-10</td>
-                    <td>Palembang</td>
-                    <td>Bandar Lampung</td>
-                    <td><span class="badge badge-danger">Belum Disetujui</span></td>
-                    <td>
-                        <button class="btn  ml-1" type="button" style="background-color: #31CF55"><i class="iconify" data-icon="fa-solid:check" style="color: #ffff"></i></button>
-                        <button class="btn btn-success ml-1" type="button" style="background-color: #1265A8"><i class="iconify"
-                            data-icon="ic:baseline-pending-actions"></i></button>
-                                <button class="btn btn-danger ml-1" type="button">
-                                    <i class="iconify" data-icon="mingcute:close-fill" ></i>
-                                </button>
-                    </td>
-                </tr>
+                    </tr>
+                @endforeach
             </table>
         </div>
+
+        <script>
+            function updateStatus(id, status) {
+                // Menetapkan nilai status ke elemen input pada formulir
+                document.querySelector(`#statusForm${id} select[name="status"]`).value = status;
+
+                // Mengirim formulir secara otomatis
+                document.querySelector(`#statusForm${id}`).submit();
+            }
+        </script>
     </div>
 @endsection

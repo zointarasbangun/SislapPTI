@@ -68,7 +68,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/statusperjalanan" class="nav-link">
+                                    <a href="{{ route('status.perjalanan.admin') }}" class="nav-link">
                                         <i class="far fa-calendar-check nav-icon"></i>
                                         <p>Status Perjalanan</p>
                                     </a>

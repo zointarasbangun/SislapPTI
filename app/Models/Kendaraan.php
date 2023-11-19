@@ -17,19 +17,16 @@ class Kendaraan extends Model
         'photo'
     ];
 
-    public function Perjalanan(): HasMany
+    public function perjalanan()
     {
         return $this->hasMany(Perjalanan::class);
     }
 
+    // Jika Anda menggunakan accessor untuk URL foto:
     // protected $appends = ['photo_url'];
-
-    // // app/Kendaraan.php
 
     // public function getPhotoUrlAttribute()
     // {
     //     return asset('storage/' . $this->photo);
     // }
-
-
 }

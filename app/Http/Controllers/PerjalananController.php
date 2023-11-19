@@ -10,7 +10,28 @@ use App\Http\Controllers\Controller;
 
 class PerjalananController extends Controller
 {
+    public function statusPerjalananAdmin()
+    {
+        $perjalanans = Perjalanan::with('kendaraan')->paginate();
+        return view('perjalanan.statusPerjalanan', compact('perjalanans'));
+    }
 
+     public function updateStatus(Request $request, $id)
+    {
+        $perjalanan = Perjalanan::findOrFail($id);
+
+        // Validasi request jika diperlukan
+        $request->validate([
+            'status' => 'required|in:pending,disetujui,ditolak',
+        ]);
+
+        // Setel status perjalanan
+        $perjalanan->status = $request->input('status');
+        $perjalanan->save();
+
+        // Redirect atau berikan respons sesuai kebutuhan
+        return redirect()->back()->with('success', 'Status perjalanan berhasil diperbarui');
+    }
     public function index()
     {
         $perjalanans = Perjalanan::with('kendaraan')->paginate();
@@ -25,7 +46,7 @@ class PerjalananController extends Controller
             ->get();
 
         // dd($perjalanans);
-        return view('perjalanan.tambahDataPerjalananUser', compact('kendaraan','perjalanans'));
+        return view('perjalanan.tambahDataPerjalananUser', compact('kendaraan', 'perjalanans'));
     }
 
     public function store(Request $request)
@@ -70,7 +91,7 @@ class PerjalananController extends Controller
         $perjalanan->user_id = auth()->id();
         // $perjalanan->km_akhir = $request->input('km_akhir', 0); // Ganti 0 dengan nilai default lain jika diperluka
         $perjalanan->save();
-// dd($perjalanan);
+        // dd($perjalanan);
         // Mengunggah dan menyimpan gambar km_awal
         if ($request->hasFile('photo_km_awal')) {
             $photoKmAwalPath = $request->file('photo_km_awal')->store('photos', 'public');
@@ -160,7 +181,7 @@ class PerjalananController extends Controller
 
     // public function getData()
     // {
-        //     $perjalanan = Perjalanan::with('kendaraan')->paginate();
+    //     $perjalanan = Perjalanan::with('kendaraan')->paginate();
     //     return view('perjalanan.tambahDataPerjalananUser', compact('perjalanan'));
     // }
 }

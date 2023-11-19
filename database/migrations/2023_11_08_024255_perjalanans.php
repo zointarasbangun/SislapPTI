@@ -43,6 +43,7 @@ return new class extends Migration
             $table->string('photo_km_awal')->nullable();
             $table->string('photo_km_akhir')->nullable();
             $table->string('catatan')->nullable();
+            $table->enum('status', ['pending', 'disetujui', 'ditolak'])->default('pending'); // Kolom status dengan nilai awal 'pending'
             $table->timestamps();
         });
     }

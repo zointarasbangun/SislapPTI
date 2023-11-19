@@ -72,11 +72,9 @@ Route::group(['middleware' => ['auth']], function () {
         // Route::get('/dataperjalanan', function () {
         //     return view('perjalanan.dataPerjalanan');
         // });
+        Route::get('/statusperjalananadmin', [PerjalananController::class, 'statusPerjalananAdmin'])->name('status.perjalanan.admin');
 
-
-        Route::get('/statusperjalanan', function () {
-            return view('perjalanan.statusperjalanan');
-        });
+        Route::put('/admin/update-status/{id}', [PerjalananController::class, 'updateStatus'])->name('admin.update_status');
 
         Route::get('/pelacakperjalanan', function () {
             return view('pelacak.pelacakperjalanan');
