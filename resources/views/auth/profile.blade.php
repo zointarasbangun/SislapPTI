@@ -104,7 +104,7 @@
             </li>
         </ul>
 
-        <ul class="navbar-nav ml-auto mr-4">
+        {{-- <ul class="navbar-nav ml-auto mr-4">
             <li class="nav-item">
                 <div class="dropdown">
                     <a id="dLabel" role="button" data-toggle="dropdown" data-target="dropdown-menu" href="#">
@@ -169,31 +169,44 @@
 
                 </div>
             </li>
-        </ul>
+        </ul> --}}
     </nav>
 
     <section class="container mt-3 mb-2">
         <div class="card">
-            <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
-                <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                    <img src="{{ URL('img/photoprofil.png') }}" alt="Generic placeholder image"
-                        class="img-fluid rounded-circle  mt-5 mb-2" style="z-index: 1">
-                </div>
-                <div class="ms-3" style="margin-top: 130px;">
-                    <h5>Anna Elsa</h5>
-                    <p>@annaelsa</p>
-                </div>
-            </div>
-            <div class="p-4 text-primary rounded-bottom" style="background-color: #f8f9fa;">
-                <div class="d-flex justify-content-end text-center py-1">
-                    <div>
-                        <a href="/editProfile" class="btn btn-outline-primary" role="button" style="z-index: 1;">Edit
-                            Profil</a>
+            @if ($profile)
+                <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
+                    <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                        <img src="{{ asset('storage/' . $profile->foto_profil) }}" alt="Profile Image"
+                            class="img-fluid rounded-circle  mt-5 mb-2" style="z-index: 1">
+                    </div>
+                    <div class="ms-3" style="margin-top: 130px;">
+                        <!-- Mengganti data statis dengan data dari profil -->
+                        <h5>{{ $profile->fulname }}</h5>
+                        <p>{{ '@' . $profile->username }}</p>
                     </div>
                 </div>
-            </div>
+                <div class="p-4 text-primary rounded-bottom" style="background-color: #f8f9fa;">
+                    <div class="d-flex justify-content-end text-center py-1">
+                        <div>
+                            <!-- Mengganti route ke editProfile dengan menggunakan named route -->
+                            @if($profile->user->role == 'admin')
+                            <a href="{{ route('profileAdmin.edit', $profile->id) }}" class="btn btn-outline-primary" role="button" style="z-index: 1;">Edit Profil</a>
+                            @else
+                            <a href="{{ route('profile.edit', $profile->id) }}" class="btn btn-outline-primary" role="button" style="z-index: 1;">Edit Profil</a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div class="p-4 text-primary rounded-bottom" style="background-color: #f8f9fa;">
+                    <p>Profil tidak ditemukan.</p>
+                </div>
+            @endif
         </div>
     </section>
+
+
 
     <section class="container mb-5">
         <div class="row">
@@ -208,8 +221,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum deleniti velit
-                                    perspiciatis dicta eum officiis.
+                                    {{ $profile->bio }}
                                 </p>
                             </div>
                         </div>
@@ -222,7 +234,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">
-                                    Admin
+                                    {{ $profile->user->role }}
                                 </p>
                             </div>
                         </div>
@@ -235,7 +247,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">
-                                    (+62)85833334444
+                                    {{ $profile->phone }}
                                 </p>
                             </div>
                         </div>
@@ -248,7 +260,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">
-                                    example@example.com
+                                    {{ $profile->user->email }}
                                 </p>
                             </div>
                         </div>
@@ -261,7 +273,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">
-                                    PGNCOM
+                                    {{ $profile->lokasi  }}
                                 </p>
                             </div>
                         </div>

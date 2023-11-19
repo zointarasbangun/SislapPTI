@@ -51,30 +51,91 @@
                 <th scope="col">Foto KM Awal</th>
                 <th scope="col">Foto KM Akhir</th>
             </tr>
+            @foreach ($perjalanans as $perjalanan)
             <tr>
-                <td>2023-11-05</td>
-                <td>Lampung Timur</td>
-                <td>Bandar Lampung</td>
-                <td>50</td>
-                <td>85</td>
-                <td>35</td>
-                <td>Luar</td>
-                <td>5</td>
-                <td></td>
-                <td></td>
+                {{-- <th scope="row">{{ $perjalanan->user->name }}</th> --}}
+                <td>{{ $perjalanan->tgl_perjalanan }}</td>
+                <td>{{ $perjalanan->alamat_awal }}</td>
+                <td>{{ $perjalanan->alamat_tujuan }}</td>
+                <td>{{ $perjalanan->km_awal }}</td>
+                <td>{{ $perjalanan->km_akhir }}</td>
+                <td>{{ ($perjalanan->km_akhir)-($perjalanan->km_awal) }}</td>
+                <td>{{ $perjalanan->jenis_perjalanan }}</td>
+                <td>{{ (($perjalanan->km_akhir)-($perjalanan->km_awal))/10 }}</td>
+                {{-- <td><img src="{{ asset('storage/' . $perjalanan->photo_km_awal) }}" class="img-fluid" alt="Foto Kendaraan"/></td>
+                <td><img src="{{ asset('storage/' . $perjalanan->photo_km_akhir) }}" class="img-fluid" alt="Foto Kendaraan"/></td> --}}
+                <td>
+                    @if ($perjalanan->photo_km_awal)
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalLihatAwal{{ $perjalanan->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-start">
+                                    <h4 class="modal-title w-100 font-weight-bold">Lihat Foto Kendaraan</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body mx-3">
+                                    <div class="mb-0">
+                                        <img src="{{ asset('storage/' . $perjalanan->photo_km_awal) }}" class="img-fluid" alt="Foto Kendaraan"/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-right">
+                                    <button class="btn btn-success" data-dismiss="modal" aria-label="Close">Oke</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /modal -->
+
+                    <!-- Button Modal -->
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalLihatAwal{{ $perjalanan->id }}"><i class="iconify nav-icon mr-3" data-icon="mdi:eye"></i></a>
+                    </div>
+                    <!-- /button modal -->
+                    @else
+                    Gambar tidak tersedia
+                    @endif
+                </td>
+                <td>
+                    @if ($perjalanan->photo_km_akhir)
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalLihatAkhir{{ $perjalanan->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-start">
+                                    <h4 class="modal-title w-100 font-weight-bold">Lihat Foto Kendaraan</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body mx-3">
+                                    <div class="mb-0">
+                                        <img src="{{ asset('storage/' . $perjalanan->photo_km_akhir) }}" class="img-fluid" alt="Foto Kendaraan"/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-right">
+                                    <button class="btn btn-success" data-dismiss="modal" aria-label="Close">Oke</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /modal -->
+
+                    <!-- Button Modal -->
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalLihatAkhir{{ $perjalanan->id }}"><i class="iconify nav-icon mr-3" data-icon="mdi:eye"></i></a>
+                    </div>
+                    <!-- /button modal -->
+                    @else
+                    Gambar tidak tersedia
+                    @endif
+                </td>
+
             </tr>
-            <tr>
-                <td>2023-11-07</td>
-                <td>Bandar Lampung</td>
-                <td>Bandar Lampung</td>
-                <td>55</td>
-                <td>90</td>
-                <td>35</td>
-                <td>Dalam</td>
-                <td>3</td>
-                <td></td>
-                <td></td>
-            </tr>
+            @endforeach
+
         </table>
     </div>
 </div>

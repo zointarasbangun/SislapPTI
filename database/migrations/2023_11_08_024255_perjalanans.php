@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Kendaraan;
+use App\Models\Perjalanan;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -43,6 +44,7 @@ return new class extends Migration
             $table->string('photo_km_awal')->nullable();
             $table->string('photo_km_akhir')->nullable();
             $table->string('catatan')->nullable();
+            $table->string('status_perjalanan')->default(Perjalanan::STATUS_MENUNGGU);
             $table->timestamps();
         });
     }

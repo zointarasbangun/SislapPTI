@@ -40,25 +40,42 @@
     <div class="container-fluid mt-3">
         <table class="table table-striped text-center" id="tableakun">
             <tr>
-                <th scope="col">User</th>
+                <th scope="col">Nama Driver</th>
                 <th scope="col">Tanggal</th>
                 <th scope="col">Alamat Awal</th>
                 <th scope="col">Alamat Akhir</th>
                 <th scope="col">Status</th>
                 <th scope="col">Action</th>
             </tr>
+
             @foreach ($perjalanans as $perjalanan)
+            @if($perjalanan->status_perjalanan == 'menunggu' ||
+            $perjalanan->status_perjalanan == 'ditolak' ||
+            $perjalanan->status_perjalanan == 'disetujui')
             <tr>
                 <th scope="row">{{ $perjalanan->user->name }}</th>
                 <td>{{ $perjalanan->tgl_perjalanan }}</td>
                 <td>{{ $perjalanan->alamat_awal }}</td>
                 <td>{{ $perjalanan->alamat_tujuan }}</td>
-                <td><span class="badge badge-success">Disetujui</span></td>
+                <td>
+                    @if($perjalanan->status_perjalanan == 'menunggu')
+                        <span class="badge bg-warning">Menunggu</span>
+                    @elseif($perjalanan->status_perjalanan == 'disetujui')
+                        <span class="badge bg-info">Pending</span>
+                    @elseif($perjalanan->status_perjalanan == 'selesai')
+                        <span class="badge bg-success">Selesai</span>
+                    @elseif($perjalanan->status_perjalanan == 'ditolak')
+                        <span class="badge bg-danger">Ditolak</span>
+                    @endif</td>
+
                 <td style="width: 12rem;">
+                    @if($perjalanan->status_perjalanan == 'disetujui')
                     <a href="{{ route('statusPerjalananUser.edit', $perjalanan->id) }}"><button class="btn btn-primary ml-1" type="button"><i class="iconify" data-icon="material-symbols:edit"></i></button></a>
+                    @endif
                     {{-- <button type="button" class="btn" style="background-color: #12ACED; color :#ffff"><i class="iconify" data-icon="bxs:detail"></i></button> --}}
                 </td>
             </tr>
+            @endif
             @endforeach
         </table>
     </div>

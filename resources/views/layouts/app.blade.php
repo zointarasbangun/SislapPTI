@@ -159,9 +159,9 @@
 
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                             {{-- <div class="dropdown-divider"></div> --}}
-                            <p class="dropdown-item dropdown-footer disabled ">Nama</p>
+                            <p class="dropdown-item dropdown-footer disabled ">Admin</p>
                             {{-- <div class="dropdown-divider"></div> --}}
-                            <a href="/profile" class="dropdown-item dropdown-footer"><i
+                            <a href="{{ route('profileAdmin') }}" class="dropdown-item dropdown-footer"><i
                                     class="far fa-user mx-2"></i>Lihat
                                 Profil</a>
                             {{-- <div class="dropdown-divider"></div> --}}
@@ -220,9 +220,9 @@
 
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                             {{-- <div class="dropdown-divider"></div> --}}
-                            <p class="dropdown-item dropdown-footer disabled ">Nama</p>
+                            <p class="dropdown-item dropdown-footer disabled ">Driver</p>
                             {{-- <div class="dropdown-divider"></div> --}}
-                            <a href="/profile" class="dropdown-item dropdown-footer"><i
+                            <a href="{{ route('profile') }}" class="dropdown-item dropdown-footer"><i
                                     class="far fa-user mx-2"></i>Lihat
                                 Profil</a>
                             {{-- <div class="dropdown-divider"></div> --}}

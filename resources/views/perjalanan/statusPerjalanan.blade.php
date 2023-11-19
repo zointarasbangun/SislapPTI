@@ -35,60 +35,176 @@
         <div class="container-fluid mt-5">
             <table class="table table-striped text-center" id="tableakun">
                 <tr>
-                    <th scope="col">User</th>
+                    <th scope="col">Nama Driver</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">Alamat Awal</th>
                     <th scope="col">Alamat Akhir</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
+                @foreach ($perjalanans as $perjalanan)
+                @if($perjalanan->status_perjalanan == 'menunggu' || $perjalanan->status_perjalanan == 'ditolak')
                 <tr>
-                    <th scope="row">Donquixote Doflamingo</th>
-                    <td>2023-09-10</td>
-                    <td>Palembang</td>
-                    <td>Bandar Lampung</td>
-                    <td><span class="badge badge-success">Disetujui</span></td>
+                    <th scope="row">{{ $perjalanan->user->name }}</th>
+                    <td>{{ $perjalanan->tgl_perjalanan }}</td>
+                    <td>{{ $perjalanan->alamat_awal }}</td>
+                    <td>{{ $perjalanan->alamat_tujuan }}</td>
                     <td>
-                        <button class="btn  ml-1" type="button" style="background-color: #31CF55"><i class="iconify" data-icon="fa-solid:check" style="color: #ffff"></i></button>
-                        <button class="btn btn-success ml-1" type="button" style="background-color: #1265A8"><i class="iconify"
-                            data-icon="ic:baseline-pending-actions"></i></button>
-                        <button class="btn btn-danger ml-1" type="button">
-                            <i class="iconify" data-icon="mingcute:close-fill" ></i>
-                        </button>
-
+                        <span class="badge badge-danger">{{ $perjalanan->status_perjalanan }}</span>
+                    </td>
+                    <td>
+                        @if($perjalanan->status_perjalanan == 'menunggu')
+                            <button class="btn btn-success ml-1"
+                                onclick="confirmApproval({{ $perjalanan->id }})">
+                                Setuju
+                            </button>
+                            <button class="btn btn-danger ml-1"
+                                onclick="confirmRejection({{ $perjalanan->id }})">
+                                Tolak
+                            </button>
+                        @else
+                            <button class="btn btn-info ml-1" disabled>
+                                Info
+                            </button>
+                        @endif
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">Donquixote Doflamingo</th>
-                    <td>2023-09-10</td>
-                    <td>Palembang</td>
-                    <td>Bandar Lampung</td>
-                    <td><span class="badge badge-success">Disetujui</span></td>
-                    <td>
-                        <button class="btn  ml-1" type="button" style="background-color: #31CF55"><i class="iconify" data-icon="fa-solid:check" style="color: #ffff"></i></button>
-                        <button class="btn btn-success ml-1" type="button" style="background-color: #1265A8"><i class="iconify"
-                                data-icon="ic:baseline-pending-actions"></i></button>
-                                <button class="btn btn-danger ml-1" type="button">
-                                    <i class="iconify" data-icon="mingcute:close-fill" ></i>
-                                </button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Donquixote Doflamingo</th>
-                    <td>2023-09-10</td>
-                    <td>Palembang</td>
-                    <td>Bandar Lampung</td>
-                    <td><span class="badge badge-danger">Belum Disetujui</span></td>
-                    <td>
-                        <button class="btn  ml-1" type="button" style="background-color: #31CF55"><i class="iconify" data-icon="fa-solid:check" style="color: #ffff"></i></button>
-                        <button class="btn btn-success ml-1" type="button" style="background-color: #1265A8"><i class="iconify"
-                            data-icon="ic:baseline-pending-actions"></i></button>
-                                <button class="btn btn-danger ml-1" type="button">
-                                    <i class="iconify" data-icon="mingcute:close-fill" ></i>
-                                </button>
-                    </td>
-                </tr>
+                @endif
+                @endforeach
             </table>
         </div>
     </div>
 @endsection
+
+@section('js')
+<script>
+function confirmApproval(perjalananId) {
+    if (confirm("Anda yakin ingin menyetujui perjalanan ini?")) {
+        approvePerjalanan(perjalananId);
+    } else {
+        alert("Persetujuan dibatalkan.");
+    }
+}
+
+function confirmRejection(perjalananId) {
+    if (confirm("Anda yakin ingin menolak perjalanan ini?")) {
+        rejectPerjalanan(perjalananId);
+    } else {
+        alert("Penolakan dibatalkan.");
+    }
+}
+
+function approvePerjalanan(perjalananId) {
+    $.ajax({
+        type: "POST",
+        url: '/approve-perjalanan/' + perjalananId,
+        data: {
+            "_token": "{{ csrf_token() }}",
+        },
+        success: function (data) {
+            alert(data.message);
+            // Setelah berhasil, Anda dapat memperbarui tampilan atau memberikan notifikasi kepada pengguna
+            // ...
+
+            // Contoh: Reload halaman
+            window.location.reload();
+        },
+        error: function (error) {
+            console.log(error);
+            alert("Terjadi kesalahan saat menyetujui perjalanan.");
+        }
+    });
+}
+
+function rejectPerjalanan(perjalananId) {
+    $.ajax({
+        type: "POST",
+        url: '/reject-perjalanan/' + perjalananId,
+        data: {
+            "_token": "{{ csrf_token() }}",
+        },
+        success: function (data) {
+            alert(data.message);
+            // Setelah berhasil, Anda dapat memperbarui tampilan atau memberikan notifikasi kepada pengguna
+            // ...
+
+            // Contoh: Reload halaman
+            window.location.reload();
+        },
+        error: function (error) {
+            console.log(error);
+            alert("Terjadi kesalahan saat menolak perjalanan.");
+        }
+    });
+}
+
+</script>
+
+@endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- function approvePerjalanan(perjalananId) {
+    $.ajax({
+        type: "POST",
+        url: '/approve-perjalanan/' + perjalananId,
+        data: {
+            "_token": "{{ csrf_token() }}",
+        },
+        success: function (data) {
+            toastr.success(data.message, 'Perjalanan Disetujui');
+            // Tambahkan kode lainnya sesuai kebutuhan
+        },
+        error: function (error) {
+            console.log(error);
+            toastr.error('Terjadi kesalahan saat menyetujui perjalanan.', 'Error');
+        }
+    });
+}
+
+function rejectPerjalanan(perjalananId) {
+    $.ajax({
+        type: "POST",
+        url: '/reject-perjalanan/' + perjalananId,
+        data: {
+            "_token": "{{ csrf_token() }}",
+        },
+        success: function (data) {
+            toastr.success(data.message, 'Perjalanan Ditolak');
+            // Tambahkan kode lainnya sesuai kebutuhan
+        },
+        error: function (error) {
+            console.log(error);
+            toastr.error('Terjadi kesalahan saat menolak perjalanan.', 'Error');
+        }
+    });
+} --}}
+
+
+{{-- <td><span class="badge badge-warning">{{ $perjalanan->status_perjalanan }}</span></td>
+                    <td>
+                        @if($perjalanan->status_perjalanan == 'menunggu')
+                            <button class="btn btn-success ml-1" type="button" onclick="confirmApproval({{ $perjalanan->id }})">
+                                <i class="iconify" data-icon="fa-solid:check" style="color: #ffff"></i><p>Setuju</p>
+                            </button>
+                            <button class="btn btn-danger ml-1" type="button" onclick="confirmRejection({{ $perjalanan->id }})">
+                                <i class="iconify" data-icon="mingcute:close-fill" ></i> <p>Tolak</p>
+                            </button>
+                        @else
+                            <!-- Tampilkan tombol lainnya atau pesan sesuai kebutuhan -->
+                            <!-- Contoh: -->
+                            <button class="btn btn-info ml-1" type="button" disabled>
+                                <i class="iconify" data-icon="fa-solid:info" style="color: #ffff"></i><p>Info</p>
+                            </button>
+                        @endif --}}
+                        {{-- <td>{{ $perjalanan->id }}</td> --}}

@@ -7,13 +7,19 @@ use App\Models\Perjalanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PerjalananController extends Controller
 {
 
     public function index()
     {
-        $perjalanans = Perjalanan::with('kendaraan')->paginate();
+        $userId = Auth::id();
+
+        // Ambil perjalanan hanya untuk pengguna yang login dan status selesai
+        $perjalanans = Perjalanan::where('user_id', $userId)
+            ->get();
+        // $perjalanans = Perjalanan::with('kendaraan')->paginate();
         return view('perjalanan.statusPerjalananUser', compact('perjalanans'));
     }
 
@@ -68,6 +74,7 @@ class PerjalananController extends Controller
         $perjalanan = new Perjalanan($request->all());
         $perjalanan->tipe_kendaraan_id = Kendaraan::where('type', $request->tipe_kendaraan)->first()->id ?? null;
         $perjalanan->user_id = auth()->id();
+        $perjalanan->status_perjalanan = Perjalanan::STATUS_MENUNGGU;
         // $perjalanan->km_akhir = $request->input('km_akhir', 0); // Ganti 0 dengan nilai default lain jika diperluka
         $perjalanan->save();
 // dd($perjalanan);
@@ -95,6 +102,13 @@ class PerjalananController extends Controller
 
         return view('perjalanan.perjalananEdit', compact('kendaraan', 'perjalanan'));
     }
+
+    private function isFormComplete($perjalanan)
+    {
+        // Logika untuk menentukan apakah form sudah lengkap
+        return !empty($perjalanan->km_akhir) && !empty($perjalanan->photo_km_akhir);
+    }
+
 
     public function update(Request $request, $id)
     {
@@ -129,8 +143,10 @@ class PerjalananController extends Controller
         ]);
 
         $perjalanan = Perjalanan::findOrFail($id);
+
         $perjalanan->fill($request->all());
         $perjalanan->tipe_kendaraan_id = Kendaraan::where('type', $request->tipe_kendaraan)->first()->id; // Pastikan ini sesuai dengan logika Anda
+
 
         // Mengunggah dan menyimpan gambar km_awal
         if ($request->hasFile('photo_km_awal')) {
@@ -144,6 +160,17 @@ class PerjalananController extends Controller
             $perjalanan->photo_km_akhir = $photoKmAkhirPath;
         }
 
+        if ($this->isFormComplete($perjalanan)) {
+            // Update status menjadi selesai
+            $perjalanan->status_perjalanan = Perjalanan::STATUS_SELESAI;
+            // ...
+        } else {
+            // Update status menjadi pending
+            $perjalanan->status_perjalanan = Perjalanan::STATUS_PENDING;
+            // ...
+        }
+
+
         $perjalanan->save();
 
         return redirect()->route('statusPerjalananUser.index')->with('success', 'Data perjalanan berhasil diperbarui');
@@ -151,11 +178,62 @@ class PerjalananController extends Controller
 
     public function getData()
     {
-        $perjalanans = Perjalanan::with('kendaraan')->paginate();
+        $perjalanans = Perjalanan::with('kendaraan')
+            ->where('status_perjalanan', Perjalanan::STATUS_SELESAI)
+            ->paginate();
         return view('perjalanan.dataPerjalanan', compact('perjalanans'));
     }
 
+    public function riwayat()
+    {
+        $userId = Auth::id();
 
+        // Ambil perjalanan hanya untuk pengguna yang login dan status selesai
+        $perjalanans = Perjalanan::where('user_id', $userId)
+            ->where('status_perjalanan', Perjalanan::STATUS_SELESAI)
+            ->get();
+        return view('perjalanan.riwayatPerjalananDriver', compact('perjalanans'));
+    }
+
+    public function approvePerjalanan(Perjalanan $perjalanan)
+    {
+        $perjalanan->status_perjalanan = 'disetujui';
+        $perjalanan->save();
+
+        return response()->json(['message' => 'Perjalanan disetujui.']);
+    }
+
+    public function rejectPerjalanan(Perjalanan $perjalanan)
+    {
+        $perjalanan->status_perjalanan = 'ditolak';
+        $perjalanan->save();
+
+        return response()->json(['message' => 'Perjalanan ditolak.']);
+    }
+
+    // public function search(Request $request)
+    // {
+    //     $search = $request->input('search');
+    //     $cariTanggalAwal = $request->input('cariTanggalAwal');
+    //     $cariTanggalAkhir = $request->input('cariTanggalAkhir');
+
+    //     $perjalanans = Perjalanan::where(function ($query) use ($search) {
+    //         $query->where('alamat_awal', 'LIKE', '%' . $search . '%')
+    //             ->orWhere('alamat_tujuan', 'LIKE', '%' . $search . '%')
+    //             ->orWhere('tgl_perjalanan', 'LIKE', '%' . $search . '%')
+    //             ->orWhere('jenis_perjalanan', 'LIKE', '%' . $search . '%')
+    //             ->orWhere('status_perjalanan', 'LIKE', '%' . $search . '%');
+    //     });
+
+    //     if ($cariTanggalAwal && $cariTanggalAkhir) {
+    //         $perjalanans->whereBetween('tgl_perjalanan', [$cariTanggalAwal, $cariTanggalAkhir]);
+    //     }
+
+    //     $perjalanans = $perjalanans->paginate();
+
+    //     return view('perjalanan.dataPerjalanan', compact('perjalanans'));
+    // }
+}
 
 
     // public function getData()
@@ -163,7 +241,6 @@ class PerjalananController extends Controller
         //     $perjalanan = Perjalanan::with('kendaraan')->paginate();
     //     return view('perjalanan.tambahDataPerjalananUser', compact('perjalanan'));
     // }
-}
 
 // public function store(Request $request)
 // {

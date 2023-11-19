@@ -68,7 +68,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/statusperjalanan" class="nav-link">
+                                    <a href="{{ route('statusPerjalanan') }}" class="nav-link">
                                         <i class="far fa-calendar-check nav-icon"></i>
                                         <p>Status Perjalanan</p>
                                     </a>
@@ -183,7 +183,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/riwayatPerjalananUser" class="nav-link">
+                                    <a href="{{ route('riwayatPerjalananUser') }}" class="nav-link">
                                         <i class="far fa-calendar-check nav-icon"></i>
                                         <p>Riwayat Perjalanan saya</p>
                                     </a>
@@ -208,7 +208,7 @@
                             </a>
                             <ul class="nav nav-treeview" style="padding-left: 20px;">
                                 <li class="nav-item">
-                                    <a href="/kendaraanUser" class="nav-link">
+                                    <a href="{{ route('kendaraanUser.kendaraanUser') }}" class="nav-link">
                                         <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
                                         <p> Kendaraan saya</p>
                                     </a>

@@ -87,132 +87,132 @@
                     <th scope="col">Action</th>
                 </tr>
                 @foreach ($perjalanans as $perjalanan)
-    <tr>
-        <th scope="row">{{ $perjalanan->user->name }}</th>
-        <td>{{ $perjalanan->tgl_perjalanan }}</td>
-        <td>{{ $perjalanan->no_polisi }}</td>
-        <td>{{ $perjalanan->tipe_kendaraan }}</td>
-        <td>
-            {{-- <span class="badge badge-primary">Sangat Baik</span> --}}
-            @php
-            // $totalAttributes = 15; // Jumlah total atribut
-                $persentaseAkumulatif = 0;
-                    $nilaiPersentase = 0;
+                <tr>
+                    <th scope="row">{{ $perjalanan->user->name }}</th>
+                    <td>{{ $perjalanan->tgl_perjalanan }}</td>
+                    <td>{{ $perjalanan->no_polisi }}</td>
+                    <td>{{ $perjalanan->tipe_kendaraan }}</td>
+                    <td>
+                        {{-- <span class="badge badge-primary">Sangat Baik</span> --}}
+                        @php
+                        // $totalAttributes = 15; // Jumlah total atribut
+                            $persentaseAkumulatif = 0;
+                                $nilaiPersentase = 0;
 
-                    // Hitung persentase berdasarkan kriteria
-                    if ($perjalanan->lampu_depan == 'berfungsi') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->lampusen_depan == 'berfungsi') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->lampusen_belakang == 'berfungsi') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->lampu_rem == 'berfungsi') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->lampu_mundur == 'berfungsi') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->body == 'baik') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->ban == 'baik') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->klakson == 'baik') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->pedal_Gas == 'berfungsi') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->pedal_kopling == 'berfungsi') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->pedal_rem == 'berfungsi') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->weaper == 'berfungsi') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->air_weaper == 'terisi') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->air_radiator == 'terisi') {
-                        $nilaiPersentase += 6.6;
-                    }
-                    if ($perjalanan->oli_mesin == 'terisi') {
-                        $nilaiPersentase += 6.6;
-                    }
+                                // Hitung persentase berdasarkan kriteria
+                                if ($perjalanan->lampu_depan == 'berfungsi') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->lampusen_depan == 'berfungsi') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->lampusen_belakang == 'berfungsi') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->lampu_rem == 'berfungsi') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->lampu_mundur == 'berfungsi') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->body == 'baik') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->ban == 'baik') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->klakson == 'baik') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->pedal_Gas == 'berfungsi') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->pedal_kopling == 'berfungsi') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->pedal_rem == 'berfungsi') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->weaper == 'berfungsi') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->air_weaper == 'terisi') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->air_radiator == 'terisi') {
+                                    $nilaiPersentase += 6.6;
+                                }
+                                if ($perjalanan->oli_mesin == 'terisi') {
+                                    $nilaiPersentase += 6.6;
+                                }
 
-                    // Tambahkan persentase ke akumulator
-                    $persentaseAkumulatif += $nilaiPersentase;
+                                // Tambahkan persentase ke akumulator
+                                $persentaseAkumulatif += $nilaiPersentase;
 
-                    // Tampilkan nilai persentase
-                    // echo $nilaiPersentase;
-                @endphp
+                                // Tampilkan nilai persentase
+                                // echo $nilaiPersentase;
+                            @endphp
 
-{{-- persentase --}}
-                @if ($persentaseAkumulatif >= 80)
-                <span class="badge badge-primary">Sangat Baik</span>
-                @elseif ($persentaseAkumulatif >= 50)
-                <span class="badge badge-success">Baik</span>
-                @elseif ($persentaseAkumulatif >= 25)
-                <span class="badge badge-warning">Buruk</span>
-                @elseif ($persentaseAkumulatif >= 0)
-                <span class="badge badge-danger">Sangat Buruk</span>
-                @else
-                <span class="badge badge-secondary">null</span>
-                @endif
-            </span>
-            : {{ $persentaseAkumulatif }}%
-        </td>
-        <td>
-            <!-- button detail modal -->
-            <button class="btn btn-success mb-1" type="button" data-toggle="modal"
-                data-target="#modalKondisiForm{{ $perjalanan->tipe_kendaraan_id }}">
-                <i class="iconify" data-icon="mdi:car-info"></i> Detail
-            </button>
-        </td>
-    </tr>
-    <div class="modal fade" id="modalKondisiForm{{ $perjalanan->tipe_kendaraan_id }}">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalKondisiLabel">
-                        Detail Kondisi Kendaraan
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            {{-- persentase --}}
+                            @if ($persentaseAkumulatif >= 80)
+                            <span class="badge badge-primary">Sangat Baik</span>
+                            @elseif ($persentaseAkumulatif >= 50)
+                            <span class="badge badge-success">Baik</span>
+                            @elseif ($persentaseAkumulatif >= 25)
+                            <span class="badge badge-warning">Buruk</span>
+                            @elseif ($persentaseAkumulatif >= 0)
+                            <span class="badge badge-danger">Sangat Buruk</span>
+                            @else
+                            <span class="badge badge-secondary">null</span>
+                            @endif
+                        </span>
+                        : {{ $persentaseAkumulatif }}%
+                    </td>
+                    <td>
+                        <!-- button detail modal -->
+                        <button class="btn btn-success mb-1" type="button" data-toggle="modal"
+                            data-target="#modalKondisiForm{{ $perjalanan->tipe_kendaraan_id }}">
+                            <i class="iconify" data-icon="mdi:car-info"></i> Detail
+                        </button>
+                    </td>
+                </tr>
+                <div class="modal fade" id="modalKondisiForm{{ $perjalanan->tipe_kendaraan_id }}">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalKondisiLabel">
+                                    Detail Kondisi Kendaraan
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Tipe Mobil : {{ $perjalanan->tipe_kendaraan }}</li>
+                                    <li class="list-group-item">No. Polisi : {{ $perjalanan->no_polisi }}</li>
+                                    <li class="list-group-item">Lampu Depan : {{ $perjalanan->lampu_depan }}</li>
+                                    <li class="list-group-item">Lampu Sen Depan : {{ $perjalanan->lampusen_depan }}</li>
+                                    <li class="list-group-item">Lampu Sen Belakang : {{ $perjalanan->lampusen_belakang }}</li>
+                                    <li class="list-group-item">Lampu Rem : {{ $perjalanan->lampu_rem }}</li>
+                                    <li class="list-group-item">Lampu Mundur : {{ $perjalanan->lampu_mundur }}</li>
+                                    <li class="list-group-item">Body : {{ $perjalanan->body }}</li>
+                                    <li class="list-group-item">Ban : {{ $perjalanan->ban }}</li>
+                                    <li class="list-group-item">Klakson : {{ $perjalanan->klakson }}</li>
+                                    <li class="list-group-item">Pedal Gas : {{ $perjalanan->pedal_gas }}</li>
+                                    <li class="list-group-item">Pedal Kopling : {{ $perjalanan->pedal_kopling }}</li>
+                                    <li class="list-group-item">Pedal Rem : {{ $perjalanan->pedal_rem }}</li>
+                                    <li class="list-group-item">Weaper : {{ $perjalanan->weaper }}</li>
+                                    <li class="list-group-item">Air Weaper : {{ $perjalanan->air_weaper }}</li>
+                                    <li class="list-group-item">Air Radiator : {{ $perjalanan->air_radiator }}</li>
+                                    <li class="list-group-item">Oli Mesin : {{ $perjalanan->oli_mesin }}</li>
+                                    <li class="list-group-item">Notes : {{ $perjalanan->catatan }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Tipe Mobil : {{ $perjalanan->tipe_kendaraan }}</li>
-                        <li class="list-group-item">No. Polisi : {{ $perjalanan->no_polisi }}</li>
-                        <li class="list-group-item">Lampu Depan : {{ $perjalanan->lampu_depan }}</li>
-                        <li class="list-group-item">Lampu Sen Depan : {{ $perjalanan->lampusen_depan }}</li>
-                        <li class="list-group-item">Lampu Sen Belakang : {{ $perjalanan->lampusen_belakang }}</li>
-                        <li class="list-group-item">Lampu Rem : {{ $perjalanan->lampu_rem }}</li>
-                        <li class="list-group-item">Lampu Mundur : {{ $perjalanan->lampu_mundur }}</li>
-                        <li class="list-group-item">Body : {{ $perjalanan->body }}</li>
-                        <li class="list-group-item">Ban : {{ $perjalanan->ban }}</li>
-                        <li class="list-group-item">Klakson : {{ $perjalanan->klakson }}</li>
-                        <li class="list-group-item">Pedal Gas : {{ $perjalanan->pedal_gas }}</li>
-                        <li class="list-group-item">Pedal Kopling : {{ $perjalanan->pedal_kopling }}</li>
-                        <li class="list-group-item">Pedal Rem : {{ $perjalanan->pedal_rem }}</li>
-                        <li class="list-group-item">Weaper : {{ $perjalanan->weaper }}</li>
-                        <li class="list-group-item">Air Weaper : {{ $perjalanan->air_weaper }}</li>
-                        <li class="list-group-item">Air Radiator : {{ $perjalanan->air_radiator }}</li>
-                        <li class="list-group-item">Oli Mesin : {{ $perjalanan->oli_mesin }}</li>
-                        <li class="list-group-item">Notes : {{ $perjalanan->catatan }}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-@endforeach
+            @endforeach
 
 
             </table>

@@ -97,4 +97,22 @@ class KendaraanController extends Controller
 
         return view('kendaraan.kondisikendaraan', compact('perjalanans'));
     }
+
+    public function kendaraanUser()
+    {
+        // Mendapatkan kondisi terakhir dari pengguna yang login
+        $subquery = Perjalanan::selectRaw('tipe_kendaraan_id, MAX(tgl_perjalanan) as max_tgl_perjalanan')
+        ->where('user_id', auth()->id()) // Filter berdasarkan user yang login
+        ->groupBy('tipe_kendaraan_id');
+
+    $perjalanans = Perjalanan::joinSub($subquery, 'latest_perjalanan', function ($join) {
+            $join->on('perjalanans.tipe_kendaraan_id', '=', 'latest_perjalanan.tipe_kendaraan_id')
+                ->on('perjalanans.tgl_perjalanan', '=', 'latest_perjalanan.max_tgl_perjalanan');
+        })
+        ->with(['kendaraan', 'user'])
+        ->get();
+
+        return view('kendaraan.kendaraanUser', compact('perjalanans'));
+    }
+
 }
