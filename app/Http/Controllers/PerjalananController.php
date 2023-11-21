@@ -7,6 +7,7 @@ use App\Models\Perjalanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PerjalananController extends Controller
 {
@@ -16,7 +17,7 @@ class PerjalananController extends Controller
         return view('perjalanan.statusPerjalanan', compact('perjalanans'));
     }
 
-     public function updateStatus(Request $request, $id)
+    public function updateStatus(Request $request, $id)
     {
         $perjalanan = Perjalanan::findOrFail($id);
 
@@ -34,7 +35,12 @@ class PerjalananController extends Controller
     }
     public function index()
     {
-        $perjalanans = Perjalanan::with('kendaraan')->paginate();
+        $userId = Auth::id();
+
+        // Ambil perjalanan hanya untuk pengguna yang login dan status selesai
+        $perjalanans = Perjalanan::where('user_id', $userId)
+            ->get();
+        // $perjalanans = Perjalanan::with('kendaraan')->paginate();
         return view('perjalanan.statusPerjalananUser', compact('perjalanans'));
     }
 
@@ -77,7 +83,7 @@ class PerjalananController extends Controller
             'air_radiator' => 'string|in:terisi,tidak terisi',
             'oli_mesin' => 'string|in:terisi,tidak terisi',
             'photo_km_awal' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'photo_km_akhir' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo_km_akhir' => $request->isMethod('put') ? 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' : 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'catatan' => 'nullable|',
         ]);
 
@@ -89,6 +95,7 @@ class PerjalananController extends Controller
         $perjalanan = new Perjalanan($request->all());
         $perjalanan->tipe_kendaraan_id = Kendaraan::where('type', $request->tipe_kendaraan)->first()->id ?? null;
         $perjalanan->user_id = auth()->id();
+        $perjalanan->status_perjalanan = Perjalanan::STATUS_MENUNGGU;
         // $perjalanan->km_akhir = $request->input('km_akhir', 0); // Ganti 0 dengan nilai default lain jika diperluka
         $perjalanan->save();
         // dd($perjalanan);
@@ -109,6 +116,93 @@ class PerjalananController extends Controller
         return redirect()->route('statusPerjalananUser.index')->with('success', 'Data perjalanan berhasil disimpan');
     }
 
+    public function editadmin($id)
+    {
+        $kendaraan = Kendaraan::all();
+        $perjalanan = Perjalanan::findOrFail($id);
+
+        return view('perjalanan.perjalananEdit', compact('kendaraan', 'perjalanan'));
+    }
+
+    public function updateadmin(Request $request, $id)
+    {
+        // Validasi data yang dikirimkan melalui formulir
+        $validated = $request->validate([
+            'tgl_perjalanan' => 'required|date',
+            'alamat_awal' => 'required|string',
+            'alamat_tujuan' => 'required|string',
+            'km_awal' => 'required|numeric',
+            'km_akhir' => 'required|numeric',
+            'tipe_kendaraan' => 'exists:kendaraans,type',
+            'no_polisi' => 'string',
+            'jenis_perjalanan' => 'required|string|in:perjalanan luar,perjalanan dalam',
+            'lampu_depan' => 'required|string|in:berfungsi,tidak berfungsi',
+            'lampusen_depan' => 'required|string|in:berfungsi,tidak berfungsi',
+            'lampusen_belakang' => 'required|string|in:berfungsi,tidak berfungsi',
+            'lampu_rem' => 'required|string|in:berfungsi,tidak berfungsi',
+            'lampu_mundur' => 'required|string|in:berfungsi,tidak berfungsi',
+            'body' => 'required|string|in:baik,rusak',
+            'ban' => 'required|string|in:baik,rusak',
+            'klakson' => 'required|string|in:baik,rusak',
+            'pedal_gas' => 'required|string|in:berfungsi,rusak',
+            'pedal_kopling' => 'required|string|in:berfungsi,rusak',
+            'pedal_rem' => 'required|string|in:berfungsi,rusak',
+            'weaper' => 'required|string|in:berfungsi,rusak',
+            'air_weaper' => 'required|string|in:terisi,tidak terisi',
+            'air_radiator' => 'required|string|in:terisi,tidak terisi',
+            'oli_mesin' => 'required|string|in:terisi,tidak terisi',
+            'photo_km_awal' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo_km_akhir' => $request->isMethod('put') ? 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' : 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'catatan' => 'nullable|',
+        ]);
+
+        $perjalanan = Perjalanan::findOrFail($id);
+
+        $perjalanan->fill($request->all());
+        $perjalanan->tipe_kendaraan_id = Kendaraan::where('type', $request->tipe_kendaraan)->first()->id; // Pastikan ini sesuai dengan logika Anda
+
+
+        // Mengunggah dan menyimpan gambar km_awal
+        if ($request->hasFile('photo_km_awal')) {
+            $photoKmAwalPath = $request->file('photo_km_awal')->store('photos', 'public');
+            $perjalanan->photo_km_awal = $photoKmAwalPath;
+        }
+
+        // Mengunggah dan menyimpan gambar km_akhir
+        if ($request->hasFile('photo_km_akhir')) {
+            $photoKmAkhirPath = $request->file('photo_km_akhir')->store('photos', 'public');
+            $perjalanan->photo_km_akhir = $photoKmAkhirPath;
+        }
+
+        if ($this->isFormComplete($perjalanan)) {
+            // Update status menjadi selesai
+            $perjalanan->status_perjalanan = Perjalanan::STATUS_SELESAI;
+            // ...
+        } else {
+            // Update status menjadi pending
+            $perjalanan->status_perjalanan = Perjalanan::STATUS_PENDING;
+            // ...
+        }
+
+
+        $perjalanan->save();
+
+        return redirect()->route('dataPerjalanan')->with('success', 'Data perjalanan berhasil diperbarui');
+    }
+
+    public function destroyadmin(Perjalanan $perjalanan)
+{
+    // Pastikan pengguna memiliki izin untuk menghapus
+    // Lakukan pengecekan izin sesuai dengan kebutuhan aplikasi Anda
+
+    // Hapus data perjalanan
+    $perjalanan->delete();
+
+    // Redirect atau berikan respons sesuai kebutuhan aplikasi Anda
+    return redirect()->route('dataPerjalanan')
+        ->with('success', 'Data perjalanan berhasil dihapus');
+}
+
     public function edit($id)
     {
         $kendaraan = Kendaraan::all();
@@ -116,6 +210,13 @@ class PerjalananController extends Controller
 
         return view('perjalanan.perjalananEdit', compact('kendaraan', 'perjalanan'));
     }
+
+    private function isFormComplete($perjalanan)
+    {
+        // Logika untuk menentukan apakah form sudah lengkap
+        return !empty($perjalanan->km_akhir) && !empty($perjalanan->photo_km_akhir);
+    }
+
 
     public function update(Request $request, $id)
     {
@@ -145,13 +246,15 @@ class PerjalananController extends Controller
             'air_radiator' => 'required|string|in:terisi,tidak terisi',
             'oli_mesin' => 'required|string|in:terisi,tidak terisi',
             'photo_km_awal' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'photo_km_akhir' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo_km_akhir' => $request->isMethod('put') ? 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' : 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'catatan' => 'nullable|',
         ]);
 
         $perjalanan = Perjalanan::findOrFail($id);
+
         $perjalanan->fill($request->all());
         $perjalanan->tipe_kendaraan_id = Kendaraan::where('type', $request->tipe_kendaraan)->first()->id; // Pastikan ini sesuai dengan logika Anda
+
 
         // Mengunggah dan menyimpan gambar km_awal
         if ($request->hasFile('photo_km_awal')) {
@@ -165,6 +268,17 @@ class PerjalananController extends Controller
             $perjalanan->photo_km_akhir = $photoKmAkhirPath;
         }
 
+        if ($this->isFormComplete($perjalanan)) {
+            // Update status menjadi selesai
+            $perjalanan->status_perjalanan = Perjalanan::STATUS_SELESAI;
+            // ...
+        } else {
+            // Update status menjadi pending
+            $perjalanan->status_perjalanan = Perjalanan::STATUS_PENDING;
+            // ...
+        }
+
+
         $perjalanan->save();
 
         return redirect()->route('statusPerjalananUser.index')->with('success', 'Data perjalanan berhasil diperbarui');
@@ -172,19 +286,184 @@ class PerjalananController extends Controller
 
     public function getData()
     {
-        $perjalanans = Perjalanan::with('kendaraan')->paginate();
+        $perjalanans = Perjalanan::with('kendaraan')
+            ->where('status_perjalanan', Perjalanan::STATUS_SELESAI)
+            ->paginate();
         return view('perjalanan.dataPerjalanan', compact('perjalanans'));
+    }
+
+    public function riwayat()
+    {
+        $userId = Auth::id();
+
+        // Ambil perjalanan hanya untuk pengguna yang login dan status selesai
+        $perjalanans = Perjalanan::where('user_id', $userId)
+            ->where('status_perjalanan', Perjalanan::STATUS_SELESAI)
+            ->get();
+        return view('perjalanan.riwayatPerjalananDriver', compact('perjalanans'));
+    }
+
+    public function approvePerjalanan(Perjalanan $perjalanan)
+    {
+        $perjalanan->status_perjalanan = 'disetujui';
+        $perjalanan->save();
+
+        return response()->json(['message' => 'Perjalanan disetujui.']);
+    }
+
+    public function rejectPerjalanan(Perjalanan $perjalanan)
+    {
+        $perjalanan->status_perjalanan = 'ditolak';
+        $perjalanan->save();
+
+        return response()->json(['message' => 'Perjalanan ditolak.']);
+    }
+
+    public function search(Request $request)
+    {
+        $query = Perjalanan::query();
+
+        if ($request->has('search')) {
+            $searchTerms = explode(' ', $request->search);
+
+            $query->where(function ($query) use ($searchTerms) {
+                foreach ($searchTerms as $term) {
+                    $query->where('alamat_awal', 'LIKE', '%' . $term . '%')
+                        ->orWhere('alamat_tujuan', 'LIKE', '%' . $term . '%')
+                        ->orWhere('km_awal', 'LIKE', '%' . $term . '%')
+                        ->orWhere('km_akhir', 'LIKE', '%' . $term . '%')
+                        ->orWhere('jenis_perjalanan', 'LIKE', '%' . $term . '%') // Tambahkan jenis_perjalanan
+                        ->orWhereHas('user', function ($query) use ($term) {
+                            $query->where('name', 'LIKE', '%' . $term . '%');
+                        });
+                }
+            });
+        }
+
+        // Cek apakah tanggal awal dan tanggal akhir diisi
+        if ($request->filled('cariTanggalAwal') && $request->filled('cariTanggalAkhir')) {
+            $cariTanggalAwal = $request->cariTanggalAwal;
+            $cariTanggalAkhir = $request->cariTanggalAkhir;
+
+            // Pastikan format tanggal sesuai dengan format yang diharapkan oleh database Anda
+            $query->whereBetween('tgl_perjalanan', [$cariTanggalAwal, $cariTanggalAkhir]);
+        }
+
+        $perjalanans = $query->get();
+
+        return view('perjalanan.dataperjalanan', ['perjalanans' => $perjalanans]);
+    }
+
+    public function searchstatus(Request $request)
+    {
+        $query = Perjalanan::query();
+
+        if ($request->has('search')) {
+            $searchTerms = explode(' ', $request->search);
+
+            $query->where(function ($query) use ($searchTerms) {
+                foreach ($searchTerms as $term) {
+                    $query->where('alamat_awal', 'LIKE', '%' . $term . '%')
+                        ->orWhere('alamat_tujuan', 'LIKE', '%' . $term . '%')
+                        ->orWhere('km_awal', 'LIKE', '%' . $term . '%')
+                        ->orWhere('km_akhir', 'LIKE', '%' . $term . '%')
+                        ->orWhere('jenis_perjalanan', 'LIKE', '%' . $term . '%') // Tambahkan jenis_perjalanan
+                        ->orWhereHas('user', function ($query) use ($term) {
+                            $query->where('name', 'LIKE', '%' . $term . '%');
+                        });
+                }
+            });
+        }
+
+        // Cek apakah tanggal awal dan tanggal akhir diisi
+        if ($request->filled('cariTanggalAwal') && $request->filled('cariTanggalAkhir')) {
+            $cariTanggalAwal = $request->cariTanggalAwal;
+            $cariTanggalAkhir = $request->cariTanggalAkhir;
+
+            // Pastikan format tanggal sesuai dengan format yang diharapkan oleh database Anda
+            $query->whereBetween('tgl_perjalanan', [$cariTanggalAwal, $cariTanggalAkhir]);
+        }
+
+        $perjalanans = $query->get();
+
+        return view('perjalanan.statusperjalanan', ['perjalanans' => $perjalanans]);
+    }
+
+    public function searchriwayatuser(Request $request)
+    {
+        $query = Perjalanan::query();
+
+        // Menambahkan kondisi untuk memeriksa ID pengguna yang sedang login
+        $query->where('user_id', auth()->user()->id);
+
+        if ($request->has('search')) {
+            $searchTerms = explode(' ', $request->search);
+
+            $query->where(function ($query) use ($searchTerms) {
+                foreach ($searchTerms as $term) {
+                    $query->where('alamat_awal', 'LIKE', '%' . $term . '%')
+                        ->orWhere('alamat_tujuan', 'LIKE', '%' . $term . '%')
+                        ->orWhere('km_awal', 'LIKE', '%' . $term . '%')
+                        ->orWhere('km_akhir', 'LIKE', '%' . $term . '%')
+                        ->orWhere('jenis_perjalanan', 'LIKE', '%' . $term . '%')
+                        ->orWhere('tgl_perjalanan', 'LIKE', '%' . $term . '%')
+                        ->orWhereHas('user', function ($query) use ($term) {
+                            $query->where('name', 'LIKE', '%' . $term . '%');
+                        });
+                }
+            });
+        }
+
+        // Cek apakah tanggal awal dan tanggal akhir diisi
+        if ($request->filled('cariTanggalAwal') && $request->filled('cariTanggalAkhir')) {
+            $cariTanggalAwal = $request->cariTanggalAwal;
+            $cariTanggalAkhir = $request->cariTanggalAkhir;
+
+            // Pastikan format tanggal sesuai dengan format yang diharapkan oleh database Anda
+            $query->whereBetween('tgl_perjalanan', [$cariTanggalAwal, $cariTanggalAkhir]);
+        }
+
+        $perjalanans = $query->get();
+
+        return view('perjalanan.riwayatPerjalananDriver', ['perjalanans' => $perjalanans]);
     }
 
 
 
 
-    // public function getData()
+
+
+
+    // public function search(Request $request)
     // {
-    //     $perjalanan = Perjalanan::with('kendaraan')->paginate();
-    //     return view('perjalanan.tambahDataPerjalananUser', compact('perjalanan'));
+    //     $search = $request->input('search');
+    //     $cariTanggalAwal = $request->input('cariTanggalAwal');
+    //     $cariTanggalAkhir = $request->input('cariTanggalAkhir');
+
+    //     $perjalanans = Perjalanan::where(function ($query) use ($search) {
+    //         $query->where('alamat_awal', 'LIKE', '%' . $search . '%')
+    //             ->orWhere('alamat_tujuan', 'LIKE', '%' . $search . '%')
+    //             ->orWhere('tgl_perjalanan', 'LIKE', '%' . $search . '%')
+    //             ->orWhere('jenis_perjalanan', 'LIKE', '%' . $search . '%')
+    //             ->orWhere('status_perjalanan', 'LIKE', '%' . $search . '%');
+    //     });
+
+    //     if ($cariTanggalAwal && $cariTanggalAkhir) {
+    //         $perjalanans->whereBetween('tgl_perjalanan', [$cariTanggalAwal, $cariTanggalAkhir]);
+    //     }
+
+    //     $perjalanans = $perjalanans->paginate();
+
+    //     return view('perjalanan.dataPerjalanan', compact('perjalanans'));
     // }
 }
+
+
+// public function getData()
+// {
+//     $perjalanan = Perjalanan::with('kendaraan')->paginate();
+//     return view('perjalanan.tambahDataPerjalananUser', compact('perjalanan'));
+// }
 
 // public function store(Request $request)
 // {

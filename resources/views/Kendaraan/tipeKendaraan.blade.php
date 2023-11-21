@@ -4,15 +4,31 @@
         <!-- header content -->
         <div class="container-fluid p-5">
             <div class="row">
+
                 <div class="col-lg-4 col-sm-6">
-                    <input type="text" class="form-control" id="cariDataKendaraan" placeholder="Cari Data Kendaraan...">
+                    <form action="/kendaraan/search" class="form-inline" method="GET">
+                        <div class="input-group " style="flex-grow: 10;">
+                            <input type="search" class="form-control mr-10" style="width: 200px;" name="search" id="cariDataKendaraan"
+                                placeholder="Cari Data Kendaraan...">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary ml-1" type="submit"><i class="iconify"
+                                        data-icon="material-symbols:search"></i> Cari</button>
+                                @if (Auth::user()->role == 'admin')
+                                    <a href="{{ route('kendaraan.index') }}" class="btn btn-danger ml-1"><i class="iconify"
+                                            data-icon="solar:refresh-linear"></i> Reset</a>
+                                @else
+                                    <a href="/tipeKendaraanUser" class="btn btn-danger ml-1"><i class="iconify"
+                                            data-icon="solar:refresh-linear"></i> Reset</a>
+                                @endif
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-lg-5 col-sm-6">
-                    <button class="btn btn-primary ml-1" type="button"><i class="iconify"
-                            data-icon="material-symbols:search"></i></i></button>
-                    <button class="btn btn-danger ml-1" type="button"><i class="iconify"
-                            data-icon="solar:refresh-linear"></i></button>
+                    <!-- Placeholder for content in the second column, if any -->
                 </div>
+
+
 
                 <div class="col-lg-3 col-sm-12">
                     <div class="float-right">
@@ -167,18 +183,17 @@
 
                                 <a href="{{ route('kendaraan.edit', $kendaraan->id) }}" class="btn btn-primary"><i
                                         class="iconify" data-icon="material-symbols:edit"></i></a>
-                                <form id="deleteForm{{ $kendaraan->id }}" action="{{ route('kendaraan.destroy', $kendaraan->id) }}" method="POST"
+                                <form id="deleteForm{{ $kendaraan->id }}"
+                                    action="{{ route('kendaraan.destroy', $kendaraan->id) }}" method="POST"
                                     style="display: inline">
                                     @csrf
                                     @method('DELETE')
-
                                     <button type="submit" class="btn btn-danger"><i class="iconify"
                                             data-icon="material-symbols:delete"></i></button>
                                 </form>
                         @endif
                         </td>
                     </tr>
-
                 @endforeach
             </table>
         </div>

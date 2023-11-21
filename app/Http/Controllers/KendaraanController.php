@@ -76,11 +76,11 @@ class KendaraanController extends Controller
         return redirect()->route('kendaraan.index');
     }
 
-    // public function getData()
-    // {
-    //     $kendaraan = Kendaraan::all(); // Ambil semua data kendaraan dari tabel kendaraan
-    //     return view('perjalanan.tambahDataPerjalananUser', compact('kendaraan'));
-    // }
+    public function getData()
+    {
+        $kendaraan = Kendaraan::all(); // Ambil semua data kendaraan dari tabel kendaraan
+        return view('perjalanan.tambahDataPerjalananUser', compact('kendaraan'));
+    }
 
     public function kondisi()
     {
@@ -88,13 +88,92 @@ class KendaraanController extends Controller
             ->groupBy('tipe_kendaraan_id');
 
         $perjalanans = Perjalanan::joinSub($subquery, 'latest_perjalanan', function ($join) {
-                $join->on('perjalanans.tipe_kendaraan_id', '=', 'latest_perjalanan.tipe_kendaraan_id')
-                    ->on('perjalanans.tgl_perjalanan', '=', 'latest_perjalanan.max_tgl_perjalanan');
-            })
+            $join->on('perjalanans.tipe_kendaraan_id', '=', 'latest_perjalanan.tipe_kendaraan_id')
+                ->on('perjalanans.tgl_perjalanan', '=', 'latest_perjalanan.max_tgl_perjalanan');
+        })
             ->with(['kendaraan', 'user'])
             ->get();
 
 
         return view('kendaraan.kondisikendaraan', compact('perjalanans'));
     }
+
+    // public function kondisi()
+    // {
+    //     $perjalanans = Perjalanan::with(['kendaraan', 'user'])
+    //         ->get();
+
+    //     return view('kendaraan.kondisikendaraan', compact('perjalanans'));
+    // }
+
+
+    public function kendaraanUser()
+    {
+        // Mendapatkan kondisi terakhir dari pengguna yang login
+        $subquery = Perjalanan::selectRaw('tipe_kendaraan_id, MAX(tgl_perjalanan) as max_tgl_perjalanan')
+            ->where('user_id', auth()->id()) // Filter berdasarkan user yang login
+            ->groupBy('tipe_kendaraan_id');
+
+        $perjalanans = Perjalanan::joinSub($subquery, 'latest_perjalanan', function ($join) {
+            $join->on('perjalanans.tipe_kendaraan_id', '=', 'latest_perjalanan.tipe_kendaraan_id')
+                ->on('perjalanans.tgl_perjalanan', '=', 'latest_perjalanan.max_tgl_perjalanan');
+        })
+            ->with(['kendaraan', 'user'])
+            ->get();
+
+        return view('kendaraan.kendaraanUser', compact('perjalanans'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = Kendaraan::query();
+
+        if ($request->has('search')) {
+            $searchTerm = '%' . $request->search . '%';
+
+            $query->where('type', 'LIKE', $searchTerm)
+                ->orWhere('no_polisi', 'LIKE', $searchTerm)
+                ->orWhere('tgl_masuk', 'LIKE', $searchTerm);
+        }
+
+        $kendaraans = $query->get();
+
+        return view('Kendaraan.tipeKendaraan', ['kendaraans' => $kendaraans]);
+    }
+
+    public function kondisisearch(Request $request)
+    {
+        $query = Perjalanan::query();
+
+        if ($request->has('search')) {
+            $searchTerms = explode(' ', $request->search);
+
+            $query->where(function ($query) use ($searchTerms) {
+                foreach ($searchTerms as $term) {
+                    $query->where('tipe_kendaraan', 'LIKE', '%' . $term . '%')
+                        ->orWhere('no_polisi', 'LIKE', '%' . $term . '%')
+                        ->orWhere('tgl_perjalanan', 'LIKE', '%' . $term . '%')
+                        ->orWhereHas('user', function ($query) use ($term) {
+                            $query->where('name', 'LIKE', '%' . $term . '%');
+                        });
+                }
+            });
+        }
+
+        // Cek apakah tanggal awal dan tanggal akhir diisi
+        if ($request->filled('cariTanggalAwal') && $request->filled('cariTanggalAkhir')) {
+            $cariTanggalAwal = $request->cariTanggalAwal;
+            $cariTanggalAkhir = $request->cariTanggalAkhir;
+
+            // Pastikan format tanggal sesuai dengan format yang diharapkan oleh database Anda
+            $query->whereBetween('tgl_perjalanan', [$cariTanggalAwal, $cariTanggalAkhir]);
+        }
+
+        $perjalanans = $query->get();
+
+        return view('Kendaraan.kondisikendaraan', ['perjalanans' => $perjalanans]);
+    }
+
+
+
 }

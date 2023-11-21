@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AcountController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\PerjalananController;
+use App\Http\Controllers\downloadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,20 @@ Route::get('/profil', function () {
 Route::get('/editprofil', function () {
     return view('auth.editprofil');
 });
+
+Route::get('/kendaraan/search', [KendaraanController::class, 'search'])->name('kendaraan.search');
+
+Route::get('/kondisikendaraan/search', [KendaraanController::class, 'kondisisearch'])->name('kendaraan.kondisisearch');
+
+Route::get('/dataperjalanan/search', [perjalananController::class, 'search'])->name('perjalanan.search');
+
+Route::get('/statusperjalanan/search', [perjalananController::class, 'searchstatus'])->name('perjalanan.searchstatus');
+
+Route::get('/statusperjalananuser/search', [perjalananController::class, 'searchstatususer'])->name('perjalanan.searchstatususer');
+
+Route::get('/riwayatperjalananuser/search', [perjalananController::class, 'searchriwayatuser'])->name('perjalanan.searchriwayatuser');
+
+
 
 Auth::routes();
 
@@ -68,13 +84,26 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/kondisiKendaraan', [KendaraanController::class, 'kondisi'])->name('kendaraan.kondisi');
 
         Route::get('/dataPerjalanan', [PerjalananController::class, 'getData'])->name('dataPerjalanan');
+        Route::get('/managePerjalanan/{perjalanan}/edit', [PerjalananController::class, 'editadmin'])->name('managePerjalanan.edit');
+        Route::put('/managePerjalanan/{perjalanan}', [PerjalananController::class, 'updateadmin'])->name('managePerjalanan.update');
+        Route::delete('/managePerjalanan/{perjalanan}', [PerjalananController::class, 'destroyadmin'])->name('managePerjalanan.destroy');
 
+
+        // Route::get('/search', [PerjalananController::class, 'search'])->name('search');
+
+        Route::get('/statusPerjalanan', [AcountController::class, 'getData'])->name('statusPerjalanan');
+        Route::post('/approve-perjalanan/{perjalanan}', [PerjalananController::class, 'approvePerjalanan'])->name('approve.perjalanan');
+        Route::post('/reject-perjalanan/{perjalanan}', [PerjalananController::class, 'rejectPerjalanan'])->name('reject.perjalanan');
         // Route::get('/dataperjalanan', function () {
         //     return view('perjalanan.dataPerjalanan');
         // });
         Route::get('/statusperjalananadmin', [PerjalananController::class, 'statusPerjalananAdmin'])->name('status.perjalanan.admin');
 
-        Route::put('/admin/update-status/{id}', [PerjalananController::class, 'updateStatus'])->name('admin.update_status');
+        //report PDF
+        Route::get('/downloadpdf', [downloadController::class, 'generatePDF']);
+        // Route::get('/statusperjalanan', function () {
+        //     return view('perjalanan.statusperjalanan');
+        // });
 
         Route::get('/pelacakperjalanan', function () {
             return view('pelacak.pelacakperjalanan');
@@ -93,13 +122,18 @@ Route::group(['middleware' => ['auth']], function () {
             return view('pelacak.map');
         });
 
-        Route::get('/profile', function () {
-            return view('auth.profile');
-        });
+        Route::get('/profileAdmin', [ProfileController::class, 'index'])->name('profileAdmin');
+        Route::get('/ProfileAdmin/{userId}/edit', [ProfileController::class, 'edit'])->name('profileAdmin.edit');
+        Route::put('/ProfileAdmin/{userId}', [ProfileController::class, 'updateAdmin'])->name('profileAdmin.update');
 
-        Route::get('/editProfile', function () {
-            return view('auth.editProfile');
-        });
+
+        // Route::get('/profile', function () {
+        //     return view('auth.profile');
+        // });
+
+        // Route::get('/editProfile', function () {
+        //     return view('auth.editProfile');
+        // });
     });
 
 
@@ -118,6 +152,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/statusPerjalananUser/{perjalanan}', [PerjalananController::class, 'update'])->name('statusPerjalananUser.update');
         Route::get('/statusPerjalananUser', [PerjalananController::class, 'index'])->name('statusPerjalananUser.index');
         Route::get('/dataPerjalananUser', [PerjalananController::class, 'getData'])->name('dataPerjalananUser');
+        Route::get('/riwayatPerjalananUser', [PerjalananController::class, 'riwayat'])->name('riwayatPerjalananUser');
 
         // Route::get('/dataperjalananUser', function () {
         //     return view('perjalanan.dataPerjalanan');
@@ -129,6 +164,7 @@ Route::group(['middleware' => ['auth']], function () {
         });
 
         Route::get('/kondisiKendaraanUser', [KendaraanController::class, 'kondisi'])->name('kendaraanUser.kondisi');
+        Route::get('/kondisiKendaraanDriver', [KendaraanController::class, 'kendaraanUser'])->name('kendaraanUser.kendaraanUser');
 
 
         // Route::get('/statusPerjalananUser', function(){
@@ -139,27 +175,31 @@ Route::group(['middleware' => ['auth']], function () {
             return view('pelacak.pelacakPerjalananUser');
         });
 
-        Route::get('/riwayatPerjalananUser', function () {
-            return view('perjalanan.riwayatPerjalananDriver');
-        });
+        // Route::get('/riwayatPerjalananUser', function () {
+        //     return view('perjalanan.riwayatPerjalananDriver');
+        // });
 
         Route::get('/notifikasiUser', function () {
             return view('notifikasi.notifikasiUser');
         });
 
-        Route::get('/datakondisikendaraanUser', function () {
-            return view('kendaraan.kondisikendaraan');
-        });
+        // Route::get('/datakondisikendaraanUser', function () {
+        //     return view('kendaraan.kondisikendaraan');
+        // });
 
         Route::get('/tipeKendaraanUser', [KendaraanController::class, 'index'])->name('kendaraanUser.index');
 
-        Route::get('/profile', function () {
-            return view('auth.profile');
-        });
+        Route::get('/profileUser', [ProfileController::class, 'index'])->name('profile');
+        Route::get('/ProfileUser/{userId}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/ProfileUser/{userId}', [ProfileController::class, 'update'])->name('profile.update');
 
-        Route::get('/editProfile', function () {
-            return view('auth.editProfile');
-        });
+        // Route::get('/profile', function () {
+        //     return view('auth.profile');
+        // });
+
+        // Route::get('/editProfile', function () {
+        //     return view('auth.editProfile');
+        // });
     });
 
 });

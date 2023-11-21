@@ -50,7 +50,7 @@
     <div class="content-wrapper">
         <div class="container-fluid p-5">
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
+                {{-- <div class="col-lg-4 col-sm-6">
                     <input type="text" class="form-control" id="cariData" placeholder="Cari Data...">
                 </div>
                 <div class="col-lg-5 col-sm-6">
@@ -58,7 +58,7 @@
                             data-icon="material-symbols:search"></i></i></button>
                     <button class="btn btn-danger ml-1" type="button"><i class="iconify"
                             data-icon="solar:refresh-linear"></i></button>
-                </div>
+                </div> --}}
                 <div class="col-lg-3 col-sm-12">
                     <div class="float-right">
                         <!-- Modal -->

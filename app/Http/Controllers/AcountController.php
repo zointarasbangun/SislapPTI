@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Profile;
+use App\Models\Perjalanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -37,6 +39,11 @@ class AcountController extends Controller
             // 'role' => $validatedData['role'],
         ]);
 
+        $profile = new Profile();
+        $profile->user_id = $user->id;
+        // Tambahkan kolom lainnya sesuai kebutuhan
+        $profile->save();
+
         return redirect()->route('acount.index')->with('success', 'User created successfully.');
     }
 
@@ -55,6 +62,33 @@ class AcountController extends Controller
         $user->delete();
         return redirect()->route('acount.index')->with('success', 'Data pengguna dihapus.');
     }
+
+    // app/Http/Controllers/AdminController.php
+
+    public function getData()
+    {
+        $perjalanans = Perjalanan::with('kendaraan')->paginate();
+        return view('perjalanan.statusPerjalanan', compact('perjalanans'));
+    }
+
+    // public function respondToPerjalanan(Request $request, $id)
+    // {
+    //     $perjalanan = Perjalanan::findOrFail($id);
+
+    //     // ...
+
+    //     if ($request->decision == 'terima') {
+    //         // Admin menerima perjalanan
+    //         $perjalanan->status_perjalanan = Perjalanan::STATUS_PENDING;
+    //     } elseif ($request->decision == 'tolak') {
+    //         // Admin menolak perjalanan
+    //         $perjalanan->status_perjalanan = Perjalanan::STATUS_DITOLAK;
+    //     }
+
+    //     $perjalanan->save();
+
+
+    // }
 
 
 }

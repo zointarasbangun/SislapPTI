@@ -174,118 +174,224 @@
                             <div class="col mb-3">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="e-profile">
-                                            <div class="row">
-                                                <div class="col-12 col-sm-auto mb-3">
-                                                    <div class="mx-auto" style="width: 140px;">
-                                                        <div class="d-flex justify-content-center align-items-center rounded"
-                                                            style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                            <span
-                                                                style="color: rgb(166, 168, 170); font: bold 8pt Arial;">image</span>
+                                        @if (Auth::user()->role == 'admin')
+                                        <form action="{{ route('profileAdmin.update', $profile->id) }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="e-profile">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-auto mb-3">
+                                                        <div class="mx-auto" style="width: 140px;">
+                                                            <div class="d-flex justify-content-center align-items-center rounded"
+                                                                style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                                <span
+                                                                    style="color: rgb(166, 168, 170); font: bold 8pt Arial;">image</span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div
-                                                    class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                                    <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">Anna Elsa</h4>
-                                                        <p class="mb-0">@annaelsa</p>
-                                                        <div class="mt-2">
-                                                            <button class="btn btn-primary" type="button">
-                                                                <i class="fa fa-fw fa-camera"></i>
-                                                                <span>Change Photo</span>
-                                                            </button>
+                                                    <div
+                                                        class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ $profile->fulname }}</h4>
+                                                            <p class="mb-0">{{ '@' . $profile->username }}</p>
+                                                            <div class="mt-2">
+                                                                <div class="mb-3">
+                                                                    <label for="foto_profil" class="form-label">Change Photo</label>
+                                                                    <input type="file" class="form-control" id="foto_profil" name="foto_profil">
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="text-center text-sm-right">
-                                                        <span class="badge badge-secondary">administrator</span>
-                                                        <div class="text-muted"><small>Joined 01 November 2023</small>
-                                                        </div>
+                                                        {{-- <div class="text-center text-sm-right">
+                                                            <span class="badge badge-secondary">administrator</span>
+                                                            <div class="text-muted"><small>Joined 01 November 2023</small>
+                                                            </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <nav>
-                                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                    <button class="nav-link active" id="edit-profil-tab"
-                                                        data-bs-toggle="tab" data-bs-target="#edit-profil" type="button"
-                                                        role="tab" aria-controls="edit-profil" aria-selected="true">Edit
-                                                        Profil</button>
-                                                </div>
-                                            </nav>
-                                            <div class="tab-content" id="nav-tabContent">
-                                                <!-- form profil -->
-                                                <div class="tab-pane fade show mt-3 active" id="edit-profil"
-                                                    role="tabpanel" aria-labelledby="edit-profil-tab">
-                                                    <form class="form" novalidate="">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Full Name</label>
-                                                                            <input class="form-control" type="text"
-                                                                                name="name" placeholder="Anne Elsa"
-                                                                                value="Anne Elsa">
+                                                <nav>
+                                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                        <button class="nav-link active" id="edit-profil-tab"
+                                                            data-bs-toggle="tab" data-bs-target="#edit-profil" type="button"
+                                                            role="tab" aria-controls="edit-profil" aria-selected="true">Edit
+                                                            Profil</button>
+                                                    </div>
+                                                </nav>
+                                                <div class="tab-content" id="nav-tabContent">
+                                                    <!-- form profil -->
+                                                    <div class="tab-pane fade show mt-3 active" id="edit-profil"
+                                                        role="tabpanel" aria-labelledby="edit-profil-tab">
+
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <div class="form-group">
+                                                                                <label>Full Name</label>
+                                                                                <input class="form-control" type="text"
+                                                                                    name="fulname" placeholder="{{ $profile->fulname }}"
+                                                                                    value="{{ $profile->fulname }}">
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Username</label>
-                                                                            <input class="form-control" type="text"
-                                                                                name="username" placeholder="anneelsa"
-                                                                                value="anneelsa">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Email</label>
-                                                                            <input class="form-control" type="text"
-                                                                                placeholder="example@example.com">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Phone</label>
-                                                                            <input class="form-control" type="number"
-                                                                                placeholder="6285833334444">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Lokasi</label>
-                                                                            <input class="form-control" type="text"
-                                                                                placeholder="PGNCOM">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col mb-3">
-                                                                        <div class="form-group">
-                                                                            <label>About</label>
-                                                                            <textarea class="form-control" rows="5"
-                                                                                placeholder="My Bio"></textarea>
+                                                                        <div class="col">
+                                                                            <div class="form-group">
+                                                                                <label>Username</label>
+                                                                                <input class="form-control" type="text"
+                                                                                    name="username" placeholder="{{ $profile->username }}"
+                                                                                    value="{{ $profile->username }}">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col d-flex justify-content-center">
-                                                                            <button class="btn btn-primary"
-                                                                                type="submit">Save Changes</button>
+                                                                        <div class="col">
+                                                                            <div class="form-group">
+                                                                                <label>Phone</label>
+                                                                                <input class="form-control" type="number" name="phone" value="{{ $profile->phone }}"
+                                                                                    placeholder="phone">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <div class="form-group">
+                                                                                <label>Lokasi</label>
+                                                                                <input class="form-control" type="text" name="lokasi" value="{{ $profile->lokasi }}"
+                                                                                    placeholder="PGNCOM">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col mb-3">
+                                                                            <div class="form-group">
+                                                                                <label>Bio</label>
+                                                                                <textarea class="form-control" rows="5" name="bio" placeholder="My Bio">{{ $profile->bio }}</textarea>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col d-flex justify-content-center">
+                                                                                <button class="btn btn-primary"
+                                                                                    type="submit">Save Changes</button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
+
+                                                    </div>
+                                                    <!-- /form profil -->
                                                 </div>
-                                                <!-- /form profil -->
                                             </div>
-                                        </div>
+                                        </form>
+                                        @else
+                                        <form action="{{ route('profile.update', $profile->id) }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="e-profile">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-auto mb-3">
+                                                        <div class="mx-auto" style="width: 140px;">
+                                                            <div class="d-flex justify-content-center align-items-center rounded"
+                                                                style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                                <span
+                                                                    style="color: rgb(166, 168, 170); font: bold 8pt Arial;">image</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ $profile->fulname }}</h4>
+                                                            <p class="mb-0">{{ '@' . $profile->username }}</p>
+                                                            <div class="mt-2">
+                                                                <div class="mb-3">
+                                                                    <label for="foto_profil" class="form-label">Change Photo</label>
+                                                                    <input type="file" class="form-control" id="foto_profil" name="foto_profil">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {{-- <div class="text-center text-sm-right">
+                                                            <span class="badge badge-secondary">administrator</span>
+                                                            <div class="text-muted"><small>Joined 01 November 2023</small>
+                                                            </div>
+                                                        </div> --}}
+                                                    </div>
+                                                </div>
+                                                <nav>
+                                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                        <button class="nav-link active" id="edit-profil-tab"
+                                                            data-bs-toggle="tab" data-bs-target="#edit-profil" type="button"
+                                                            role="tab" aria-controls="edit-profil" aria-selected="true">Edit
+                                                            Profil</button>
+                                                    </div>
+                                                </nav>
+                                                <div class="tab-content" id="nav-tabContent">
+                                                    <!-- form profil -->
+                                                    <div class="tab-pane fade show mt-3 active" id="edit-profil"
+                                                        role="tabpanel" aria-labelledby="edit-profil-tab">
+
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <div class="form-group">
+                                                                                <label>Full Name</label>
+                                                                                <input class="form-control" type="text"
+                                                                                    name="fulname" placeholder="{{ $profile->fulname }}"
+                                                                                    value="{{ $profile->fulname }}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <div class="form-group">
+                                                                                <label>Username</label>
+                                                                                <input class="form-control" type="text"
+                                                                                    name="username" placeholder="{{ $profile->username }}"
+                                                                                    value="{{ $profile->username }}">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <div class="form-group">
+                                                                                <label>Phone</label>
+                                                                                <input class="form-control" type="number" name="phone" value="{{ $profile->phone }}"
+                                                                                    placeholder="phone">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <div class="form-group">
+                                                                                <label>Lokasi</label>
+                                                                                <input class="form-control" type="text" name="lokasi" value="{{ $profile->lokasi }}"
+                                                                                    placeholder="PGNCOM">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col mb-3">
+                                                                            <div class="form-group">
+                                                                                <label>Bio</label>
+                                                                                <textarea class="form-control" rows="5" name="bio" placeholder="My Bio">{{ $profile->bio }}</textarea>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col d-flex justify-content-center">
+                                                                                <button class="btn btn-primary"
+                                                                                    type="submit">Save Changes</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                    </div>
+                                                    <!-- /form profil -->
+                                                </div>
+                                            </div>
+                                        </form>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>

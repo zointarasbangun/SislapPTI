@@ -13,6 +13,11 @@ class Perjalanan extends Model
 {
     use HasFactory;
 
+    const STATUS_MENUNGGU = 'menunggu';
+    const STATUS_DITOLAK = 'ditolak';
+    const STATUS_PENDING = 'disetujui';
+    const STATUS_SELESAI = 'selesai';
+
     protected $fillable = [
         'tgl_perjalanan',
         'alamat_awal',
@@ -40,6 +45,7 @@ class Perjalanan extends Model
         'photo_km_awal',
         'photo_km_akhir',
         'catatan',
+        'status_perjalanan',
     ];
 
     public function user()
@@ -51,5 +57,10 @@ class Perjalanan extends Model
     public function Kendaraan(): BelongsTo
     {
         return $this->belongsTo(Kendaraan::class, 'tipe_kendaraan_id');
+    }
+
+    public function getTotalKmAttribute()
+    {
+        return $this->attributes['km_akhir'] - $this->attributes['km_awal'];
     }
 }
