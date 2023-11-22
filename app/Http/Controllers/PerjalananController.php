@@ -191,17 +191,17 @@ class PerjalananController extends Controller
     }
 
     public function destroyadmin(Perjalanan $perjalanan)
-{
-    // Pastikan pengguna memiliki izin untuk menghapus
-    // Lakukan pengecekan izin sesuai dengan kebutuhan aplikasi Anda
+    {
+        // Pastikan pengguna memiliki izin untuk menghapus
+        // Lakukan pengecekan izin sesuai dengan kebutuhan aplikasi Anda
 
-    // Hapus data perjalanan
-    $perjalanan->delete();
+        // Hapus data perjalanan
+        $perjalanan->delete();
 
-    // Redirect atau berikan respons sesuai kebutuhan aplikasi Anda
-    return redirect()->route('dataPerjalanan')
-        ->with('success', 'Data perjalanan berhasil dihapus');
-}
+        // Redirect atau berikan respons sesuai kebutuhan aplikasi Anda
+        return redirect()->route('dataPerjalanan')
+            ->with('success', 'Data perjalanan berhasil dihapus');
+    }
 
     public function edit($id)
     {
@@ -427,13 +427,6 @@ class PerjalananController extends Controller
 
         return view('perjalanan.riwayatPerjalananDriver', ['perjalanans' => $perjalanans]);
     }
-
-
-
-
-
-
-
     // public function search(Request $request)
     // {
     //     $search = $request->input('search');

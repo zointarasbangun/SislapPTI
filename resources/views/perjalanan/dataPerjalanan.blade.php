@@ -28,8 +28,9 @@
                                 <a href="{{ route('dataPerjalanan') }}" class="btn btn-danger ml-1"><i class="iconify"
                                         data-icon="solar:refresh-linear"></i> </a>
                                 <div class="float-right">
-                                    <button class="btn btn-success ml-1" type="button"><i class="iconify"
-                                            data-icon="teenyicons:pdf-solid"></i> PDF</button>
+                                    <a href="{{ route('admin.cetakpdf') }}" class="btn btn-success ml-1" type="button">
+                                        <i class="iconify" data-icon="teenyicons:pdf-solid"></i> PDF
+                                    </a>
                                     <button class="btn btn-success ml-1" type="button"><i class="iconify"
                                             data-icon="icon-park-solid:excel"></i> Excel</button>
                                 </div>
@@ -162,7 +163,8 @@
                                         class="btn btn-primary ml-1" type="button"><i class="iconify"
                                             data-icon="material-symbols:edit"></i></button></a>
                                 <form action="{{ route('managePerjalanan.destroy', $perjalanan->id) }}" method="post"
-                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')" style="display: inline">
+                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')"
+                                    style="display: inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger"><i class="iconify"

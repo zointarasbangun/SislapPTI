@@ -7,7 +7,7 @@ use App\Http\Controllers\AcountController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\PerjalananController;
-use App\Http\Controllers\downloadController;
+use App\Http\Controllers\DownloadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,8 +99,6 @@ Route::group(['middleware' => ['auth']], function () {
         // });
         Route::get('/statusperjalananadmin', [PerjalananController::class, 'statusPerjalananAdmin'])->name('status.perjalanan.admin');
 
-        //report PDF
-        Route::get('/downloadpdf', [downloadController::class, 'generatePDF']);
         // Route::get('/statusperjalanan', function () {
         //     return view('perjalanan.statusperjalanan');
         // });
@@ -108,6 +106,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/pelacakperjalanan', function () {
             return view('pelacak.pelacakperjalanan');
         });
+
+        Route::get('/view/pdf',[DownloadController::class,'viewpdf']);
+
+        Route::get('admin/cetakpdf', [DownloadController::class, 'cetakpdf'])->name('admin.cetakpdf');
 
         // Route::get('/datakondisikendaraan', function () {
         //     return view('kendaraan.kondisikendaraan');
