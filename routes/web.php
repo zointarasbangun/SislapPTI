@@ -5,9 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AcountController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\KendaraanController;
-use App\Http\Controllers\PerjalananController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\WhatsAppController;
+use App\Http\Controllers\KendaraanController;
+use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\PerjalananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -169,6 +171,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/kondisiKendaraanDriver', [KendaraanController::class, 'kendaraanUser'])->name('kendaraanUser.kendaraanUser');
 
 
+        Route::post('/send-whatsapp', [WhatsAppController::class, 'sendMessage'])->name('send.whatsapp');
+
         // Route::get('/statusPerjalananUser', function(){
         //     return view('perjalanan.statusPerjalananUser');
         // });
@@ -181,9 +185,11 @@ Route::group(['middleware' => ['auth']], function () {
         //     return view('perjalanan.riwayatPerjalananDriver');
         // });
 
-        Route::get('/notifikasiUser', function () {
-            return view('notifikasi.notifikasiUser');
-        });
+        Route::get('/notifikasiUser', [WhatsAppController::class, 'index']);
+
+        // Route::get('/notifikasiUser', function () {
+        //     return view('notifikasi.notifikasiUser');
+        // });
 
         // Route::get('/datakondisikendaraanUser', function () {
         //     return view('kendaraan.kondisikendaraan');
