@@ -23,12 +23,14 @@
                         <div id="actionCari">
                             <button class="btn btn-primary ml-1" type="submit"><i class="iconify"
                                     data-icon="material-symbols:search"></i></button>
-                                <a href="{{ route('riwayatPerjalananUser') }}" class="btn btn-danger ml-1"><i class="iconify"
-                                        data-icon="solar:refresh-linear"></i> </a>
+                            <a href="{{ route('riwayatPerjalananUser') }}" class="btn btn-danger ml-1"><i class="iconify"
+                                    data-icon="solar:refresh-linear"></i> </a>
 
                             <div class="float-right">
-                                <button class="btn btn-success ml-1" type="button"><i class="iconify"
-                                        data-icon="teenyicons:pdf-solid"></i> PDF</button>
+                                <a href="{{ route('cetakpdfuser', ['search' => request('search'), 'cariTanggalAwal' => request('cariTanggalAwal'), 'cariTanggalAkhir' => request('cariTanggalAkhir')]) }}"
+                                    class="btn btn-success ml-1" type="button">
+                                    <i class="iconify" data-icon="teenyicons:pdf-solid"></i> PDF
+                                </a>
                                 <button class="btn btn-success ml-1" type="button"><i class="iconify"
                                         data-icon="icon-park-solid:excel"></i> Excel</button>
                             </div>
@@ -57,6 +59,7 @@
                     <th scope="col">Total KM</th>
                     <th scope="col">Jenis<br>Perjalanan</th>
                     <th scope="col">Perkiraan<br>BBM</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Foto KM Awal</th>
                     <th scope="col">Foto KM Akhir</th>
                 </tr>
@@ -71,6 +74,18 @@
                         <td>{{ $perjalanan->km_akhir - $perjalanan->km_awal }}</td>
                         <td>{{ $perjalanan->jenis_perjalanan }}</td>
                         <td>{{ ($perjalanan->km_akhir - $perjalanan->km_awal) / 10 }}</td>
+                        <td>
+                            @if ($perjalanan->status_perjalanan == 'menunggu')
+                                <span class="badge bg-warning">Menunggu dilengkapi</span>
+                            @elseif($perjalanan->status_perjalanan == 'disetujui')
+                                <span class="badge bg-success">disetujui</span>
+                            @elseif($perjalanan->status_perjalanan == 'selesai')
+                                <span class="badge bg-success">menunggu persetujuan</span>
+                            @elseif($perjalanan->status_perjalanan == 'ditolak')
+                                <span class="badge bg-danger">Ditolak</span>
+                            @endif
+                        </td>
+
                         {{-- <td><img src="{{ asset('storage/' . $perjalanan->photo_km_awal) }}" class="img-fluid" alt="Foto Kendaraan"/></td>
                 <td><img src="{{ asset('storage/' . $perjalanan->photo_km_akhir) }}" class="img-fluid" alt="Foto Kendaraan"/></td> --}}
                         <td>

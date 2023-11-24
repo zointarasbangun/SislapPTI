@@ -12,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 connectedSortable" style="height: 220px; background-color: #12ACED; color: #fff;">
-                        <h3 style="margin-top: 100px;font-weight: bold;">Driver</h3>
+                        <h3 style="margin-top: 100px;font-weight: bold;">Driver ({{ auth()->user()->name }})</h3>
                         <div class="container">
                             <div class="row d-flex justify-content-around">
                                 {{-- <div class="col-lg-3 col-6">

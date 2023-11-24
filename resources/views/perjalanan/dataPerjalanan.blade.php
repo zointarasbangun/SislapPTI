@@ -28,9 +28,11 @@
                                 <a href="{{ route('dataPerjalanan') }}" class="btn btn-danger ml-1"><i class="iconify"
                                         data-icon="solar:refresh-linear"></i> </a>
                                 <div class="float-right">
-                                    <a href="{{ route('admin.cetakpdf') }}" class="btn btn-success ml-1" type="button">
+                                    <a href="{{ route('admin.cetakpdf', ['search' => request('search'), 'cariTanggalAwal' => request('cariTanggalAwal'), 'cariTanggalAkhir' => request('cariTanggalAkhir')]) }}"
+                                        class="btn btn-success ml-1" type="button">
                                         <i class="iconify" data-icon="teenyicons:pdf-solid"></i> PDF
                                     </a>
+
                                     <button class="btn btn-success ml-1" type="button"><i class="iconify"
                                             data-icon="icon-park-solid:excel"></i> Excel</button>
                                 </div>
@@ -58,6 +60,7 @@
                     <th scope="col">Total KM</th>
                     <th scope="col">Jenis<br>Perjalanan</th>
                     <th scope="col">Perkiraan<br>BBM</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Foto KM Awal</th>
                     <th scope="col">Foto KM Akhir</th>
                     @if (Auth::user()->role == 'admin')
@@ -75,6 +78,17 @@
                         <td>{{ $perjalanan->km_akhir - $perjalanan->km_awal }}</td>
                         <td>{{ $perjalanan->jenis_perjalanan }}</td>
                         <td>{{ ($perjalanan->km_akhir - $perjalanan->km_awal) / 10 }}</td>
+                        <td>
+                            @if ($perjalanan->status_perjalanan == 'menunggu')
+                                <span class="badge bg-warning">Menunggu dilengkapi</span>
+                            @elseif($perjalanan->status_perjalanan == 'disetujui')
+                                <span class="badge bg-success">disetujui</span>
+                            @elseif($perjalanan->status_perjalanan == 'selesai')
+                                <span class="badge bg-success">menunggu persetujuan</span>
+                            @elseif($perjalanan->status_perjalanan == 'ditolak')
+                                <span class="badge bg-danger">Ditolak</span>
+                            @endif
+                        </td>
                         {{-- <td><img src="{{ asset('storage/' . $perjalanan->photo_km_awal) }}" class="img-fluid" alt="Foto Kendaraan"/></td>
                     <td><img src="{{ asset('storage/' . $perjalanan->photo_km_akhir) }}" class="img-fluid" alt="Foto Kendaraan"/></td> --}}
                         <td>
@@ -109,8 +123,8 @@
                                 <!-- Button Modal -->
                                 <div class="text-center">
                                     <a href="#" class="btn btn-primary btn-rounded mb-4" data-toggle="modal"
-                                        data-target="#modalLihatAwal{{ $perjalanan->id }}"><i class="iconify nav-icon mr-3"
-                                            data-icon="mdi:eye"></i></a>
+                                        data-target="#modalLihatAwal{{ $perjalanan->id }}"><i
+                                            class="iconify nav-icon mr-3" data-icon="mdi:eye"></i></a>
                                 </div>
                                 <!-- /button modal -->
                             @else
@@ -180,31 +194,4 @@
         {{-- </form> --}}
 
     </div>
-@endsection
-
-
-@section('js')
-    {{-- <script>
-    function searchData() {
-        var cariData = document.getElementById('cariData').value;
-        var cariTanggalAwal = document.getElementById('cariTanggalAwal').value;
-        var cariTanggalAkhir = document.getElementById('cariTanggalAkhir').value;
-
-        // Kirim request AJAX
-        $.ajax({
-            url: '{{ route('search') }}',
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                cariData: cariData,
-                cariTanggalAwal: cariTanggalAwal,
-                cariTanggalAkhir: cariTanggalAkhir
-            },
-            success: function (data) {
-                // Manipulasi hasil pencarian, contoh: tampilkan di console
-                console.log(data);
-            }
-        });
-    }
-</script> --}}
 @endsection
