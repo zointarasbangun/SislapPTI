@@ -186,6 +186,7 @@ Route::group(['middleware' => ['auth']], function () {
         // });
 
         Route::get('/notifikasiUser', [WhatsAppController::class, 'index']);
+        
 
         // Route::get('/notifikasiUser', function () {
         //     return view('notifikasi.notifikasiUser');

@@ -287,7 +287,10 @@ class PerjalananController extends Controller
     public function getData()
     {
         $perjalanans = Perjalanan::with('kendaraan')
-            ->where('status_perjalanan', Perjalanan::STATUS_SELESAI)
+            ->where(function ($query) {
+                $query->where('status_perjalanan', Perjalanan::STATUS_PENDING)
+                    ->orWhere('status_perjalanan', Perjalanan::STATUS_DITOLAK);
+            })
             ->paginate();
         return view('perjalanan.dataPerjalanan', compact('perjalanans'));
     }
