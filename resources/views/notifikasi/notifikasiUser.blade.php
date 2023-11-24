@@ -5,21 +5,21 @@
         <div class="row p-2" style="background-color: #12ACED;">
 
 
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h5>Notifikasi</h5>
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h5>Notifikasi</h5>
+                        </div>
                     </div>
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
+                </div><!-- /.container-fluid -->
+            </section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid" style="">
-                <!-- COLOR PALETTE -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid" style="">
+                    <!-- COLOR PALETTE -->
 
                     <div class="notifikasi"
                         style="background-color: #12ACED; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
@@ -47,9 +47,9 @@
 
                     </div>
 
-            </div>
-            </div>
-            <div>
+                </div>
+        </div>
+        <div>
             <section class="content-header mb-5">
                 <div class="container-fluid">
                     <div class="row mb-2">
@@ -59,54 +59,53 @@
                     </div>
                 </div><!-- /.container-fluid -->
                 <!-- Table -->
-            <div class="container-fluid mt-4">
-            <table class="table table-striped text-center" id="tablepemberitahuan">
-            <tr>
-                <th scope="col">Tanggal</th>
-                <th scope="col">Alamat Awal</th>
-                <th scope="col">Alamat Akhir</th>
-                <th scope="col">Total KM</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-            </tr>
-            @foreach ($perjalanans as $perjalanan)
-                    @if (
-                        $perjalanan->status_perjalanan == 'menunggu' ||
-                            $perjalanan->status_perjalanan == 'ditolak' ||
-                            // $perjalanan->status_perjalanan == 'disetujui'
-                            $perjalanan->status_perjalanan == 'selesai'
-                            )
+                <div class="container-fluid mt-4">
+                    <table class="table table-striped text-center" id="tablepemberitahuan">
                         <tr>
-                            {{-- <th scope="row">{{ $perjalanan->user->name }}</th> --}}
-                            <td>{{ $perjalanan->tgl_perjalanan }}</td>
-                            <td>{{ $perjalanan->alamat_awal }}</td>
-                            <td>{{ $perjalanan->alamat_tujuan }}</td>
-                            <td>{{ $perjalanan->km_akhir - $perjalanan->km_awal }}</td>
-                            <td>
-                                @if ($perjalanan->status_perjalanan == 'menunggu')
-                                    <span class="badge bg-warning">Menunggu dilengkapi</span>
-                                @elseif($perjalanan->status_perjalanan == 'disetujui')
-                                    <span class="badge bg-info">selesai</span>
-                                @elseif($perjalanan->status_perjalanan == 'selesai')
-                                    <span class="badge bg-success">menunggu persetujuan</span>
-                                @elseif($perjalanan->status_perjalanan == 'ditolak')
-                                    <span class="badge bg-danger">Ditolak</span>
-                                @endif
-                            </td>
-
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Alamat Awal</th>
+                            <th scope="col">Alamat Akhir</th>
+                            <th scope="col">Total KM</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        @foreach ($perjalanans as $perjalanan)
                             @if (
-                            $perjalanan->status_perjalanan == 'menunggu'
-                                )
-                                <td>
-                                    <form action="{{ route('send.whatsapp') }}" method="post" target="_blank">
-                                        @csrf
+                                $perjalanan->status_perjalanan == 'menunggu' ||
+                                    $perjalanan->status_perjalanan == 'disetujui' ||
+                                    // $perjalanan->status_perjalanan == 'disetujui'
+                                    $perjalanan->status_perjalanan == 'selesai')
+                                <tr>
+                                    {{-- <th scope="row">{{ $perjalanan->user->name }}</th> --}}
+                                    <td>{{ $perjalanan->tgl_perjalanan }}</td>
+                                    <td>{{ $perjalanan->alamat_awal }}</td>
+                                    <td>{{ $perjalanan->alamat_tujuan }}</td>
+                                    <td>{{ $perjalanan->km_akhir - $perjalanan->km_awal }}</td>
+                                    <td>
+                                        @if ($perjalanan->status_perjalanan == 'menunggu')
+                                            <span class="badge bg-warning">Menunggu dilengkapi</span>
+                                        @elseif($perjalanan->status_perjalanan == 'disetujui')
+                                            <span class="badge bg-success">disetujui</span>
+                                        @elseif($perjalanan->status_perjalanan == 'selesai')
+                                            <span class="badge bg-success">menunggu persetujuan</span>
+                                        @elseif($perjalanan->status_perjalanan == 'ditolak')
+                                            <span class="badge bg-danger">Ditolak</span>
+                                        @endif
+                                    </td>
 
-                                        <button type="submit"><i class="fa-brands fa-square-whatsapp" style="color: #2ee421; font-size: 30px;"></i></button>
-                                    </form>
-                                </td>
-                            @endif
+                                    @if ($perjalanan->status_perjalanan == 'disetujui')
+                                        <td>
+                                            <form action="{{ route('send.whatsapp') }}" method="post" target="_blank">
+                                                @csrf
+                                                <button type="submit" class="btn btn-link" style="padding: 0;">
+                                                    <i class="fa-brands fa-square-whatsapp"
+                                                        style="color: #2ee421; font-size: 30px;"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    @endif
 
-                            {{-- <td style="width: 12rem;">
+                                    {{-- <td style="width: 12rem;">
 
                                 @if ($perjalanan->status_perjalanan == 'menunggu')
                                     <a href="{{ route('statusPerjalananUser.edit', $perjalanan->id) }}"><button
@@ -114,11 +113,11 @@
                                                 data-icon="material-symbols:edit"></i></button></a>
                                 @endif
                                 {{-- <button type="button" class="btn" style="background-color: #12ACED; color :#ffff"><i class="iconify" data-icon="bxs:detail"></i></button> --}}
-                            {{-- </td>  --}}
-                        </tr>
-                    @endif
-                @endforeach
-            {{-- <tr>
+                                    {{-- </td>  --}}
+                                </tr>
+                            @endif
+                        @endforeach
+                        {{-- <tr>
                 <td>2023-09-20</td>
                 <td>Palembang</td>
                 <td>Bandar Lampung</td>
@@ -149,7 +148,6 @@
         </table>
         </div>
     </div>
-    </section>
-    
+            </section>
 
-@endsection
+        @endsection

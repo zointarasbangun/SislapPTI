@@ -73,8 +73,7 @@
                     <th scope="col">Action</th>
                 </tr>
                 @foreach ($perjalanans as $perjalanan)
-                    @if ($perjalanan->status_perjalanan == 'menunggu' ||
-                    $perjalanan->status_perjalanan == 'ditolak' ||
+                    @if ($perjalanan->status_perjalanan == 'menunggu'  ||
                     $perjalanan->status_perjalanan == 'selesai')
                         <tr>
                             <th scope="row">{{ $perjalanan->user->name }}</th>
@@ -85,7 +84,7 @@
                                 @if ($perjalanan->status_perjalanan == 'menunggu')
                                 <span class="badge bg-warning">Menunggu dilengkapi</span>
                             @elseif($perjalanan->status_perjalanan == 'disetujui')
-                                <span class="badge bg-info">selesai</span>
+                                <span class="badge bg-success">disetujui</span>
                             @elseif($perjalanan->status_perjalanan == 'selesai')
                                 <span class="badge bg-success">menunggu persetujuan</span>
                             @elseif($perjalanan->status_perjalanan == 'ditolak')

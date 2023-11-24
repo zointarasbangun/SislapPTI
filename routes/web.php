@@ -10,6 +10,7 @@ use App\Http\Controllers\WhatsAppController;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\PerjalananController;
+use App\Models\Perjalanan;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,11 +35,11 @@ Route::get('/editprofil', function () {
     return view('auth.editprofil');
 });
 
+Route::get('/dataperjalanan/search', [perjalananController::class, 'search'])->name('perjalanan.search');
+
 Route::get('/kendaraan/search', [KendaraanController::class, 'search'])->name('kendaraan.search');
 
 Route::get('/kondisikendaraan/search', [KendaraanController::class, 'kondisisearch'])->name('kendaraan.kondisisearch');
-
-Route::get('/dataperjalanan/search', [perjalananController::class, 'search'])->name('perjalanan.search');
 
 Route::get('/statusperjalanan/search', [perjalananController::class, 'searchstatus'])->name('perjalanan.searchstatus');
 
@@ -109,8 +110,6 @@ Route::group(['middleware' => ['auth']], function () {
             return view('pelacak.pelacakperjalanan');
         });
 
-        Route::get('/view/pdf',[DownloadController::class,'viewpdf']);
-
         Route::get('admin/cetakpdf', [DownloadController::class, 'cetakpdf'])->name('admin.cetakpdf');
 
         // Route::get('/datakondisikendaraan', function () {
@@ -130,7 +129,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/ProfileAdmin/{userId}/edit', [ProfileController::class, 'edit'])->name('profileAdmin.edit');
         Route::put('/ProfileAdmin/{userId}', [ProfileController::class, 'updateAdmin'])->name('profileAdmin.update');
 
-
         // Route::get('/profile', function () {
         //     return view('auth.profile');
         // });
@@ -142,10 +140,14 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::group(['middleware' => ['user']], function () {
-        Route::get('/userDashboard', function () {
-            return view('dashboard.userDashboard');
-        })->name('userDashboard');
+        // Route::get('/userDashboard', function () {
+        //     return view('dashboard.userDashboard');
+        // })->name('userDashboard');
 
+
+        Route::get('cetakpdfuser', [DownloadController::class, 'cetakpdfuser'])->name('cetakpdfuser');
+
+        Route::get('/userDashboard', [PerjalananController::class, 'indexuser'])->name('userDashboard');
         // Route::get('/tambahPerjalananUser', function(){
         //     return view('perjalanan.tambahDataPerjalananUser');
         // });

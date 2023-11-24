@@ -107,7 +107,7 @@
                                 {{-- <span class="badge badge-primary">Sangat Baik</span> --}}
                                 @php
                                     // $totalAttributes = 15; // Jumlah total atribut
-                                    $persentaseAkumulatif = 0;
+                                    $persentaseAkumulatif = 1;
                                     $nilaiPersentase = 0;
 
                                     // Hitung persentase berdasarkan kriteria
@@ -135,7 +135,7 @@
                                     if ($perjalanan->klakson == 'baik') {
                                         $nilaiPersentase += 6.6;
                                     }
-                                    if ($perjalanan->pedal_Gas == 'berfungsi') {
+                                    if ($perjalanan->pedal_gas == 'berfungsi') {
                                         $nilaiPersentase += 6.6;
                                     }
                                     if ($perjalanan->pedal_kopling == 'berfungsi') {

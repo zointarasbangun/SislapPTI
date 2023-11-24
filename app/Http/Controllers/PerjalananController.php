@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kendaraan;
 use App\Models\Perjalanan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -180,7 +181,7 @@ class PerjalananController extends Controller
             // ...
         } else {
             // Update status menjadi pending
-            $perjalanan->status_perjalanan = Perjalanan::STATUS_PENDING;
+            $perjalanan->status_perjalanan = Perjalanan::STATUS_MENUNGGU;
             // ...
         }
 
@@ -274,7 +275,7 @@ class PerjalananController extends Controller
             // ...
         } else {
             // Update status menjadi pending
-            $perjalanan->status_perjalanan = Perjalanan::STATUS_PENDING;
+            $perjalanan->status_perjalanan = Perjalanan::STATUS_MENUNGGU;
             // ...
         }
 
@@ -299,12 +300,14 @@ class PerjalananController extends Controller
     {
         $userId = Auth::id();
 
-        // Ambil perjalanan hanya untuk pengguna yang login dan status selesai
+        // Ambil perjalanan hanya untuk pengguna yang login dengan status selesai, disetujui, atau ditolak
         $perjalanans = Perjalanan::where('user_id', $userId)
-            ->where('status_perjalanan', Perjalanan::STATUS_SELESAI)
+            ->whereIn('status_perjalanan', [Perjalanan::STATUS_DISETUJUI, Perjalanan::STATUS_DITOLAK])
             ->get();
+
         return view('perjalanan.riwayatPerjalananDriver', compact('perjalanans'));
     }
+
 
     public function approvePerjalanan(Perjalanan $perjalanan)
     {
@@ -326,6 +329,14 @@ class PerjalananController extends Controller
     {
         $query = Perjalanan::query();
 
+        // Jika isi pencarian kosong, tetap tampilkan yang dianggap selesai
+        if (!$request->has('search')) {
+            $query->where(function ($query) {
+                $query->where('status_perjalanan', Perjalanan::STATUS_DISETUJUI)
+                    ->orWhere('status_perjalanan', Perjalanan::STATUS_DITOLAK);
+            });
+        }
+
         if ($request->has('search')) {
             $searchTerms = explode(' ', $request->search);
 
@@ -335,7 +346,8 @@ class PerjalananController extends Controller
                         ->orWhere('alamat_tujuan', 'LIKE', '%' . $term . '%')
                         ->orWhere('km_awal', 'LIKE', '%' . $term . '%')
                         ->orWhere('km_akhir', 'LIKE', '%' . $term . '%')
-                        ->orWhere('jenis_perjalanan', 'LIKE', '%' . $term . '%') // Tambahkan jenis_perjalanan
+                        ->orWhere('status_perjalanan', 'LIKE', '%' . $term . '%')
+                        ->orWhere('jenis_perjalanan', 'LIKE', '%' . $term . '%')
                         ->orWhereHas('user', function ($query) use ($term) {
                             $query->where('name', 'LIKE', '%' . $term . '%');
                         });
@@ -343,16 +355,17 @@ class PerjalananController extends Controller
             });
         }
 
-        // Cek apakah tanggal awal dan tanggal akhir diisi
         if ($request->filled('cariTanggalAwal') && $request->filled('cariTanggalAkhir')) {
             $cariTanggalAwal = $request->cariTanggalAwal;
             $cariTanggalAkhir = $request->cariTanggalAkhir;
 
-            // Pastikan format tanggal sesuai dengan format yang diharapkan oleh database Anda
             $query->whereBetween('tgl_perjalanan', [$cariTanggalAwal, $cariTanggalAkhir]);
         }
 
-        $perjalanans = $query->get();
+        // Menambahkan kondisi untuk memastikan hanya status disetujui dan ditolak yang ditampilkan
+        $query->whereIn('status_perjalanan', [Perjalanan::STATUS_DISETUJUI, Perjalanan::STATUS_DITOLAK]);
+
+        $perjalanans = $query->paginate();
 
         return view('perjalanan.dataperjalanan', ['perjalanans' => $perjalanans]);
     }
@@ -395,9 +408,15 @@ class PerjalananController extends Controller
     public function searchriwayatuser(Request $request)
     {
         $query = Perjalanan::query();
-
         // Menambahkan kondisi untuk memeriksa ID pengguna yang sedang login
         $query->where('user_id', auth()->user()->id);
+
+        if (!$request->has('search')) {
+            $query->where(function ($query) {
+                $query->where('status_perjalanan', Perjalanan::STATUS_DISETUJUI)
+                    ->orWhere('status_perjalanan', Perjalanan::STATUS_DITOLAK);
+            });
+        }
 
         if ($request->has('search')) {
             $searchTerms = explode(' ', $request->search);
@@ -408,8 +427,8 @@ class PerjalananController extends Controller
                         ->orWhere('alamat_tujuan', 'LIKE', '%' . $term . '%')
                         ->orWhere('km_awal', 'LIKE', '%' . $term . '%')
                         ->orWhere('km_akhir', 'LIKE', '%' . $term . '%')
+                        ->orWhere('status_perjalanan', 'LIKE', '%' . $term . '%')
                         ->orWhere('jenis_perjalanan', 'LIKE', '%' . $term . '%')
-                        ->orWhere('tgl_perjalanan', 'LIKE', '%' . $term . '%')
                         ->orWhereHas('user', function ($query) use ($term) {
                             $query->where('name', 'LIKE', '%' . $term . '%');
                         });
@@ -417,18 +436,29 @@ class PerjalananController extends Controller
             });
         }
 
-        // Cek apakah tanggal awal dan tanggal akhir diisi
         if ($request->filled('cariTanggalAwal') && $request->filled('cariTanggalAkhir')) {
             $cariTanggalAwal = $request->cariTanggalAwal;
             $cariTanggalAkhir = $request->cariTanggalAkhir;
 
-            // Pastikan format tanggal sesuai dengan format yang diharapkan oleh database Anda
             $query->whereBetween('tgl_perjalanan', [$cariTanggalAwal, $cariTanggalAkhir]);
         }
 
-        $perjalanans = $query->get();
+        // Menambahkan kondisi untuk memastikan hanya status disetujui dan ditolak yang ditampilkan
+        $query->whereIn('status_perjalanan', [Perjalanan::STATUS_DISETUJUI, Perjalanan::STATUS_DITOLAK]);
+
+        $perjalanans = $query->paginate();
 
         return view('perjalanan.riwayatPerjalananDriver', ['perjalanans' => $perjalanans]);
+    }
+
+
+
+
+
+    public function indexuser()
+    {
+        $users = User::all(); // atau gunakan metode lain untuk mendapatkan data pengguna
+        return view('dashboard.userdashboard', ['users' => $users]);
     }
     // public function search(Request $request)
     // {

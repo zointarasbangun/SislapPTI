@@ -15,7 +15,7 @@ class Perjalanan extends Model
 
     const STATUS_MENUNGGU = 'menunggu';
     const STATUS_DITOLAK = 'ditolak';
-    const STATUS_PENDING = 'disetujui';
+    const STATUS_DISETUJUI = 'disetujui';
     const STATUS_SELESAI = 'selesai';
 
     protected $fillable = [

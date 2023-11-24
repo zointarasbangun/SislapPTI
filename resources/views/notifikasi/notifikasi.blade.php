@@ -10,7 +10,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h5>Notifikasi dan Pemberitahuan</h5>
+                            <h3><b>Notifikasi</b></h3>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
