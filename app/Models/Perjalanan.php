@@ -63,4 +63,24 @@ class Perjalanan extends Model
     {
         return $this->attributes['km_akhir'] - $this->attributes['km_awal'];
     }
+
+    public static function totalPerjalanan()
+    {
+        return self::count();
+    }
+
+    public static function countMenunggu()
+    {
+        return self::where('status_perjalanan', self::STATUS_MENUNGGU)->count();
+    }
+
+    public static function countSelesai()
+    {
+        return self::where('status_perjalanan', self::STATUS_SELESAI)->count();
+    }
+
+    public static function totalMenungguSelesai()
+    {
+        return self::countMenunggu() + self::countSelesai();
+    }
 }

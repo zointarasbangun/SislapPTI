@@ -59,9 +59,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['admin']], function () {
-        Route::get('/adminDashboard', function () {
-            return view('dashboard.adminDashboard');
-        })->name('adminDashboard');
+        // Route::get('/adminDashboard', function () {
+        //     return view('dashboard.adminDashboard');
+        // })->name('adminDashboard');
 
         Route::get('/addAcount', [AcountController::class, 'create'])->name('createAcount');
         Route::post('/addAcount', [AcountController::class, 'store'])->name('addAcount');
@@ -188,7 +188,7 @@ Route::group(['middleware' => ['auth']], function () {
         // });
 
         Route::get('/notifikasiUser', [WhatsAppController::class, 'index']);
-        
+
 
         // Route::get('/notifikasiUser', function () {
         //     return view('notifikasi.notifikasiUser');

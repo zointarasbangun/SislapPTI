@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Perjalanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,11 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $perjalanans = Perjalanan::all();
         if (auth()->check()) {
             if (auth()->user()->role == 'admin') {
-                return view('dashboard.adminDashboard'); // Ganti dengan nama view admin dashboard
+                return view('dashboard.adminDashboard', ['perjalanans' => $perjalanans]); // Ganti dengan nama view admin dashboard
             } else {
-                return view('dashboard.userDashboard'); // Ganti dengan nama view user dashboard
+                $user = Auth::user();
+                $jumlahPerjalanan = $user->perjalans()->count();
+                return view('dashboard.userDashboard', ['perjalanans' => $perjalanans, 'jumlahPerjalanan' => $jumlahPerjalanan]); // Ganti dengan nama view user dashboard
             }
         }
 

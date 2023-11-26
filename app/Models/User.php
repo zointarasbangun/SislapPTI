@@ -59,5 +59,10 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public static function totalDriver()
+    {
+        return self::count() - 1;
+    }
+
 
 }

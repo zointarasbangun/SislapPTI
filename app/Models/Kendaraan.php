@@ -21,6 +21,10 @@ class Kendaraan extends Model
     {
         return $this->hasMany(Perjalanan::class,'tipe_kendaraan_id');
     }
+    public static function totalKendaraan()
+    {
+        return self::count();
+    }
 
     // Jika Anda menggunakan accessor untuk URL foto:
     // protected $appends = ['photo_url'];

@@ -16,9 +16,9 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
 
-                        <li class="nav-item {{ request()->is('adminDashboard') ? 'menu-open' : '' }}">
-                            <a href="{{ route('adminDashboard') }}"
-                                class="nav-link {{ request()->is('adminDashboard') ? 'active' : '' }}">
+                        <li class="nav-item {{ request()->is('home') ? 'menu-open' : '' }}">
+                            <a href="{{ route('home') }}"
+                                class="nav-link {{ request()->is('home') ? 'active' : '' }}">
                                 <i class="iconify nav-icon" data-icon="tabler:home"></i>
                                 <p>
                                     Beranda
@@ -123,7 +123,7 @@
                         data-accordion="false">
 
                         <li class="nav-item menu-open">
-                            <a href="{{ route('userDashboard') }}" class="nav-link ">
+                            <a href="{{ route('home') }}" class="nav-link ">
                                 <i class="iconify nav-icon" data-icon="tabler:home"></i>
                                 <p>
                                     Beranda

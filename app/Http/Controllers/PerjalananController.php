@@ -451,8 +451,17 @@ class PerjalananController extends Controller
         return view('perjalanan.riwayatPerjalananDriver', ['perjalanans' => $perjalanans]);
     }
 
+    public function tampilkanJumlahPerjalanan()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $jumlahPerjalanan = $user->perjalans()->count();
 
-
+            return view('nama_view', ['jumlahPerjalanan' => $jumlahPerjalanan]);
+        } else {
+            return view('nama_view', ['jumlahPerjalanan' => 0]);
+        }
+    }
 
 
     public function indexuser()
