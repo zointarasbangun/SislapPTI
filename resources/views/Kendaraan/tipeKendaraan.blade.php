@@ -1,10 +1,19 @@
 @extends('layouts.app')
 @section('content')
     <div class="content-wrapper">
+
         <!-- header content -->
         <div class="container-fluid p-5">
             <div class="row">
-
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                 <div class="col-lg-4 col-sm-6">
                     <form action="/kendaraan/search" class="form-inline" method="GET">
                         <div class="input-group " style="flex-grow: 10;">
@@ -188,6 +197,7 @@
                                     style="display: inline">
                                     @csrf
                                     @method('DELETE')
+
                                     <button type="submit" class="btn btn-danger"><i class="iconify"
                                             data-icon="material-symbols:delete"></i></button>
                                 </form>

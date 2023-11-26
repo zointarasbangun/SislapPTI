@@ -19,7 +19,7 @@ class Kendaraan extends Model
 
     public function perjalanan()
     {
-        return $this->hasMany(Perjalanan::class);
+        return $this->hasMany(Perjalanan::class,'tipe_kendaraan_id');
     }
 
     // Jika Anda menggunakan accessor untuk URL foto:

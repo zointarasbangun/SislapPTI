@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kendaraan;
 use App\Models\Perjalanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class KendaraanController extends Controller
@@ -65,16 +66,40 @@ class KendaraanController extends Controller
         return redirect()->route('kendaraan.index');
     }
 
-    public function destroy($id)
+
+
+public function destroy($id)
     {
         $kendaraan = Kendaraan::findOrFail($id);
-        if ($kendaraan->photo) {
-            Storage::disk('public')->delete($kendaraan->photo);
-        }
-        $kendaraan->delete();
 
-        return redirect()->route('kendaraan.index');
+        try {
+            // Mulai transaksi database
+            DB::beginTransaction();
+
+            // Hapus terkait perjalans
+            $kendaraan->perjalanan()->delete();
+
+            // Hapus foto jika ada
+            if ($kendaraan->photo) {
+                Storage::disk('public')->delete($kendaraan->photo);
+            }
+
+            // Hapus kendaraan
+            $kendaraan->delete();
+
+            // Commit transaksi
+            DB::commit();
+
+            return redirect()->route('kendaraan.index')->with('success', 'Data kendaraan dihapus.');
+        } catch (\Exception $e) {
+            // Rollback transaksi jika terjadi kesalahan
+            DB::rollback();
+            dd($e);
+
+            return redirect()->route('kendaraan.index')->with('error', 'Gagal menghapus data kendaraan.');
+        }
     }
+
 
     public function getData()
     {

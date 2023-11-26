@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->string('foto_profil')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

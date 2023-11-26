@@ -46,8 +46,11 @@ return new class extends Migration
             $table->string('catatan')->nullable();
             $table->string('status_perjalanan')->default(Perjalanan::STATUS_MENUNGGU);
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+
     }
+
 
     /**
      * Reverse the migrations.

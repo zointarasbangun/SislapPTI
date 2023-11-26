@@ -132,6 +132,7 @@
                 </div>
             </div>
             <div class="container-fluid mt-5">
+
                 <table class="table table-striped text-center" id="tableakun">
                     <tr>
                         <th scope="col">Username</th>
@@ -142,6 +143,7 @@
                         <th scope="col">Action</th>
                     </tr>
                     @foreach ($users as $user)
+                    @if($user->role == 'user')
                         <tr>
                             <th scope="row">{{ $user->name }}</th>
                             <td>password</td>
@@ -167,6 +169,7 @@
 
 
                         </tr>
+                        @endif
                     @endforeach
 
 

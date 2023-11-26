@@ -47,6 +47,7 @@ class User extends Authenticatable
     ];
 
     // User.php
+    // protected $cascadeDeletes = ['perjalanans'];
 
     public function perjalans()
     {

@@ -289,7 +289,7 @@ class PerjalananController extends Controller
     {
         $perjalanans = Perjalanan::with('kendaraan')
             ->where(function ($query) {
-                $query->where('status_perjalanan', Perjalanan::STATUS_PENDING)
+                $query->where('status_perjalanan', Perjalanan::STATUS_DISETUJUI)
                     ->orWhere('status_perjalanan', Perjalanan::STATUS_DITOLAK);
             })
             ->paginate();

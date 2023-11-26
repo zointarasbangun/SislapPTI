@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Perjalanan;
@@ -57,11 +57,32 @@ class AcountController extends Controller
         $user->update($request->all());
         return redirect()->route('acount.index')->with('success', 'Data pengguna diperbarui.');
     }
+
+
     public function destroy(User $user)
     {
-        $user->delete();
-        return redirect()->route('acount.index')->with('success', 'Data pengguna dihapus.');
+        try {
+            DB::beginTransaction();
+
+            // Hapus terkait perjalans
+            $user->perjalans()->delete();
+
+            // Hapus terkait profile
+            $user->profile()->delete();
+
+            // Hapus pengguna
+            $user->delete();
+
+            DB::commit();
+
+            return redirect()->route('acount.index')->with('success', 'Data pengguna dihapus.');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            return redirect()->route('acount.index')->with('error', 'Gagal menghapus data pengguna.');
+        }
     }
+
 
     // app/Http/Controllers/AdminController.php
 
