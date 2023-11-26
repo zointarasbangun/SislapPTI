@@ -72,7 +72,7 @@
                         @foreach ($perjalanans as $perjalanan)
                             @if (
                                 $perjalanan->status_perjalanan == 'menunggu' ||
-                                    $perjalanan->status_perjalanan == 'disetujui' ||
+                                    // $perjalanan->status_perjalanan == 'disetujui' ||
                                     // $perjalanan->status_perjalanan == 'disetujui'
                                     $perjalanan->status_perjalanan == 'selesai')
                                 <tr>
@@ -93,7 +93,7 @@
                                         @endif
                                     </td>
 
-                                    @if ($perjalanan->status_perjalanan == 'disetujui')
+                                    @if ($perjalanan->status_perjalanan == 'menunggu')
                                         <td>
                                             <form action="{{ route('send.whatsapp') }}" method="post" target="_blank">
                                                 @csrf

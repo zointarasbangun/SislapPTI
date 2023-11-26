@@ -111,6 +111,7 @@ Route::group(['middleware' => ['auth']], function () {
         });
 
         Route::get('admin/cetakpdf', [DownloadController::class, 'cetakpdf'])->name('admin.cetakpdf');
+        Route::get('/download-excel', [DownloadController::class, 'downloadExcel'])->name('download.excel');
 
         // Route::get('/datakondisikendaraan', function () {
         //     return view('kendaraan.kondisikendaraan');

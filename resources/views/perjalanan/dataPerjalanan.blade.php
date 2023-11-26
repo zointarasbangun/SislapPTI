@@ -33,8 +33,12 @@
                                         <i class="iconify" data-icon="teenyicons:pdf-solid"></i> PDF
                                     </a>
 
-                                    <button class="btn btn-success ml-1" type="button"><i class="iconify"
-                                            data-icon="icon-park-solid:excel"></i> Excel</button>
+
+                                    <a href="{{ route('download.excel', ['search' => request('search'), 'cariTanggalAwal' => request('cariTanggalAwal'), 'cariTanggalAkhir' => request('cariTanggalAkhir')]) }}"
+                                        class="btn btn-success ml-1" type="button">
+                                        <i class="iconify" data-icon="teenyicons:pdf-solid"></i> Excel
+                                    </a>
+
                                 </div>
                             @else
                                 <a href="{{ route('dataPerjalananUser') }}" class="btn btn-danger ml-1"><i class="iconify"

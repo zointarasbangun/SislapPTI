@@ -469,6 +469,8 @@ class PerjalananController extends Controller
         $users = User::all(); // atau gunakan metode lain untuk mendapatkan data pengguna
         return view('dashboard.userdashboard', ['users' => $users]);
     }
+
+}
     // public function search(Request $request)
     // {
     //     $search = $request->input('search');
@@ -491,7 +493,6 @@ class PerjalananController extends Controller
 
     //     return view('perjalanan.dataPerjalanan', compact('perjalanans'));
     // }
-}
 
 
 // public function getData()
