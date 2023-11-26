@@ -176,10 +176,11 @@
         <div class="card">
             @if ($profile)
                 <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
-                    <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                    <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px; height: 150px; overflow: hidden;">
                         <img src="{{ asset('storage/' . $profile->foto_profil) }}" alt="Profile Image"
-                            class="img-fluid rounded-circle  mt-5 mb-2" style="z-index: 1">
+                            class="img-fluid rounded-circle" style="object-fit: cover; width: 100%; height: 100%;">
                     </div>
+
                     <div class="ms-3" style="margin-top: 130px;">
                         <!-- Mengganti data statis dengan data dari profil -->
                         <h5>{{ $profile->fulname }}</h5>

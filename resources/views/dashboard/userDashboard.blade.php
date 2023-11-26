@@ -116,23 +116,27 @@
             </div>
     </div>
     </section>
-    <section class="content-wrapper  mt-3">
+    <section class="content-wrapper mt-3">
         <div class="container-fluid">
             <div class="container-fluid mt-3">
-                <table class="table table-striped text-center" id="tableakun">
-                    <tr>
-                        <th scope="col">User</th>
-                        <th scope="col">Tanggal</th>
-                        <th scope="col">Alamat Awal</th>
-                        <th scope="col">Alamat Akhir</th>
-                        <th scope="col">KM Awal</th>
-                        <th scope="col">KM Akhir</th>
-                        <th scope="col">Total KM</th>
-                        <th scope="col">Jenis<br>Perjalanan</th>
-                        <th scope="col">Perkiraan<br>BBM</th>
-                        <th scope="col">Foto KM Awal</th>
-                        <th scope="col">Foto KM Akhir</th>
-                    </tr>
+                <div class="table-responsive" style="overflow-x:auto;">
+                    <table class="table table-striped text-center" id="tableakun">
+                        <thead>
+                            <tr>
+                                <th scope="col">User</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Alamat Awal</th>
+                                <th scope="col">Alamat Akhir</th>
+                                <th scope="col">KM Awal</th>
+                                <th scope="col">KM Akhir</th>
+                                <th scope="col">Total KM</th>
+                                <th scope="col">Jenis Perjalanan</th>
+                                <th scope="col">Perkiraan BBM</th>
+                                <th scope="col">Foto KM Awal</th>
+                                <th scope="col">Foto KM Akhir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                     @foreach ($perjalanans as $perjalanan)
                         <tr>
                             <th scope="row">{{ $perjalanan->user->name }}</th>
@@ -231,8 +235,10 @@
 
                         </tr>
                     @endforeach
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
-    </section>
+    </div>
+</div>
+</section>
 @endsection

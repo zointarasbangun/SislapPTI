@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="container-fluid mt-3">
+        <div class="container-fluid mt-3" >
             <table class="table table-striped text-center" id="tableakun">
                 <tr>
                     <th scope="col">User</th>
