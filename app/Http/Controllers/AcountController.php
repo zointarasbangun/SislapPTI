@@ -86,11 +86,11 @@ class AcountController extends Controller
 
     // app/Http/Controllers/AdminController.php
 
-    public function getData()
-    {
-        $perjalanans = Perjalanan::with('kendaraan')->paginate();
-        return view('perjalanan.statusPerjalanan', compact('perjalanans'));
-    }
+        public function getData()
+        {
+            $perjalanans = Perjalanan::with('kendaraan')->orderBy('created_at', 'desc')->paginate();
+            return view('perjalanan.statusPerjalanan', compact('perjalanans'));
+        }
 
     // public function respondToPerjalanan(Request $request, $id)
     // {

@@ -4,7 +4,7 @@
 <div class="content-wrapper">
     <div class="container-fluid p-5">
         <div class="row">
-            <!-- search -->
+            {{-- <!-- search -->
             <div class="col-lg-4 col-sm-6">
                 <input type="text" class="form-control" id="cariDataKendaraan" placeholder="Cari Data Kendaraan...">
             </div>
@@ -14,7 +14,7 @@
                 <button class="btn btn-danger ml-1" type="button"><i class="iconify"
                         data-icon="solar:refresh-linear"></i></button>
             </div>
-            <!-- /search -->
+            <!-- /search --> --}}
 
             <!-- table -->
             <div class="container-fluid mt-5">
