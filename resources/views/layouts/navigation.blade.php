@@ -12,111 +12,75 @@
 
             <!-- Sidebar Menu -->
             @if (Auth::user()->role == 'admin')
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-
-                        <li class="nav-item {{ request()->is('home') ? 'menu-open' : '' }}">
-                            <a href="{{ route('home') }}"
-                                class="nav-link {{ request()->is('home') ? 'active' : '' }}">
-                                <i class="iconify nav-icon" data-icon="tabler:home"></i>
-                                <p>
-                                    Beranda
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item {{ request()->is('acount*') ? 'menu-open' : '' }}">
-                            <a href="{{ route('acount.index') }}"
-                                class="nav-link {{ request()->is('acount*') ? 'menu-open' : '' }}">
-                                <i class="iconify nav-icon ml-1" data-icon="pajamas:account"></i>
-                                <p>
-                                    Kelola Akun
-                                </p>
-                            </a>
-                        </li>
-                        {{-- <ul class="nav nav-treeview" style="padding-left: 20px;">
-                            <li class="nav-item">
-                                <a href="{{ route('createAcount') }}" class="nav-link">
-                                    <!-- Tambahkan URL yang sesuai di sini -->
-                                    <i class="iconify nav-icon" data-icon="line-md:account-add"></i>
-                                    <p>Tambahkan Akun</p>
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li id="menu-home" class="nav-item {{ request()->is('home') ? 'menu-open' : '' }}">
+                        <a href="{{ route('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
+                            <i class="iconify nav-icon" data-icon="tabler:home"></i>
+                            <p>Beranda</p>
+                        </a>
+                    </li>
+                    <li id="menu-acount" class="nav-item {{ request()->is('acount') ? 'menu-open' : '' }}">
+                        <a href="{{ route('acount.index') }}" class="nav-link {{ request()->is('acount') ? 'active' : '' }}">
+                            <i class="iconify nav-icon ml-1" data-icon="pajamas:account"></i>
+                            <p>Kelola Akun</p>
+                        </a>
+                    </li>
+                    <li id="menu-perjalanan" class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="iconify nav-icon" data-icon="tdesign:data"></i>
+                            <p>Perjalanan <i class="right fas fa-angle-left"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview" style="padding-left: 20px;">
+                            <li id="menu-data-perjalanan" class="nav-item">
+                                <a href="{{ route('dataPerjalanan') }}" class="nav-link">
+                                    <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
+                                    <p>Data Perjalanan</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('acount.index') }}" class="nav-link">
-                                    <!-- Tambahkan URL yang sesuai di sini -->
-                                    <i class="iconify nav-icon" data-icon="gg:list"></i>
-                                    <p>Data Akun</p>
+                            <li id="menu-status-perjalanan" class="nav-item">
+                                <a href="{{ route('statusPerjalanan') }}" class="nav-link">
+                                    <i class="far fa-calendar-check nav-icon"></i>
+                                    <p>Status Perjalanan</p>
                                 </a>
                             </li>
-                        </ul> --}}
-
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="iconify nav-icon" data-icon="tdesign:data"></i>
-                                <p>
-                                    Perjalanan
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview" style="padding-left: 20px;">
-                                <li class="nav-item">
-                                    <a href="{{ route('dataPerjalanan') }}" class="nav-link">
-                                        <i class="iconify nav-icon" data-icon="carbon:data-table"></i>
-                                        <p>Data Perjalanan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('statusPerjalanan') }}" class="nav-link">
-                                        <i class="far fa-calendar-check nav-icon"></i>
-                                        <p>Status Perjalanan</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/pelacakperjalanan" class="nav-link">
-                                <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
-                                <p>
-                                    Pelacak Perjalanan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
-                                <p>
-                                    Kondisi Kendaraan
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview" style="padding-left: 20px;">
-                                <li class="nav-item">
-                                    <a href="{{ route('kendaraan.kondisi') }}" class="nav-link">
-                                        <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
-                                        <p>Data Kondisi Kendaraan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('kendaraan.index') }}" class="nav-link">
-                                        <i class="iconify nav-icon" data-icon="mdi:car"></i>
-                                        <p>Tipe Kendaraan</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item {{ request()->is('/notifikasi') ? 'menu-open' : '' }}">
-                            <a href="/notifikasi" class="nav-link {{ request()->is('/notifikasi') ? 'active' : '' }}">
-                                <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
-                                <p>
-                                    Notifikasi
-                                </p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </nav>
+                        </ul>
+                    </li>
+                    <!-- Tambahan ID untuk submenu pelacak perjalanan -->
+                    <li id="menu-pelacak-perjalanan" class="nav-item">
+                        <a href="/pelacakperjalanan" class="nav-link">
+                            <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
+                            <p>Pelacak Perjalanan</p>
+                        </a>
+                    </li>
+                    <li id="menu-kondisi-kendaraan" class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
+                            <p>Kondisi Kendaraan <i class="fas fa-angle-left right"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview" style="padding-left: 20px;">
+                            <li id="menu-kondisi-kendaraan-sub" class="nav-item">
+                                <a href="{{ route('kendaraan.kondisi') }}" class="nav-link">
+                                    <i class="iconify nav-icon" data-icon="carbon:vehicle-services"></i>
+                                    <p>Data Kondisi Kendaraan</p>
+                                </a>
+                            </li>
+                            <li id="menu-tipe-kendaraan-sub" class="nav-item">
+                                <a href="{{ route('kendaraan.index') }}" class="nav-link">
+                                    <i class="iconify nav-icon" data-icon="mdi:car"></i>
+                                    <p>Tipe Kendaraan</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="menu-notifikasi" class="nav-item {{ request()->is('/notifikasi') ? 'menu-open' : '' }}">
+                        <a href="/notifikasi" class="nav-link {{ request()->is('/notifikasi') ? 'active' : '' }}">
+                            <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
+                            <p>Notifikasi</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
             @else
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -243,6 +207,39 @@
         </div>
         <!-- /.sidebar -->
 </aside>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // ...
+
+        // Tambahkan event listener untuk menyimpan status menu saat menu diklik
+        var menuItems = document.querySelectorAll('.nav-item');
+
+        menuItems.forEach(function (menuItem) {
+            menuItem.addEventListener('click', function () {
+                // Simpan status menu ke localStorage
+                localStorage.setItem('openedMenu', menuItem.id);
+
+                // Bersihkan status menu aktif sebelumnya
+                menuItems.forEach(function (item) {
+                    item.classList.remove('active');
+                });
+
+                // Bersihkan status menu terbuka pada submenu yang tidak aktif
+                menuItems.forEach(function (item) {
+                    if (item.id !== menuItem.id && item.classList.contains('menu-open')) {
+                        item.classList.remove('menu-open');
+                    }
+                });
+
+                // Tambahkan kelas aktif pada menu yang diklik
+                menuItem.classList.add('active');
+            });
+        });
+    });
+</script>
+
+
 
 {{--
 

@@ -79,8 +79,7 @@
 
                 @foreach ($perjalanans as $perjalanan)
                     @if (
-                        $perjalanan->status_perjalanan == 'menunggu' ||
-                            $perjalanan->status_perjalanan == 'ditolak' ||
+                        $perjalanan->status_perjalanan == 'menunggu'  ||
                             // $perjalanan->status_perjalanan == 'disetujui'
                             $perjalanan->status_perjalanan == 'selesai'
                             )

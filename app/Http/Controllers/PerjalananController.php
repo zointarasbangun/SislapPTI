@@ -227,7 +227,7 @@ class PerjalananController extends Controller
             'alamat_awal' => 'required|string',
             'alamat_tujuan' => 'required|string',
             'km_awal' => 'required|numeric',
-            'km_akhir' => 'required|numeric',
+            'km_akhir' => 'required|numeric|gt:km_awal',
             'tipe_kendaraan' => 'exists:kendaraans,type',
             'no_polisi' => 'string',
             'jenis_perjalanan' => 'required|string|in:perjalanan luar,perjalanan dalam',
@@ -292,6 +292,7 @@ class PerjalananController extends Controller
                 $query->where('status_perjalanan', Perjalanan::STATUS_DISETUJUI)
                     ->orWhere('status_perjalanan', Perjalanan::STATUS_DITOLAK);
             })
+            ->orderBy('created_at', 'desc')
             ->paginate();
         return view('perjalanan.dataPerjalanan', compact('perjalanans'));
     }
@@ -303,6 +304,7 @@ class PerjalananController extends Controller
         // Ambil perjalanan hanya untuk pengguna yang login dengan status selesai, disetujui, atau ditolak
         $perjalanans = Perjalanan::where('user_id', $userId)
             ->whereIn('status_perjalanan', [Perjalanan::STATUS_DISETUJUI, Perjalanan::STATUS_DITOLAK])
+            ->orderBy('created_at', 'desc') // Menambahkan orderBy untuk mengurutkan berdasarkan created_at secara descending
             ->get();
 
         return view('perjalanan.riwayatPerjalananDriver', compact('perjalanans'));
@@ -471,28 +473,28 @@ class PerjalananController extends Controller
     }
 
 }
-    // public function search(Request $request)
-    // {
-    //     $search = $request->input('search');
-    //     $cariTanggalAwal = $request->input('cariTanggalAwal');
-    //     $cariTanggalAkhir = $request->input('cariTanggalAkhir');
+// public function search(Request $request)
+// {
+//     $search = $request->input('search');
+//     $cariTanggalAwal = $request->input('cariTanggalAwal');
+//     $cariTanggalAkhir = $request->input('cariTanggalAkhir');
 
-    //     $perjalanans = Perjalanan::where(function ($query) use ($search) {
-    //         $query->where('alamat_awal', 'LIKE', '%' . $search . '%')
-    //             ->orWhere('alamat_tujuan', 'LIKE', '%' . $search . '%')
-    //             ->orWhere('tgl_perjalanan', 'LIKE', '%' . $search . '%')
-    //             ->orWhere('jenis_perjalanan', 'LIKE', '%' . $search . '%')
-    //             ->orWhere('status_perjalanan', 'LIKE', '%' . $search . '%');
-    //     });
+//     $perjalanans = Perjalanan::where(function ($query) use ($search) {
+//         $query->where('alamat_awal', 'LIKE', '%' . $search . '%')
+//             ->orWhere('alamat_tujuan', 'LIKE', '%' . $search . '%')
+//             ->orWhere('tgl_perjalanan', 'LIKE', '%' . $search . '%')
+//             ->orWhere('jenis_perjalanan', 'LIKE', '%' . $search . '%')
+//             ->orWhere('status_perjalanan', 'LIKE', '%' . $search . '%');
+//     });
 
-    //     if ($cariTanggalAwal && $cariTanggalAkhir) {
-    //         $perjalanans->whereBetween('tgl_perjalanan', [$cariTanggalAwal, $cariTanggalAkhir]);
-    //     }
+//     if ($cariTanggalAwal && $cariTanggalAkhir) {
+//         $perjalanans->whereBetween('tgl_perjalanan', [$cariTanggalAwal, $cariTanggalAkhir]);
+//     }
 
-    //     $perjalanans = $perjalanans->paginate();
+//     $perjalanans = $perjalanans->paginate();
 
-    //     return view('perjalanan.dataPerjalanan', compact('perjalanans'));
-    // }
+//     return view('perjalanan.dataPerjalanan', compact('perjalanans'));
+// }
 
 
 // public function getData()
