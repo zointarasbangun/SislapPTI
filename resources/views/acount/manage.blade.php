@@ -132,7 +132,17 @@
                 </div>
             </div>
             <div class="container-fluid mt-5">
+                @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
                 <table class="table table-striped text-center" id="tableakun">
                     <tr>
                         <th scope="col">Username</th>

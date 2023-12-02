@@ -5,7 +5,7 @@
         <!-- header content -->
         <div class="container-fluid p-5">
             <div class="row">
-                @if($errors->any())
+                {{-- @if($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -13,7 +13,7 @@
                             @endforeach
                         </ul>
                     </div>
-                    @endif
+                    @endif --}}
                 <div class="col-lg-4 col-sm-6">
                     <form action="/kendaraan/search" class="form-inline" method="GET">
                         <div class="input-group " style="flex-grow: 10;">
@@ -132,6 +132,17 @@
         </div>
         <!-- table -->
         <div class="container-fluid mt-4">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <table class="table table-striped text-center" id="tablecar">
                 <tr>
                     <th scope="col">Tipe Mobil</th>

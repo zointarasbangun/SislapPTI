@@ -60,28 +60,30 @@ class AcountController extends Controller
 
 
     public function destroy(User $user)
-    {
-        try {
-            DB::beginTransaction();
+{
+    try {
+        DB::beginTransaction();
 
-            // Hapus terkait perjalans
-            $user->perjalans()->delete();
-
-            // Hapus terkait profile
-            $user->profile()->delete();
-
-            // Hapus pengguna
-            $user->delete();
-
-            DB::commit();
-
-            return redirect()->route('acount.index')->with('success', 'Data pengguna dihapus.');
-        } catch (\Exception $e) {
-            DB::rollback();
-
-            return redirect()->route('acount.index')->with('error', 'Gagal menghapus data pengguna.');
+        // Cek apakah pengguna memiliki perjalanan
+        if ($user->perjalans()->count() > 0) {
+            throw new \Exception('Pengguna masih memiliki perjalanan. Tidak dapat dihapus.');
         }
+
+        // Hapus terkait profile
+        $user->profile()->delete();
+
+        // Hapus pengguna
+        $user->delete();
+
+        DB::commit();
+
+        return redirect()->route('acount.index')->with('success', 'Data pengguna dihapus.');
+    } catch (\Exception $e) {
+        DB::rollback();
+
+        return redirect()->route('acount.index')->with('error', $e->getMessage());
     }
+}
 
 
     // app/Http/Controllers/AdminController.php

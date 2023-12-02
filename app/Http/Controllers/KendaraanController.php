@@ -68,7 +68,7 @@ class KendaraanController extends Controller
 
 
 
-public function destroy($id)
+    public function destroy($id)
     {
         $kendaraan = Kendaraan::findOrFail($id);
 
@@ -76,8 +76,10 @@ public function destroy($id)
             // Mulai transaksi database
             DB::beginTransaction();
 
-            // Hapus terkait perjalans
-            $kendaraan->perjalanan()->delete();
+            // Cek apakah kendaraan masih digunakan dalam perjalanan
+            if ($kendaraan->perjalanan()->count() > 0) {
+                throw new \Exception('Kendaraan masih digunakan dalam perjalanan. Tidak dapat dihapus.');
+            }
 
             // Hapus foto jika ada
             if ($kendaraan->photo) {
@@ -94,11 +96,11 @@ public function destroy($id)
         } catch (\Exception $e) {
             // Rollback transaksi jika terjadi kesalahan
             DB::rollback();
-            dd($e);
 
-            return redirect()->route('kendaraan.index')->with('error', 'Gagal menghapus data kendaraan.');
+            return redirect()->route('kendaraan.index')->with('error', $e->getMessage());
         }
     }
+
 
 
     public function getData()

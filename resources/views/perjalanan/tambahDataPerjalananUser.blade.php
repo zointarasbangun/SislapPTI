@@ -11,6 +11,7 @@
             </ul>
         </div>
         @endif
+        
         <!-- Data Perjalanan -->
         <form method="POST" action="{{ route('tambahPerjalananUser.store') }}" enctype="multipart/form-data">
             @csrf
