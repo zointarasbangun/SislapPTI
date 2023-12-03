@@ -204,13 +204,13 @@
                                 <h5 class="fw-bold text-center mb-0">Pengemudi Dengan Pencapaian Kilometer Terbanyak</h5>
                             </div>
                             <div class="bg-primary">
-                                <a class="btn btn-square mx-1" href="">
+                                <a class="btn btn-square mx-1" href="https://web.facebook.com/pgncom.id" target="blank">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a class="btn btn-square mx-1" href="">
+                                <a class="btn btn-square mx-1" href="https://twitter.com/pgncom_id" target="blank">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a class="btn btn-square mx-1" href="">
+                                <a class="btn btn-square mx-1" href="https://www.instagram.com/pgncom_id/" target="blank">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                             </div>
@@ -228,13 +228,13 @@
                                 <h5 class="fw-bold text-center mb-0">Pengemudi Dengan Ketepatan Waktu Terbaik</h5>
                             </div>
                             <div class="bg-primary">
-                                <a class="btn btn-square mx-1" href="">
+                                <a class="btn btn-square mx-1" href="https://web.facebook.com/pgncom.id" target="blank">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a class="btn btn-square mx-1" href="">
+                                <a class="btn btn-square mx-1" href="https://twitter.com/pgncom_id" target="blank">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a class="btn btn-square mx-1" href="">
+                                <a class="btn btn-square mx-1" href="https://www.instagram.com/pgncom_id/" target="blank">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                             </div>
@@ -252,13 +252,13 @@
                                 <h5 class="fw-bold text-center mb-0">Pengemudi Dengan Nol Pelanggaran Lalu Lintas</h5>
                             </div>
                             <div class="bg-primary">
-                                <a class="btn btn-square mx-1" href="">
+                                <a class="btn btn-square mx-1" href="https://web.facebook.com/pgncom.id" target="blank">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a class="btn btn-square mx-1" href="">
+                                <a class="btn btn-square mx-1" href="https://twitter.com/pgncom_id" target="blank">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a class="btn btn-square mx-1" href="">
+                                <a class="btn btn-square mx-1" href="https://www.instagram.com/pgncom_id/" target="blank">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                             </div>
@@ -293,13 +293,13 @@
 
               <div class="mt-4 align-center">
                 <!-- Facebook -->
-                <a type="button" class="btn rounded-circle btn-floating btn-light btn-lg mx-2"><i class="fab fa-instagram"></i></a>
+                <a type="button" class="btn rounded-circle btn-floating btn-light btn-lg mx-2" href="https://www.instagram.com/pgncom_id/" target="blank"><i class="fab fa-instagram"></i></a>
                 <!-- Dribbble -->
-                <a type="button" class="btn rounded-circle btn-floating btn-light btn-lg mx-2"><i class="fab fa-twitter"></i></a>
+                <a type="button" class="btn rounded-circle btn-floating btn-light btn-lg mx-2" href="https://twitter.com/pgncom_id" target="blank"><i class="fab fa-twitter"></i></a>
                 <!-- Twitter -->
-                <a type="button" class="btn rounded-circle btn-floating btn-light btn-lg mx-2"><i class="fab fa-facebook"></i></i></a>
+                <a type="button" class="btn rounded-circle btn-floating btn-light btn-lg mx-2" href="https://web.facebook.com/pgncom.id" target="blank"><i class="fab fa-facebook"></i></i></a>
                 <!-- Google + -->
-                <a type="button" class="btn rounded-circle btn-floating btn-light btn-lg mx-2"><i class="fab fa-linkedin"></i></a>
+                <a type="button" class="btn rounded-circle btn-floating btn-light btn-lg mx-2" href="https://www.linkedin.com/company/pgncom/" target="blank"><i class="fab fa-linkedin"></i></a>
                 <!-- Linkedin -->
               </div>
           </div>
