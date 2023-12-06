@@ -48,6 +48,24 @@
 </div> --}}
 
     <div class="content-wrapper">
+        <style>
+            @media (max-width: 767px) {
+                .col-lg-3 {
+                    width: 100% !important;
+                    /* Kolom penuh lebar di layar kecil */
+                    margin-bottom: 10px;
+                    /* Spasi antar elemen */
+                }
+
+                .col-lg-9 {
+                    width: 100% !important;
+                    /* Kolom penuh lebar di layar kecil */
+                    margin-bottom: 10px;
+                    /* Spasi antar elemen */
+                }
+            }
+        </style>
+
         <div class="container-fluid p-5">
             <div class="row">
                 {{-- <div class="col-lg-4 col-sm-6">
@@ -62,8 +80,8 @@
                 <div class="col-lg-3 col-sm-12">
                     <div class="float-right">
                         <!-- Modal -->
-                        <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog"
-                            aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                            aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header text-start">
@@ -79,24 +97,25 @@
                                                 <i class="iconify nav-icon mr-3" data-icon="ic:outline-email"></i>
                                                 <label data-error="wrong" data-success="right"
                                                     for="defaultForm-email">Email</label>
-                                                <input type="email" name="email" id="defaultForm-email" class="form-control validate"
-                                                    placeholder="Input email">
+                                                <input type="email" name="email" id="defaultForm-email"
+                                                    class="form-control validate" placeholder="Input email">
                                             </div>
 
                                             <div class="mb-5">
                                                 <i class="mr-3 fa-regular fa-user"></i>
                                                 <label data-error="wrong" data-success="right"
                                                     for="defaultForm-Username">Username</label>
-                                                <input type="text" name="name" id="defaultForm-username" class="form-control validate"
-                                                    placeholder="Input nama">
+                                                <input type="text" name="name" id="defaultForm-username"
+                                                    class="form-control validate" placeholder="Input nama">
                                             </div>
 
                                             <div class="mb-5">
-                                                <i class="iconify nav-icon mr-3" data-icon="teenyicons:password-outline"></i>
+                                                <i class="iconify nav-icon mr-3"
+                                                    data-icon="teenyicons:password-outline"></i>
                                                 <label data-error="wrong" data-success="right"
                                                     for="defaultForm-pass">Password</label>
-                                                <input type="password" name="password" id="defaultForm-pass" class="form-control validate"
-                                                    placeholder="Input password">
+                                                <input type="password" name="password" id="defaultForm-pass"
+                                                    class="form-control validate" placeholder="Input password">
                                             </div>
 
                                             {{-- <div class="mb-5">
@@ -131,18 +150,18 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid mt-5">
-                @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+            <div class="container-fluid">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
-            @if(session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <table class="table table-striped text-center" id="tableakun">
                     <tr>
                         <th scope="col">Username</th>
@@ -153,32 +172,33 @@
                         <th scope="col">Action</th>
                     </tr>
                     @foreach ($users as $user)
-                    @if($user->role == 'user')
-                        <tr>
-                            <th scope="row">{{ $user->name }}</th>
-                            <td>password</td>
-                            <td>{{ $user->role }}</td>
-                            <td>-</td>
-                            <td><span class="badge badge-success">Aktif</span></td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <a href="{{ route('acount.edit', $user->id) }}" class="btn btn-primary mr-2">
-                                        <i class="iconify" data-icon="material-symbols:edit"></i>
-                                    </a>
-                                    <form id="deleteForm{{ $user->id }}" action="{{ route('acount.destroy', $user->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn btn-danger mr-2" onclick="confirmDelete()">
-                                            <i class="iconify" data-icon="material-symbols:delete"></i>
-                                        </button>
-                                    </form>
+                        @if ($user->role == 'user')
+                            <tr>
+                                <th scope="row">{{ $user->name }}</th>
+                                <td>password</td>
+                                <td>{{ $user->role }}</td>
+                                <td>-</td>
+                                <td><span class="badge badge-success">Aktif</span></td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a href="{{ route('acount.edit', $user->id) }}" class="btn btn-primary mr-2">
+                                            <i class="iconify" data-icon="material-symbols:edit"></i>
+                                        </a>
+                                        <form id="deleteForm{{ $user->id }}"
+                                            action="{{ route('acount.destroy', $user->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger mr-2" onclick="confirmDelete()">
+                                                <i class="iconify" data-icon="material-symbols:delete"></i>
+                                            </button>
+                                        </form>
 
 
-                                </div>
-                            </td>
+                                    </div>
+                                </td>
 
 
-                        </tr>
+                            </tr>
                         @endif
                     @endforeach
 
@@ -195,5 +215,4 @@
                 }
             }
         </script>
-
     @endsection

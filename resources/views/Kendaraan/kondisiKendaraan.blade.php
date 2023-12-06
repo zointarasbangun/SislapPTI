@@ -209,7 +209,8 @@
                                             <li class="list-group-item">Lampu Sen Belakang :
                                                 {{ $perjalanan->lampusen_belakang }}</li>
                                             <li class="list-group-item">Lampu Rem : {{ $perjalanan->lampu_rem }}</li>
-                                            <li class="list-group-item">Lampu Mundur : {{ $perjalanan->lampu_mundur }}</li>
+                                            <li class="list-group-item">Lampu Mundur : {{ $perjalanan->lampu_mundur }}
+                                            </li>
                                             <li class="list-group-item">Body : {{ $perjalanan->body }}</li>
                                             <li class="list-group-item">Ban : {{ $perjalanan->ban }}</li>
                                             <li class="list-group-item">Klakson : {{ $perjalanan->klakson }}</li>
@@ -276,5 +277,5 @@
 
             </div>
         </div>
-        </div>
-    @endsection
+    </div>
+@endsection

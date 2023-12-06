@@ -28,9 +28,23 @@ class HomeController extends Controller
         $perjalanans = Perjalanan::all();
         if (auth()->check()) {
             if (auth()->user()->role == 'admin') {
+                $perjalanans = Perjalanan::with('kendaraan')
+                    ->where(function ($query) {
+                        $query->where('status_perjalanan', Perjalanan::STATUS_DISETUJUI)
+                            ->orWhere('status_perjalanan', Perjalanan::STATUS_DITOLAK);
+                    })
+                    ->orderBy('created_at', 'desc')
+                    ->paginate();
                 return view('dashboard.adminDashboard', ['perjalanans' => $perjalanans]); // Ganti dengan nama view admin dashboard
             } else {
                 $user = Auth::user();
+                $perjalanans = Perjalanan::with('kendaraan')
+                    ->where(function ($query) {
+                        $query->where('status_perjalanan', Perjalanan::STATUS_DISETUJUI)
+                            ->orWhere('status_perjalanan', Perjalanan::STATUS_DITOLAK);
+                    })
+                    ->orderBy('created_at', 'desc')
+                    ->paginate();
                 $jumlahPerjalanan = $user->perjalans()->count();
                 return view('dashboard.userDashboard', ['perjalanans' => $perjalanans, 'jumlahPerjalanan' => $jumlahPerjalanan]); // Ganti dengan nama view user dashboard
             }

@@ -101,10 +101,10 @@
                         PGNCOM SAFETY DRIVE
                     </h5>
                     <h1 class="display-6 animated slideInDown mb-4">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Company Value
                     </h1>
                     <p class="fs-10 fw-medium mb-4 pb-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, ipsa Autem dolorem mollitia culpa! Unde vel quos, perspiciatis sequi enim nemo. Quasi, deleniti tenetur ratione adipisci nobis ea laudantium id.
+                        Becoming a reliable ICT provider is our main vision. PGNCOM Company values will always guide our path to give the best to the citizens of Indonesia.
                     </p>
                     </div>
                     <div class="col-lg-7 col-sm-12">
@@ -165,16 +165,17 @@
             <div class="col-lg-4">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                      <h5 class="card-title">Keluarga Anda Menunggu: </h5>
-                      <p class="card-text">Ingatlah, setiap perjalanan adalah langkah menuju rumah dan keluarga Anda. Jadilah pahlawan di mata mereka dengan selalu kembali dengan selamat.</p>
+                      <h5 class="card-title">Keselamatan adalah Prioritas Utama: </h5>
+                      <p class="card-text">Setiap perjalanan adalah kesempatan untuk kembali dengan selamat. Selalu utamakan keselamatan dalam setiap langkah Anda.</p>
                     </div>
                   </div>
             </div>
             <div class="col-4">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                      <h5 class="card-title">Keluarga Anda Menunggu: </h5>
-                      <p class="card-text">Ingatlah, setiap perjalanan adalah langkah menuju rumah dan keluarga Anda. Jadilah pahlawan di mata mereka dengan selalu kembali dengan selamat.</p>
+                      <h5 class="card-title">Berhati-hatilah di Jalan:  </h5>
+                      <p class="card-text">Peraturan lalu lintas ada demi keselamatan kita semua. Taati semua aturan dan tanda-tanda jalan.
+                    </p>
                     </div>
                   </div>
             </div>
