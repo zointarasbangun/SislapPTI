@@ -90,7 +90,7 @@
             <div class="container-fluid mt-3">
                 <table class="table table-striped text-center" id="tableakun">
                     <tr>
-                        <th scope="col">User</th>
+                        <th scope="col">Driver</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">No Polisi</th>
                         <th scope="col">Tipe Mobil</th>
