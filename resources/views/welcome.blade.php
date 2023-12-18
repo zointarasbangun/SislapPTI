@@ -285,7 +285,7 @@
                   <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Jl. Sam Ratulangi No.15 Penegahan Raya, Kedaton, Bandar Lampung 35112</span>
                 </li>
                 <li class="mb-3">
-                  <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">07217626359</span>
+                  <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">0721787085</span>
                 </li>
                 <li class="mb-3">
                   <span class="fa-li"><i class="fas fa-phone"></i></span><span class="ms-2">sales@pgncom.co.id</span>
@@ -313,7 +313,7 @@
               <tbody class="fw-normal">
                 <tr>
                   <td>Monday - Friday:</td>
-                  <td>08-00 AM - 17.00 PM</td>
+                  <td>07-30 AM </td>
                 </tr>
               </tbody>
             </table>

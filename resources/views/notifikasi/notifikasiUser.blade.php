@@ -93,7 +93,7 @@
                                         @endif
                                     </td>
 
-                                    @if ($perjalanan->status_perjalanan == 'menunggu')
+                                    @if ($perjalanan->status_perjalanan == 'selesai')
                                         <td>
                                             <form action="{{ route('send.whatsapp') }}" method="post" target="_blank">
                                                 @csrf
