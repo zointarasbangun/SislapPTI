@@ -16,7 +16,9 @@ return new class extends Migration
     {
         Schema::create('perjalanans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            // $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->date('tgl_perjalanan');
             $table->string('alamat_awal');
             $table->string('alamat_tujuan');
@@ -46,7 +48,7 @@ return new class extends Migration
             $table->string('catatan')->nullable();
             $table->string('status_perjalanan')->default(Perjalanan::STATUS_MENUNGGU);
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
 
     }

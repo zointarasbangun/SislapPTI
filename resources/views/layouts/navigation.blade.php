@@ -46,13 +46,7 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- Tambahan ID untuk submenu pelacak perjalanan -->
-                    <li id="menu-pelacak-perjalanan" class="nav-item">
-                        <a href="/pelacakperjalanan" class="nav-link">
-                            <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
-                            <p>Pelacak Perjalanan</p>
-                        </a>
-                    </li>
+
                     <li id="menu-kondisi-kendaraan" class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
@@ -73,12 +67,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li id="menu-notifikasi" class="nav-item {{ request()->is('/notifikasi') ? 'menu-open' : '' }}">
-                        <a href="/notifikasi" class="nav-link {{ request()->is('/notifikasi') ? 'active' : '' }}">
-                            <i class="iconify nav-icon" data-icon="mdi:bell-warning"></i>
-                            <p>Notifikasi</p>
-                        </a>
-                    </li>
+
                 </ul>
             </nav>
             @else
@@ -154,14 +143,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="/pelacakPerjalananUser" class="nav-link">
-                                <i class="iconify nav-icon" data-icon="arcticons:vtracking"></i>
-                                <p>
-                                    Pelacak Perjalanan
-                                </p>
-                            </a>
-                        </li>
+        
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="iconify nav-icon" data-icon="tabler:checkup-list"></i>
