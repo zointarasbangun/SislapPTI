@@ -92,42 +92,78 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/managePerjalanan/{perjalanan}', [PerjalananController::class, 'destroyadmin'])->name('managePerjalanan.destroy');
 
 
+        // Route::get('/search', [PerjalananController::class, 'search'])->name('search');
+
         Route::get('/statusPerjalanan', [AcountController::class, 'getData'])->name('statusPerjalanan');
         Route::post('/approve-perjalanan/{perjalanan}', [PerjalananController::class, 'approvePerjalanan'])->name('approve.perjalanan');
         Route::post('/reject-perjalanan/{perjalanan}', [PerjalananController::class, 'rejectPerjalanan'])->name('reject.perjalanan');
-
+        // Route::get('/dataperjalanan', function () {
+        //     return view('perjalanan.dataPerjalanan');
+        // });
         Route::get('/statusperjalananadmin', [PerjalananController::class, 'statusPerjalananAdmin'])->name('status.perjalanan.admin');
 
+        // Route::get('/statusperjalanan', function () {
+        //     return view('perjalanan.statusperjalanan');
+        // });
 
+        Route::get('/pelacakperjalanan', function () {
+            return view('pelacak.pelacakperjalanan');
+        });
 
         Route::get('admin/cetakpdf', [DownloadController::class, 'cetakpdf'])->name('admin.cetakpdf');
         Route::get('/download-excel', [DownloadController::class, 'downloadExcel'])->name('download.excel');
 
+        // Route::get('/datakondisikendaraan', function () {
+        //     return view('kendaraan.kondisikendaraan');
+        // });
+
+
+        Route::get('/notifikasi', function () {
+            return view('notifikasi.notifikasi');
+        });
+
+        Route::get('/map', function () {
+            return view('pelacak.map');
+        });
 
         Route::get('/profileAdmin', [ProfileController::class, 'index'])->name('profileAdmin');
         Route::get('/ProfileAdmin/{userId}/edit', [ProfileController::class, 'edit'])->name('profileAdmin.edit');
         Route::put('/ProfileAdmin/{userId}', [ProfileController::class, 'updateAdmin'])->name('profileAdmin.update');
 
+        // Route::get('/profile', function () {
+        //     return view('auth.profile');
+        // });
+
+        // Route::get('/editProfile', function () {
+        //     return view('auth.editProfile');
+        // });
     });
 
 
     Route::group(['middleware' => ['user']], function () {
-
+        // Route::get('/userDashboard', function () {
+        //     return view('dashboard.userDashboard');
+        // })->name('userDashboard');
 
 
         Route::get('cetakpdfuser', [DownloadController::class, 'cetakpdfuser'])->name('cetakpdfuser');
 
         Route::get('/userDashboard', [PerjalananController::class, 'indexuser'])->name('userDashboard');
-
+        // Route::get('/tambahPerjalananUser', function(){
+        //     return view('perjalanan.tambahDataPerjalananUser');
+        // });
         Route::get('/tambahPerjalananUser', [PerjalananController::class, 'create'])->name('tambahPerjalananUser');
         Route::post('/tambahPerjalananUser', [PerjalananController::class, 'store'])->name('tambahPerjalananUser.store');
-
+        // Route::get('/dataPerjalananUser', [PerjalananController::class, 'index'])->name('dataPerjalananUser.index');
         Route::get('/statusPerjalananUser/{perjalanan}/edit', [PerjalananController::class, 'edit'])->name('statusPerjalananUser.edit');
         Route::put('/statusPerjalananUser/{perjalanan}', [PerjalananController::class, 'update'])->name('statusPerjalananUser.update');
         Route::get('/statusPerjalananUser', [PerjalananController::class, 'index'])->name('statusPerjalananUser.index');
         Route::get('/dataPerjalananUser', [PerjalananController::class, 'getData'])->name('dataPerjalananUser');
         Route::get('/riwayatPerjalananUser', [PerjalananController::class, 'riwayat'])->name('riwayatPerjalananUser');
 
+        // Route::get('/dataperjalananUser', function () {
+        //     return view('perjalanan.dataPerjalanan');
+        // });
 
 
         Route::get('/kendaraanUser', function () {
@@ -140,9 +176,28 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('/send-whatsapp', [WhatsAppController::class, 'sendMessage'])->name('send.whatsapp');
 
+        // Route::get('/statusPerjalananUser', function(){
+        //     return view('perjalanan.statusPerjalananUser');
+        // });
+
+        Route::get('/pelacakPerjalananUser', function () {
+            return view('pelacak.pelacakPerjalananUser');
+        });
+
+        // Route::get('/riwayatPerjalananUser', function () {
+        //     return view('perjalanan.riwayatPerjalananDriver');
+        // });
 
         Route::get('/notifikasiUser', [WhatsAppController::class, 'index']);
 
+
+        // Route::get('/notifikasiUser', function () {
+        //     return view('notifikasi.notifikasiUser');
+        // });
+
+        // Route::get('/datakondisikendaraanUser', function () {
+        //     return view('kendaraan.kondisikendaraan');
+        // });
 
         Route::get('/tipeKendaraanUser', [KendaraanController::class, 'index'])->name('kendaraanUser.index');
 
@@ -150,6 +205,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/ProfileUser/{userId}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/ProfileUser/{userId}', [ProfileController::class, 'update'])->name('profile.update');
 
+        // Route::get('/profile', function () {
+        //     return view('auth.profile');
+        // });
+
+        // Route::get('/editProfile', function () {
+        //     return view('auth.editProfile');
+        // });
     });
 
 });

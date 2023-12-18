@@ -39,7 +39,7 @@ class WhatsAppController extends Controller
         $text = "$user->name akan melakukan perjalanan pada tanggal $travelDate. Silahkan cek aplikasi untuk detail perjalanan.";
         // dd(rawurlencode($text));
 
-        return redirect("https://wa.me/+6285279397399" . "?text=" . rawurlencode($text));
+        return redirect("https://wa.me/+6285878341477" . "?text=" . rawurlencode($text));
     }
 
     // Handle the case where there are no perjalanan records for the user

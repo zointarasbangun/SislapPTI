@@ -123,10 +123,17 @@
                 @if (Auth::user()->role == 'admin')
                     <!-- Notif -->
                     <li class="nav-item dropdown mr-4">
-
+                        <a class="nav-link rounded-circle" data-toggle="dropdown" href="#">
+                            <i class="far fa-bell"></i>
+                            <span class="badge badge-warning ">15</span>
+                        </a>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                             {{-- <span class="dropdown-item dropdown-header disabled ">15 Notifications</span> --}}
-
+                            <div class="dropdown-divider"></div>
+                            <a href="/notifikasi" class="dropdown-item">
+                                <i class="fas fa-envelope mr-2"></i> 4 new messages
+                                <span class="float-right text-muted text-sm">3 mins</span>
+                            </a>
                             {{-- <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-users mr-2"></i> 8 friend requests
@@ -177,10 +184,17 @@
                 @else
                     <!-- Notif -->
                     <li class="nav-item dropdown mr-4">
-                       
+                        <a class="nav-link rounded-circle" data-toggle="dropdown" href="#">
+                            <i class="far fa-bell"></i>
+                            <span class="badge badge-warning ">15</span>
+                        </a>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                             {{-- <span class="dropdown-item dropdown-header disabled ">15 Notifications</span> --}}
-
+                            <div class="dropdown-divider"></div>
+                            <a href="/notifikasiUser" class="dropdown-item">
+                                <i class="fas fa-envelope mr-2"></i> 4 new messages
+                                <span class="float-right text-muted text-sm">3 mins</span>
+                            </a>
                             {{-- <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-users mr-2"></i> 8 friend requests
